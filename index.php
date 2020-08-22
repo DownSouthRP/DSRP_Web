@@ -11,7 +11,7 @@
       <title>DownSouthRP</title>
 
       <!-- FAVICON -->
-      <link rel="shortcut icon" href="/DSRP_Web/t/design/imgs/dsrpLogo.png" type="image/png">
+      <link rel="shortcut icon" href="/t/design/imgs/dsrpLogo.png" type="image/png">
 
       <!-- BOOTSTRAP THEME -->
       <link rel="stylesheet" href="https://bootstrapbuildspace.sfo2.cdn.digitaloceanspaces.com//GZRModirGGBW/NMTjxhujiMgL/bootstrap.css">
@@ -26,11 +26,11 @@
 
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-3">
           </div>
-          <div class="col-md-4">
-            <br><br>
-            <center><img src="/DSRP_Web/t/design/imgs/dsrpLogo.png" />
+          <div class="col-md-6">
+            <br>
+            <center><img src="/t/design/imgs/dsrpLogo.png" />
             <br>
             <h2>DOWNSOUTHRP</h2>
             <br>
@@ -43,10 +43,13 @@
               <br><br>
               <p>Join the Discord Server linked above to get the lastest news on application cycles, interview sessions and more! Plus you can hang with some of the coolest members and staff from DownSouthRP.</p>
             </div>
+            <div class="jumbotron">
+              <a type="button" href="https://discord.gg/Qg8Hkwb" target="_blank" class="btn btn-primary">Current Members Login Here</a>
+            </div>
             </center>
 
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
           </div>
         </div>
       </div>
