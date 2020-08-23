@@ -7,38 +7,61 @@ include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
 ?>
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-3">
-    </div>
-    <div class="col-md-6">
-      <center><img src="/sys/design/imgs/dsrpLogo.png" />
-      <br>
-      <h2>DOWNSOUTHRP</h2>
-      <br>
-      <div class="jumbotron">
-        <h2>CHECK OUT OUR DEPARTMENTS</h2>
-        <br>
-        <div class="row">
-            <div class="col md-6">
-                <a type="button" href="/home/dept/lspd.php" class="btn btn-primary">Los Santos Police Department</a>
-                <br><br><a type="button" href="/home/dept/bcso.php" class="btn btn-primary">Blaine County Sheriff's Office</a>
-                <br><br><a type="button" href="/home/dept/sasp.php" class="btn btn-primary">San Andreas State Police</a>
-                <br><br><a type="button" href="/home/dept/firedept.php" class="btn btn-primary">San Andreas Fire & EMS</a>
-                <br><br><a type="button" href="/home/dept/comms.php" class="btn btn-primary">Communications</a>
-                <br><br><a type="button" href="/home/dept/civops.php" class="btn btn-primary">Civilian Operations</a>
-            </div>
-            <div class="col md-6">
-                <p>Check out the pages above to get the latest information about our wonderful departments</p>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <center><img style="width:15%;height:auto;" src="/sys/design/imgs/dsrpLogo.png"><br></center>
+                        </div>
+                        
+                    </div>
                 <br>
-                <h4>More Content Coming Soon!</h4>
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-md-2">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h3 class="card-title"></h3>
+                                        <br>
+                                        <center>
+                                            <img style="width:50%;height:auto;" src="/sys/design/imgs/dsrpLogo.png"><br>
+                                            <p style="font-size:20px;">Down South Roleplay Community was founded in 2020 by Jay & Braden. Along with some friends, they want to enhance the roleplay without having many restrictions. Our main purpose here at Down South Roleplay is to make RP better for everyone.</p>
+                                        </center>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <center><h4>Quick References</h4>
+                                    <br>
+                                    <button class="btn btn-primary" href="https://discord.gg/Qg8Hkwb" target="_blank">Public Relations Discord</button>
+                                </center>
+                                <br><br>
+                                <h6>Director: <b>Jay L.</b></h6>
+                                <h6>Deputy Director: <b>Braden B.</b></h6>
+                                <h6>Community Manger: <b>Ryan D.</b></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                </div>
+
             </div>
         </div>
-           
-      </div>
-      </center>
-
     </div>
-    <div class="col-md-3">
-    </div>
-  </div>
 </div>
