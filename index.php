@@ -2,5 +2,5 @@
 <!-- CREATED BY THE DOWNSOUTHRP DEVELOPMENT DIVISION -->
 
 <?php
-header("Location: /home");
+echo '<script type="text/javascript">location.href = "/home";</script>'
 ?>
