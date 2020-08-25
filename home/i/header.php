@@ -20,14 +20,20 @@
                                 <a class="dropdown-item" href="/home/dept/civops.php">Civilian Operations</a>
 							</div>
                         </li>
-						<!-- <li class="nav-item dropdown">
+						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">Resources</a>
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-								<a class="dropdown-item" href="#"></a>
+								<a class="dropdown-item" href="https://discord.gg/Qg8Hkwb" target="_blank">Public Relations Discord</a>
+								<a class="dropdown-item" href="https://twitter.com/dsrp_official" target="_blank">DSRP Twitter</a>
 							</div>
-                        </li> -->
-                        <a class="nav-link" href="https://discord.gg/Qg8Hkwb" target="_blank">Public Relations Discord</a>
-						<!-- <a href="/sys/logout.php" class="btn btn-primary">LogOut</a> -->
+                        </li>
+						<?php 
+							if(!isset($_SESSION['loggedin'])) {
+								echo '<a href="/home/auth/login.php" class="nav-link">Login</a>';
+							} else {
+								echo '<a href="#" class="nav-link">"name"</a>';
+							}
+						?>
 					</ul>
 				</div>
 			</nav>

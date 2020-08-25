@@ -55,6 +55,15 @@ include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
                                 <h6>Community Manger: <b>Ryan D.</b></h6>
                             </div>
                         </div>
+                        <br>
+                        <div class="card">
+                            <div class="card-body">
+                                <center><h4>Application Status</h4>
+                                    <br>
+                                    <button class="btn btn-primary" href="#">CURRENTLY CLOSED</button>
+                                </center>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
