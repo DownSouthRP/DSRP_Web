@@ -2,6 +2,9 @@
 
 include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php");
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
 <br><br>
 <div class="container-fluid">

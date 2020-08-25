@@ -2,6 +2,14 @@
 
 include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php");
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if($_SESSION['loggedin'] === TRUE) {
+	echo '<script type="text/javascript">location.href = "/home/index.php";</script>';
+}
+
 ?>
 <br><br>
 <div class="container-fluid">
@@ -26,11 +34,11 @@ include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php");
 							<form role="form" action="scripts/loginScript.php" method="post">
 							<div class="form-group">
 								<label for="authInputUsername">Email Address</label>
-								<input type="email" class="form-control" id="authInputUsername" required/>
+								<input type="email" class="form-control" id="authInputUsername" name="authInputUsername" required/>
 							</div>
 							<div class="form-group">
 								<label for="authInputPassword">Password</label>
-								<input type="password" class="form-control" id="authInputPassword" required/>
+								<input type="password" class="form-control" id="authInputPassword" name="authInputPassword" required/>
 							</div>
 							<button type="submit" class="btn btn-primary btn-block">Login</button>
 							<br>

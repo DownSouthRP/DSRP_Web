@@ -1,3 +1,12 @@
+<?php
+
+include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php");
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+
+?>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -28,10 +37,14 @@
 							</div>
                         </li>
 						<?php 
-							if(!isset($_SESSION['loggedin'])) {
+							if ($_SESSION['loggedin'] !== TRUE) {
 								echo '<a href="/home/auth/login.php" class="nav-link">Login</a>';
 							} else {
-								echo '<a href="#" class="nav-link">"name"</a>';
+								echo '<a href="/home/profile/view.php?id=';
+								echo $getCurrentUserRow['id'];
+								echo '" class="nav-link">';
+								echo $getCurrentUserRow['displayName'];
+								echo'</a>';
 							}
 						?>
 					</ul>
