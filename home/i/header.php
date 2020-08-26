@@ -40,12 +40,12 @@ if (session_status() == PHP_SESSION_NONE) {
                         </li>
 						<li class="nav-item"></li>
 						<?php 
-							if($_SESSION["loggedin"] == FALSE){
+							if($_SESSION["loggedin"] === FALSE){
 								echo '<a href="/home/auth/login.php" class="nav-link">Login</a>';
 							} else {
 								echo '<li class="nav-item dropdown">';
 								echo '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">';
-								echo $getCurrentUserRow['displayName'];
+								if(isset($getCurrentUserRow['displayName'])) { echo $getCurrentUserRow['displayName']; }
 								echo '</a>';
 								echo '<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">';
 								echo '<a class="dropdown-item" href="';
