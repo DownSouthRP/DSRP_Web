@@ -60,7 +60,7 @@ include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
                             <div class="card-body">
                                 <center><h4>Application Status</h4>
                                     <br>
-                                    <button class="btn btn-primary" href="#">CURRENTLY CLOSED</button>
+                                    <button class="btn btn-primary disabled" href="#">CURRENTLY CLOSED</button>
                                 </center>
                             </div>
                         </div>

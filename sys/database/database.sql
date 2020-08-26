@@ -9,6 +9,10 @@ CREATE TABLE `accounts` (
 	`displayName` VARCHAR(50),
 	`email` VARCHAR(100),
 	`password` VARCHAR(100),
+	-- COMMUNITY INFORMATION
+	`communityRank` VARCHAR(100),
+	-- PROFILE INFORMATION
+	`profileBanner` VARCHAR(500),
 	PRIMARY KEY (`id`)
 );
 
