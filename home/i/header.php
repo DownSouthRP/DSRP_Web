@@ -51,11 +51,22 @@ if (session_status() == PHP_SESSION_NONE) {
 								echo '<a class="dropdown-item" href="';
 								echo '/profile/view.php?id=';
 								echo $getCurrentUserRow['id'];
-								echo '">My Profile</a>';
+								echo '">View Profile</a>';
+								echo '<a class="dropdown-item" href="/profile/settings.php">Settings</a>';
+
+								// IF STAFF OR ADMIN
+								if($getCurrentUserRow['staff'] || $getCurrentUserRow['adminitration'] == 'TRUE') {
+									echo '<div class="dropdown-divider"></div>';
+								}
 								// IF IS STAFF
-								echo '<a class="dropdown-item" href="#">Staff Panel</a>';
+								if($getCurrentUserRow['staff'] == 'TRUE') {
+									echo '<a class="dropdown-item" href="/staff/index.php">Staff Panel</a>';
+								}
 								// IF IS ADMIN
-								echo '<a class="dropdown-item" href="#">Admin Panel</a>';
+								if($getCurrentUserRow['adminitration'] == 'TRUE') {
+									echo '<a class="dropdown-item" href="/admin/index.php">Admin Panel</a>';
+								}
+								echo '<div class="dropdown-divider"></div>';
 								echo '<a class="dropdown-item" href="/sys/logout.php">Logout</a>';
 								echo '</div>';
 								echo '</li>';

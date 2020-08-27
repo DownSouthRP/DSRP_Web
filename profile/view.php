@@ -27,7 +27,6 @@ if(is_null($getUserRow['id'])) {
 }
 
 ?>
-
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -49,18 +48,22 @@ if(is_null($getUserRow['id'])) {
                     <div class="col-md-9">
                         <div class="card">
                             <div class="row">
-                                <div class="col-md-2">
-                                </div>
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                     <div class="card-body">
                                         <h3 class="card-title"></h3>
                                         <br>
                                         <center>
-                                            <img style="width:50%;height:auto;" src="<?php if(!isset($getUserRow['profileBanner'])) { echo "/sys/design/imgs/dsrpLogo.png"; } else { echo $getUserRow['profileBanner'];}?>"><br>
+                                            <?php 
+                                                if(!isset($getUserRow['profileBanner'])) {
+                                                    echo '<img src="/sys/design/imgs/dsrpLogo.png"><br>';
+                                                } else {
+                                                    echo '<img style="width:80%;height:auto;"src="';
+                                                    echo $getUserRow['profileBanner'];
+                                                    echo '"><br>';
+                                                }
+                                            ?>
                                         </center>
                                     </div>
-                                </div>
-                                <div class="col-md-2">
                                 </div>
                             </div>
                         </div>
@@ -75,9 +78,9 @@ if(is_null($getUserRow['id'])) {
                                             <div class="col">
                                                 <h5>Profile Link</h5>
                                                 <div class="input-group mb-3">
-                                                    <input class="form-control" id="profileLink" value="http://downsouthrp.com/profile/view.php?id=<?php echo $getUserRow['id']; ?>" disabled/>
+                                                    <input class="form-control" id="profileLink" value="http://downsouthrp.com/profile/view.php?id=<?php echo $getUserRow['id'];?>" disabled/>
                                                     <div class="input-group-append">
-                                                        <!-- <button class="btn btn-outline-primary" type="button" id="profileLinkBtn" onclick="copyToClipboard('#profileLink')">COPY</button> -->
+                                                        <!-- <button class="btn btn-outline-primary" type="button" id="profileLinkBtn" onclick="copyText()">COPY</button> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -97,15 +100,26 @@ if(is_null($getUserRow['id'])) {
                                 <h4>Profile Information</h4>
                                 <br>
                                 <p>
-                                    Name: <?php echo $getUserRow['displayName']?>
+                                    Name: <strong><?php echo $getUserRow['displayName']?></strong>
+                                    <br>
+                                    Rank: <strong><?php echo $getUserRow['communityRank']?></strong>
                                 </p>
+                                <br>
+                                <?php
+                                    if($accountID == $_SESSION['id']) {
+                                        echo '<a class="btn btn-primary btn-block" type="button" href="settings.php">Edit Profile</a>';
+                                    } else {
+                                        exit;
+                                    }
+                                
+                                ?>
                             </div>
                         </div>
-                        <br>
+                        <!-- <br>
                         <div class="card">
                             <div class="card-body">
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
