@@ -76,13 +76,7 @@ if(is_null($getUserRow['id'])) {
                                         <br>
                                         <div class="row">
                                             <div class="col">
-                                                <h5>Profile Link</h5>
-                                                <div class="input-group mb-3">
-                                                    <input class="form-control" id="profileLink" value="http://downsouthrp.com/profile/view.php?id=<?php echo $getUserRow['id'];?>" disabled/>
-                                                    <div class="input-group-append">
-                                                        <!-- <button class="btn btn-outline-primary" type="button" id="profileLinkBtn" onclick="copyText()">COPY</button> -->
-                                                    </div>
-                                                </div>
+                                            
                                             </div>
                                             <div class="col">
                                             </div>

@@ -10,12 +10,21 @@ if (session_status() == PHP_SESSION_NONE) {
 $currentEmailAddress = $getCurrentUserRow['email'];
 $newEmailAddress = $_POST['newEmailAddress'];
 
+$systemLogTimeDate = date('H:i:s');
+$systemLogDate = date('Y-m-d');
+$systemLogName = "Email Address Changed";
+$systemLogType = "settingUpdate";
+$systemLogDetails = $getCurrentUserRow['displayName'] . " has updated their email address to " . $newEmailAddress;
+$logSQL = " INSERT INTO systemLogs (systemLogTime, systemLogDate, systemLogName, systemLogType, systemLogDetails) VALUES ('$systemLogTimeDate', '$systemLogDate', '$systemLogName', '$systemLogType', '$systemLogDetails') ";
+
+$updateSQL = " UPDATE accounts SET email = '".$newEmailAddress."' WHERE id = '".$_SESSION['id']."' ";
+
 if (filter_var($_POST['newEmailAddress'], FILTER_VALIDATE_EMAIL)) {
 
-    $updateSQL = " UPDATE accounts SET email = '".$newEmailAddress."' WHERE id = '".$_SESSION['id']."' ";
-
     if(mysqli_query($con, $updateSQL)) {
-        echo("<script>location.href = '/profile/settings.php';</script>");
+        if(mysqli_query($con, $logSQL)) {
+            echo("<script>location.href = '/profile/settings.php';</script>");
+        }
     }
 
 } else {

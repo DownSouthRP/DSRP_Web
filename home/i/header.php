@@ -1,6 +1,7 @@
 <?php
 
 include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php");
+include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getDSRPInfo.php");
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -11,13 +12,18 @@ if (session_status() == PHP_SESSION_NONE) {
 	<div class="row">
 		<div class="col-md-12">
 			<nav class="navbar navbar-expand-lg navbar-light bg-primary navbar-dark bg-primary fixed-top">
-				<a class="navbar-brand" href="\FTOPortal\portal\main.php">
+				<a class="navbar-brand" href="/home/">
 					<img src="/sys/design/imgs/dsrpLogo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
                     DownSouthRP
                 </a>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="navbar-nav ml-md-auto">
-						<a class="nav-link" href="/home/index.php">Home</a>
+						<a class="nav-link" href="/home/">Home</a>
+						<?php
+							if($getDSRPInfoRow['appStatus'] == "TRUE") {
+								echo '<a class="nav-link" href="/apps/">Open Applications</a>';
+							}
+						?>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">Departments</a>
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
