@@ -53,8 +53,8 @@ include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
                                     <h6 class="card-subtitle mb-2 text-muted">Administration</h6>
                                     <p class="card-text">
                                         Chief of Police
-                                        <br>Deputy Chief of Police
                                         <br>Assistant Chief of Police
+                                        <br>Deputy Chief of Police
                                     </p>
                                     <h6 class="card-subtitle mb-2 text-muted">Senior Staff</h6>
                                     <p class="card-text">

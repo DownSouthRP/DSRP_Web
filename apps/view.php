@@ -50,10 +50,14 @@ if($getAppRow['appUser'] !== $getCurrentUserRow['id']) {
     } else {
         $viewAgree = 'I did not agree';
     }
-    $viewDateTime = $getAppRow['appDateTime'];
     $viewStatus = $getAppRow['appStatus'];
+    $viewDateTime = $getAppRow['appDateTime'];
+    $viewDeniedReason = $getAppRow['appDeniedReasons'];
 }
 
+// GET APPLICATION ACTIVITY BASED ON APPLICATION ID
+$getAppActivitySQL = " SELECT * FROM appActivity WHERE app = '".$appid."' ";
+$getAppActivityResult = mysqli_query($con, $getAppActivitySQL);
 
 
 
@@ -84,19 +88,23 @@ if($getAppRow['appUser'] !== $getCurrentUserRow['id']) {
                                 <br>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="card <?php 
-                                                            if($viewStatus == 'Application Submitted - Pending Review') { 
-                                                                echo 'bg-danger'; 
-                                                            }
-                                                            elseif($viewStatus == 'Application Pending: Accepted') {
-                                                                echo 'bg-success'; 
-                                                            }
-                                                        ?>">
+                                        <div class="card">
                                             <div class="card-header">Application Status</div>
                                             <div class="card-body">
                                                 <?php echo $viewStatus; ?>
                                             </div>
                                         </div>
+                                        <?php 
+                                            if($viewDeniedReason == 'Application Denied') {
+                                                echo '<br>';
+                                                echo '<div class="card">';
+                                                echo '<div class="card-header">Application Denial Reasons</div>';
+                                                echo '<div class="card-body">';
+                                                echo $viewDeniedReason;
+                                                echo '</div>';
+                                                echo '</div>';
+                                            }
+                                        ?>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="card">
@@ -198,6 +206,20 @@ if($getAppRow['appUser'] !== $getCurrentUserRow['id']) {
                                         <?php echo $viewAgree; ?>
                                     </div>
                                 </div>
+                                <br>
+                                <h2>Application Activity</h2>
+                                
+                                <ul class="list-group">
+                                <?php 
+                                    while($appActivityRow = mysqli_fetch_array($getAppActivityResult)) {
+                                        echo '<li class="list-group-item">';
+                                        echo $appActivityRow['detail'] . " - " . $appActivityRow['dateTime'];
+                                        echo '</li><br>';
+                                    }
+
+                                ?>
+                                </ul>
+                                
 
                             </div>
                         </div>

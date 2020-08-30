@@ -3,11 +3,12 @@
 include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php");
 include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
 include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getApps.php");
+include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php");
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
+$currentMonth = date('m');
 ?>
 <div class="container-fluid">
 	<div class="row">
@@ -30,15 +31,26 @@ if (session_status() == PHP_SESSION_NONE) {
                                 <h3 class="card-title">Recruitment Application</h3>
                                 <br>
                                 <?php
+                                    // CHECK IF USER IS AN APPLICANT
+                                    if($getCurrentUserRow['communityRank'] !== 'Applicant') {
+                                        echo '<br><center><div class="alert alert-danger" role="alert"><b>YOU ARE CURRENTLY A MEMBER, WHY WOULD YOU WANT TO GO THROUGH THIS AGAIN?</b></div></center>';
+                                    }
                                     // IF USER DOESNT HAVE AN APPLICATION
-                                    if($getAllCountArray[0] < '1') {
+                                    elseif($getAllCountArray[0] < '1') {
                                         echo '<a class="btn btn-primary btn-block" href="app.php">OPEN NEW APPLICATION</a>';
-                                    } 
-                                    // IF USER HAS MORE THAN 0 APPLICATIONS AND HAS NONE THAT ARE DENIED - OPEN NEW APPLICATION & VIEW PREVIOUS APPLICATIONS
+                                    }
+                                    // IF USER HAS MORE THAN 0 APPS THIS CYCLE
+                                    elseif($getAllCycleCountArray[0] >= '1') {
+                                        echo '<a class="btn btn-secondary btn-block" disabled>OPEN NEW APPLICATION</a>';
+                                        echo '<br><center><div class="alert alert-danger" role="alert">YOU CURRENTLY HAVE AN APPLICATION ON FILE THIS CYCLE</div></center>';
+                                        echo '<br>';
+                                        echo '<a class="btn btn-info btn-block" data-toggle="modal" data-target="#appsModal">VIEW APPLICATIONS</a>';
+                                    }
+                                    // IF USER HAS MORE THAN 0 APPLICATIONS
                                     elseif($getAllCountArray[0] >= '1') {
                                         echo '<a class="btn btn-primary btn-block" href="app.php">OPEN NEW APPLICATION</a>';
                                         echo '<br>';
-                                        echo '<a class="btn btn-primary btn-block" data-toggle="modal" data-target="#appsModal">VIEW APPLICATIONS</a>';
+                                        echo '<a class="btn btn-info btn-block" data-toggle="modal" data-target="#appsModal">VIEW APPLICATIONS</a>';
                                     } else {
                                         echo 'an error has occured';
                                     }
@@ -73,30 +85,32 @@ if (session_status() == PHP_SESSION_NONE) {
 
             <div class="modal-header">
                 <h5 class="modal-title" id="appsModalLabel">Your Applications</h5>
-                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
 
             <div class="modal-body">
                 <p>Below are your current applications in our system.</p>
-                <?php
-                    if($getAppCountRows[0] > '1') {
-                        while($allAppRow = mysqli_fetch_array($allAppResult)) {
-                            echo 'Application Submitted: ' . $allAppRow['appDateTime'] . '<br>Application Status: ' . $allAppRow['appStatus'];
-                            echo '<a class="btn btn-';
-                            if($allAppRow['appStatus'] == 'Application Submitted - Pending Review') {
-                                echo 'warning';
+                
+                
+                        <?php
+                            if($getAllCountArray[0] >= '1') {
+                                while($appRow = mysqli_fetch_array($getAllResult)) {
+                                    echo '<div class="card">';
+                                    echo '<div class="card-header">';
+                                    echo 'Application Submitted: <b>' . $appRow['appDateTime'] . '</b>' . '<br>Application Status: <b>' . $appRow['appStatus'] . '</b>';
+                                    echo '</div><div class="card-body">';
+                                    echo '<a class="btn btn-secondary btn-block" href="view.php?id=' . $appRow['id'] . '">VIEW APPLICATION</a>';
+                                    echo '</div></div><br>';
+                                }
+                            } else {
+                                echo 'NO APPS TO RETURN';
                             }
-                            elseif($allAppRow['appStatus'] == 'Application Denied') {
-                                echo 'danger';
-                            }
-                            echo ' btn-block" href="view.php?id=' . $allAppRow['id'] . '">VIEW APPLICATION</a>';
-                            echo '<br>';
-                        }
-                    } else {
-                        echo 'NO APPS TO RETURN';
-                    }
-                    
-                ?>
+                            
+                        ?>
+                    </div>
+                        
+                </div>
+                
 
             </div>
 

@@ -38,8 +38,11 @@ include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Department Information</h5>
-                                    <img src="/sys/design/imgs/construction.gif"><br>
+                                    <center>
+                                    <img style="width:50%;" src="/sys/design/imgs/depts/civ.png">
+                                    <br><br>
                                     <p>There will more information announced and placed here when it becomes available.</p>
+                                    </center>
                                 </div>
                             </div>
 						</div>
@@ -55,8 +58,8 @@ include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
                                     </p>
                                     <h6 class="card-subtitle mb-2 text-muted">Senior Staff</h6>
                                     <p class="card-text">
-                                        Civilian Senior Manager
-                                        <br>Civilian Manager
+                                        Civilian Chairman
+                                        <br>Civilian Vice Chairman
                                     </p>
                                     <h6 class="card-subtitle mb-2 text-muted">Staff</h6>
                                     <p class="card-text">

@@ -24,13 +24,9 @@ CREATE TABLE `accounts` (
 	`jrStaff` VARCHAR(5),
 	`member` VARCHAR(5),
 	-- FTO PREMISSIONS
-	`ftoDirector` VARCHAR(5),
-	`ftoSupervisor` VARCHAR(5),
-	`ftoLead` VARCHAR(5),
-	`ftoEvaluator` VARCHAR(5),
-	`fto` VARCHAR(5),
-	`fta` VARCHAR(5),
-	`retiredFTO` VARCHAR(5),
+	`recruitmentRank` VARCHAR(50),
+	-- LATER USAGE
+	`commandRank` VARCHAR(50)
 	-- 
 	PRIMARY KEY (`id`)
 );
@@ -76,7 +72,18 @@ CREATE TABLE `apps` (
 	`appAgree` VARCHAR(5),
 	`appUser` VARCHAR(20),
 	`appStatus` VARCHAR(50),
-	`appSubmittion` VARCHAR(50),
+	`appMonth` VARCHAR(10),
+	`appDateTime` VARCHAR(50),
+	`appDeniedReasons` VARCHAR(500),
+	PRIMARY KEY (`id`)
+);
+
+-- CREATE appActivity TABLE
+CREATE TABLE `appActivity` (
+	`id` INT(20) NOT NULL AUTO_INCREMENT,
+	`app` VARCHAR(50),
+	`detail` VARCHAR(500),
+	`dateTime` VARCHAR(50),
 	PRIMARY KEY (`id`)
 );
 

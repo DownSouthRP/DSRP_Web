@@ -1,6 +1,7 @@
 <?php
 
 include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php");
+include($_SERVER['DOCUMENT_ROOT']."/sys/config.php");
 include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getDSRPInfo.php");
 
 if (session_status() == PHP_SESSION_NONE) {
@@ -46,7 +47,8 @@ if (session_status() == PHP_SESSION_NONE) {
                         </li>
 						<li class="nav-item"></li>
 						<?php 
-							if($_SESSION["loggedin"] === FALSE){
+							// IF USER IS NOT LOGGED IN
+							if(!isset($_SESSION['loggedin']) || $_SESSION["loggedin"] !== TRUE){
 								echo '<a href="/home/auth/login.php" class="nav-link">Login</a>';
 							} else {
 								echo '<li class="nav-item dropdown">';
@@ -60,17 +62,21 @@ if (session_status() == PHP_SESSION_NONE) {
 								echo '">View Profile</a>';
 								echo '<a class="dropdown-item" href="/profile/settings.php">Settings</a>';
 
-								// IF STAFF OR ADMIN
-								if($getCurrentUserRow['staff'] || $getCurrentUserRow['adminitration'] == 'TRUE') {
+								// IF STAFF OR ADMIN OR RECRUITMENT STAFF
+								if(in_array($getCurrentUserRow['recruitmentRank'],$recruitmentRanks) || in_array($getCurrentUserRow['permissionRank'],$staff)) {
 									echo '<div class="dropdown-divider"></div>';
 								}
 								// IF IS STAFF
-								if($getCurrentUserRow['staff'] == 'TRUE') {
-									echo '<a class="dropdown-item" href="/staff/index.php">Staff Panel</a>';
+								if(in_array($getCurrentUserRow['permissionRank'],$staff)) {
+									echo '<a class="dropdown-item" href="/staff/">Staff Panel</a>';
 								}
 								// IF IS ADMIN
-								if($getCurrentUserRow['adminitration'] == 'TRUE') {
-									echo '<a class="dropdown-item" href="/admin/index.php">Admin Panel</a>';
+								if(in_array($getCurrentUserRow['permissionRank'],$admin)) {
+									echo '<a class="dropdown-item" href="/admin/">Admin Panel</a>';
+								}
+								// IF MEMBER OF RT DEPARTMENT
+								if(in_array($getCurrentUserRow['recruitmentRank'],$recruitmentRanks)) {
+									echo '<a class="dropdown-item" href="/rt/">Recruitment Portal</a>';
 								}
 								echo '<div class="dropdown-divider"></div>';
 								echo '<a class="dropdown-item" href="/sys/logout.php">Logout</a>';

@@ -43,7 +43,6 @@ if(is_null($getUserRow['id'])) {
                             </li>
                         </ol>
                     </nav>
-                <br>
                 <div class="row">
                     <div class="col-md-9">
                         <div class="card">
