@@ -79,7 +79,7 @@ $bcsoRanks = [
     'Sergeant', // DEPARTMENT STAFF
     'Senior Corporal', // DEPARTMENT JUNIOR STAFF
     'Corporal', // DEPARTMENT JUNIOR STAFF
-    '', // DEPARTMENT MEMBER
+    'Senior Deputy', // DEPARTMENT MEMBER
     '', // DEPARTMENT MEMBER
     '', // DEPARTMENT MEMBER
     '', // DEPARTMENT MEMBER
