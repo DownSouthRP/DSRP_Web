@@ -1,8 +1,8 @@
 <?php
 
-include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php");
-include($_SERVER['DOCUMENT_ROOT']."/sys/config.php");
-include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getDSRPInfo.php");
+require_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/sys/config.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getDSRPInfo.php";
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();

@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLYPATH=/home/downsout/webdev2020.downsouthrp.com
+    - export DEPLYPATH=/home/downsout/dev.downsouthrp.com
     - /bin/cp -R * $DEPLOYPATH

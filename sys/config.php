@@ -1,6 +1,19 @@
-<?php
+<!-- CREATD BY THE DOWNSOUTHRP DEVELOPMENT DEPARTMENT - SOFTWARE TEAM -->
+<!-- THIS FILE CONTAINS ALL SYSTEM CONFIGURATION -->
 
-// THIS CONTAINS ALL SYSTEM ARRAYS
+
+<!-- [[
+THIS FILE CONTAINS THE FOLLOING
+
+- Main Site Configuration and Redirections
+- DSRP Rank Arrays
+
+]] -->
+
+
+<!-- DSRP Site Ranking Arrays -->
+<!-- THESE ARRAYS CAN BE REFERENCED USING THE CODE BELOW FOR VARIOUS USES -->
+<?php
 
 $staff = [
     'Head Administration',
@@ -79,12 +92,12 @@ $bcsoRanks = [
     'Sergeant', // DEPARTMENT STAFF
     'Senior Corporal', // DEPARTMENT JUNIOR STAFF
     'Corporal', // DEPARTMENT JUNIOR STAFF
-    'Senior Deputy', // DEPARTMENT MEMBER
-    '', // DEPARTMENT MEMBER
-    '', // DEPARTMENT MEMBER
-    '', // DEPARTMENT MEMBER
-    '', // DEPARTMENT MEMBER
-    '', // DEPARTMENT PROBATIONARY MEMBER
+    'Senior Deputy II', // DEPARTMENT MEMBER
+    'Senior Deputy I', // DEPARTMENT MEMBER
+    'Deputy III', // DEPARTMENT MEMBER
+    'Deputy II', // DEPARTMENT MEMBER
+    'Deputy I', // DEPARTMENT MEMBER
+    'Probationary Deputy', // DEPARTMENT PROBATIONARY MEMBER
 ];
 
 $saspRanks = [
@@ -97,12 +110,12 @@ $saspRanks = [
     'Sergeant', // DEPARTMENT STAFF
     'Senior Corporal', // DEPARTMENT JUNIOR STAFF
     'Corporal', // DEPARTMENT JUNIOR STAFF
-    '', // DEPARTMENT MEMBER
-    '', // DEPARTMENT MEMBER
-    '', // DEPARTMENT MEMBER
-    '', // DEPARTMENT MEMBER
-    '', // DEPARTMENT MEMBER
-    '', // DEPARTMENT PROBATIONARY MEMBER
+    'Trooper', // DEPARTMENT MEMBER
+    'Trooper', // DEPARTMENT MEMBER
+    'Trooper', // DEPARTMENT MEMBER
+    'Trooper', // DEPARTMENT MEMBER
+    'Trooper I', // DEPARTMENT MEMBER
+    'Probationary Trooper', // DEPARTMENT PROBATIONARY MEMBER
 ];
 
 $fireRanks = [
@@ -158,6 +171,61 @@ $civRanks = [
     '', // DEPARTMENT MEMBER
     '', // DEPARTMENT PROBATIONARY MEMBER
 ];
+
+$allCommunityDepartmentRanks = [
+    // Los Santos Police Department
+    'Chief of Police',
+    'Assistant Chief of Police',
+    'Deputy Chief of Police',
+    'Police Captain',
+    'Police Lieutenant',
+    'Police Master Sergeant',
+    'Police Sergeant',
+    'Police Senior Corporal',
+    'Police Corporal',
+    'Senior Police Officer II',
+    'Senior Police Officer I',
+    'Police Officer I',
+    'Police Officer I',
+    'Police Officer I',
+    'Probationary Police Officer', 
+    // Blaine County Sheriff's Office
+    'Sheriff',
+    'Undersheriff',
+    'Sheriff Colonel',
+    'Captain',
+    'Lieutenant',
+    'Master Sergeant',
+    'Sergeant',
+    'Senior Corporal',
+    'Corporal',
+    'Senior Deputy II',
+    'Senior Deputy I',
+    'Deputy III',
+    'Deputy II',
+    'Deputy I',
+    'Probationary Deputy',
+    // San Andreas State Police
+    'Commissioner',
+    'Deputy Commissioner',
+    'Assistant Commissioner',
+    'Captain',
+    'Lieutenant',
+    'Master Sergeant',
+    'Sergeant',
+    'Senior Corporal',
+    'Corporal',
+    'Trooper',
+    'Trooper',
+    'Trooper',
+    'Trooper',
+    'Trooper I',
+    'Probationary Trooper',
+]
+
+
+
+
 
 
 
