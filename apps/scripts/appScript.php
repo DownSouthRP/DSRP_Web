@@ -11,6 +11,15 @@ if(!isset($_POST)) {
     exit;
 }
 
+$dateTime = date('Y-m-d') . " @ " . date('H:i:s');
+
+// GET LAST APP SUBMITTED
+$getLatestApp = " SELECT * FROM apps ORDER BY ID DESC LIMIT 1";
+$getLatestAppsResult = mysqli_query($con, $getLatestApp);
+$getLatestAppRow = mysqli_fetch_assoc($getLatestAppsResult);
+
+$thisApp = $getLatestAppRow['id'] + 1;
+
 // FORM FIELDS
 $name = $_POST['appName'];
 $dob = $_POST['appDoB'];
@@ -25,43 +34,53 @@ $appQ5 = $_POST['appQ5'];
 $appUser = $_SESSION['id'];
 $appAgree = $_POST['appAgree'];
 $appStatus = 'Application Submitted - Pending Review';
-$appDateTime = date('Y-m-d') . " @ " . date('H:i:s');
 $appMonth = date('m');
-$appSQL = " INSERT INTO apps (name, dob, age, email, appDept, appQ1, appQ2, appQ3, appQ4, appQ5, appUser, appAgree, appStatus, appDateTime, appMonth) 
-VALUES ('$name', '$dob', '$age', '$email', '$appDept', '$appQ1', '$appQ2', '$appQ3', '$appQ4', '$appQ5', $appUser,'$appAgree', '$appStatus', '$appDateTime', '$appMonth')";
+$appSQL = " INSERT INTO apps (id, name, dob, age, email, appDept, appQ1, appQ2, appQ3, appQ4, appQ5, appUser, appAgree, appStatus, appDateTime, appMonth) 
+VALUES ('$thisApp', '$name', '$dob', '$age', '$email', '$appDept', '$appQ1', '$appQ2', '$appQ3', '$appQ4', '$appQ5', $appUser, '$appAgree', '$appStatus', '$dateTime', '$appMonth')";
 
 // SYSTEM LOG
-$systemLogTimeDate = date('H:i:s');
-$systemLogDate = date('Y-m-d');
 $systemLogName = "Application Submitted";
 $systemLogType = "appSubmittion";
-$systemLogDetails = $getCurrentUserRow['displayName'] . " sent in an application";
-$logSQL = " INSERT INTO systemLogs (systemLogTime, systemLogDate, systemLogName, systemLogType, systemLogDetails) VALUES ('$systemLogTimeDate', '$systemLogDate', '$systemLogName', '$systemLogType', '$systemLogDetails') ";
+$systemLogDetails = $getCurrentUserRow['displayName'] . " sent in an application" . '<a href="/apps/view.php?id=' . $thisApp . '">[VIEW]</a>';
+$logSQL = " INSERT INTO systemLogs (systemLogDateTime, systemLogName, systemLogType, systemLogDetails) 
+VALUES ('$dateTime;', '$systemLogName', '$systemLogType', '$systemLogDetails') ";
+
+// ACTIVITY LOG
+$account = $_SESSION['id'];
+$activityDetail = 'Application Submitted' . '<a href="/apps/view.php?id=' . $thisApp . '">[VIEW]</a>';
+$accountActivitySQL = " INSERT INTO accoutnActivity (account, activityDetails, activityDateTime)
+VALUES ('$account', 'activityDetail', '$dateTime') ";
+
+// APPLICATION ACTIVITY LOG
+$detail = "Application Created & Submitted";
+$appActivitySQL = " INSERT INTO appActivity (app, detail, dateTime) 
+VALUES ('$thisApp', '$detail', '$dateTime') ";
 
 
-
-
-
+// SUBMITS THE APPLICATION
 if(mysqli_query($con, $appSQL)) {
+    // SUBMITS THE SYSTEM LOG
     if(mysqli_query($con, $logSQL)) {
-        
-        $getLatestApp = " SELECT * FROM apps ORDER BY ID DESC LIMIT 1";
-        $getLatestAppsResult = mysqli_query($con, $getLatestApp);
-        $getLatestAppRow = mysqli_fetch_assoc($getLatestAppsResult);
-
-        $app = $getLatestAppRow['id'];
-        $detail = "Application Created & Submitted";
-
-        $appActivitySQL = " INSERT INTO appActivity (app, detail, dateTime) VALUES ('$app', '$detail', '$appDateTime') ";
+        // SUBMITS THE APP ACTIVITY LOG
         if(mysqli_query($con, $appActivitySQL)) {
-            echo("<script>location.href = '/apps/';</script>");
+            // SUBMITS ACCOUNT ACTIVITY LOG
+            if(mysqli_query($con, $appSQL)) {
+                // IF ALL IS GOOD - SENDS USER TO THEIR APPLICATION PAGE
+                echo('<script>location.href = "/apps/view?id="' . $thisApp . '</script>');
+            } else {
+                // ACCOUNT ACTIVITY LOG ERROR
+                echo 'an error has occured - level 4';
+            }
         } else {
+            // ACTIVITY LOG ERROR
             echo 'an error has occured - level 3';
         }
     } else {
+        // SYSTEM LOG ERROR
         echo 'an error has occured - level 2';
     }
 } else {
+    // APPLICATION ERROR
     echo 'an error has occured - level 1';
 }
 

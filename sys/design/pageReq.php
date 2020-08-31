@@ -31,4 +31,10 @@
         <body>
 
 
-<!-- TO IMPORT THIS PAGE USE ( include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php"); ) -->
+<!-- TO IMPORT THIS PAGE USE THE CODE BELOW -->
+
+<!-- 
+
+    include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php"); 
+
+-->

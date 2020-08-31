@@ -34,7 +34,9 @@ CREATE TABLE `accounts` (
 -- CREATES accountActivity TABLE
 CREATE TABLE `accountActivity` (
 	`id` INT(50) NOT NULL AUTO_INCREMENT,
+	`account` VARCHAR(20),
 	`activityDetails` VARCHAR(500),
+	`activityDateTime` VARCHAR(500),
 	PRIMARY KEY (`id`)
 );
 

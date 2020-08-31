@@ -5,13 +5,13 @@ include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php");
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
-if($_SESSION['loggedin'] === TRUE) {
+// CHECKS IF THERE IS SESSION - IF THERE IS REDIRECT TO HOME PAGE
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == TRUE) {
 	echo '<script type="text/javascript">location.href = "/home/index.php";</script>';
 }
 
 ?>
-<br><br>
+<br>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">

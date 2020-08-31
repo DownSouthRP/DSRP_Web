@@ -19,7 +19,7 @@ $getAllCycleCountResult = mysqli_query($con, $getAllAppCycleCount);
 $getAllCycleCountArray = mysqli_fetch_array($getAllCycleCountResult);
 
 // GET ALL PENDING APPS
-$getPendingAppCount = " SELECT COUNT(*) FROM apps WHERE appUser = '".$_SESSION['id']."' AND appStatus = 'Application Submitted - Pending Review' ";
+$getPendingAppCount = " SELECT COUNT(*) FROM apps WHERE appUser = '".$_SESSION['id']."' AND appStatus = 'Application Submitted - Pending Review' OR appStatus = Application Submitted - Pending Lead Review' ";
 $getPendingCountResult = mysqli_query($con, $getPendingAppCount);
 
 // GET ALL ACCEPTED APPS
@@ -46,8 +46,5 @@ $getAcceptedResult = mysqli_query($con, $getAcceptedAppArray);
 // GET ALL DENIED APPS
 $getDeniedAppArray = " SELECT * FROM apps WHERE appUser = '".$_SESSION['id']."' AND appStatus = 'Application Denied' ";
 $getDeniedResult = mysqli_query($con, $getDeniedAppArray);
-
-
-
 
 ?>

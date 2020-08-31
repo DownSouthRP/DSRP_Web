@@ -35,11 +35,11 @@ include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
                                             <p style="font-size:20px;">Down South Roleplay Community was founded in 2020 by Jay & Braden. Along with some friends, they want to enhance the roleplay without having many restrictions. Our main purpose here at Down South Roleplay is to make RP better for everyone.</p>
                                         </center>
                                     </div>
-                                    <div class="card">
+                                    <!-- <div class="card">
                                         <div class="card-body">
-                                        <!-- ONLINE MEMBERS LIST -->
+                                        ONLINE MEMBERS LIST
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="col-md-2">
                                 </div>

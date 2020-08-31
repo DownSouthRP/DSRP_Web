@@ -22,7 +22,7 @@ $getUserSQL = " SELECT * FROM accounts WHERE id = '".$accountID."' ";
 $getUserResult = mysqli_query($con, $getUserSQL);
 $getUserRow = mysqli_fetch_assoc($getUserResult);
 
-if(is_null($getUserRow['id'])) {
+if(!isset($getUserRow['id']) || is_null($getUserRow['id'])) {
     echo '<script type="text/javascript">location.href = "/home/index.php";</script>';
 }
 

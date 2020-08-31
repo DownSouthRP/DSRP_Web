@@ -1,8 +1,5 @@
 <?php
-if(isset($_SESSION['loggedin'])) {
-    echo '<script type="text/javascript">location.href = "/home/index.php";</script>';
-    exit;
-}
+// STARTS SESSION IF NOT ALREADY STARTED
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -30,12 +27,15 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) 
             $_SESSION['id'] = $id;
             echo '<script type="text/javascript">location.href = "/home/index.php";</script>';
         } else {
-            echo 'Incorrect password!';
+            echo "<script>alert('Wrong Password!');</script>";
+            echo '<script type="text/javascript">location.href = "/home/auth/";</script>';
         }
     } else {
-        echo 'Incorrect username!';
+        echo "<script>alert('Incorrect Username!');</script>";
+            echo '<script type="text/javascript">location.href = "/home/auth/";</script>';
     }
 } else {
-    echo 'Could not prepare statement!';
+    echo "<script>alert('An error has occured!');</script>";
+            echo '<script type="text/javascript">location.href = "/home/auth/";</script>';
 }
 ?>
