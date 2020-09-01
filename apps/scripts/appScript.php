@@ -35,8 +35,9 @@ $appUser = $_SESSION['id'];
 $appAgree = $_POST['appAgree'];
 $appStatus = 'Application Submitted - Pending Review';
 $appMonth = date('m');
-$appSQL = " INSERT INTO apps (id, name, dob, age, email, appDept, appQ1, appQ2, appQ3, appQ4, appQ5, appUser, appAgree, appStatus, appDateTime, appMonth) 
-VALUES ('$thisApp', '$name', '$dob', '$age', '$email', '$appDept', '$appQ1', '$appQ2', '$appQ3', '$appQ4', '$appQ5', $appUser, '$appAgree', '$appStatus', '$dateTime', '$appMonth')";
+$appYear = date('y');
+$appSQL = " INSERT INTO apps (id, name, dob, age, email, appDept, appQ1, appQ2, appQ3, appQ4, appQ5, appUser, appAgree, appStatus, appDateTime, appMonth, appYear) 
+VALUES ('$thisApp', '$name', '$dob', '$age', '$email', '$appDept', '$appQ1', '$appQ2', '$appQ3', '$appQ4', '$appQ5', $appUser, '$appAgree', '$appStatus', '$dateTime', '$appMonth', '$appYear')";
 
 // SYSTEM LOG
 $systemLogName = "Application Submitted";

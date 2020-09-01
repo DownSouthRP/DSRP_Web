@@ -25,7 +25,7 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) 
             session_regenerate_id();
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['id'] = $id;
-            echo '<script type="text/javascript">location.href = "/home/index.php";</script>';
+            echo '<script type="text/javascript">location.href = "' . $redirect . '";</script>';
         } else {
             echo "<script>alert('Wrong Password!');</script>";
             echo '<script type="text/javascript">location.href = "/home/auth/";</script>';

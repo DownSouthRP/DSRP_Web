@@ -74,8 +74,9 @@ CREATE TABLE `apps` (
 	`appAgree` VARCHAR(5),
 	`appUser` VARCHAR(20),
 	`appStatus` VARCHAR(50),
-	`appMonth` VARCHAR(10),
 	`appDateTime` VARCHAR(50),
+	`appMonth` VARCHAR(10),
+	`appYear` VARCHAR(10),
 	`appDeniedReasons` VARCHAR(500),
 	PRIMARY KEY (`id`)
 );

@@ -1,14 +1,34 @@
 <?php
 
-include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php");
-include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
-include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getApps.php");
-include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php");
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php";
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== TRUE) {
+	echo '<script type="text/javascript">location.href = "nli.php";</script>';
+}
+
 $currentMonth = date('m');
+// THIS GETS A COUNT OF ALL APPLICATIONS SUBMITTED BY ONE USER
+$allAppsSQL = " SELECT COUNT(*) FROM apps WHERE appUser = '".$_SESSION['id']."' ";
+$allAppsResult = mysqli_query($con, $allAppsSQL);
+$allAppsRows = mysqli_fetch_array($allAppsResult);
+
+// GET ALL APPS FROM USER THIS CYCLE
+$appCurrentCycleSQL = " SELECT COUNT(*) FROM apps WHERE appUser = '".$_SESSION['id']."' AND appMonth = '".$currentMonth."' ";
+$appCurrentCycleResult = mysqli_query($con, $appCurrentCycleSQL);
+$appCurrentCycleArray = mysqli_fetch_array($appCurrentCycleResult);
+
+// GET ALL APPS FROM USER
+$getAllAppArray = " SELECT * FROM apps WHERE appUser = '".$_SESSION['id']."' ";
+$getAllResult = mysqli_query($con, $getAllAppArray);
+
+$appCount = $allAppsRows[0];
+$currentCycleCount = $appCurrentCycleArray[0];
+
 ?>
 <div class="container-fluid">
 	<div class="row">
@@ -35,24 +55,22 @@ $currentMonth = date('m');
                                     if($getCurrentUserRow['communityRank'] !== 'Applicant') {
                                         echo '<br><center><div class="alert alert-danger" role="alert"><b>YOU ARE CURRENTLY A MEMBER, WHY WOULD YOU WANT TO GO THROUGH THIS AGAIN?</b></div></center>';
                                     }
-                                    // IF USER DOESNT HAVE AN APPLICATION
-                                    elseif($getAllCountArray[0] < '1') {
+                                    // IF THERE ARE NO APPS FROM USER
+                                    if($appCount < '1') {
                                         echo '<a class="btn btn-primary btn-block" href="app.php">OPEN NEW APPLICATION</a>';
                                     }
-                                    // IF USER HAS MORE THAN 0 APPS THIS CYCLE
-                                    elseif($getAllCycleCountArray[0] >= '1') {
+                                    // IF THERE IS MORE THAN ONE APP
+                                    elseif($currentCycleCount <= '1') {
                                         echo '<a class="btn btn-secondary btn-block" disabled>OPEN NEW APPLICATION</a>';
-                                        echo '<br><center><div class="alert alert-danger" role="alert">YOU CURRENTLY HAVE AN APPLICATION ON FILE THIS CYCLE</div></center>';
-                                        echo '<br>';
-                                        echo '<a class="btn btn-info btn-block" data-toggle="modal" data-target="#appsModal">VIEW APPLICATIONS</a>';
+                                        echo '<br><center><div class="alert alert-danger" role="alert"><b>YOU CURRENTLY HAVE AN APPLICATION ON FILE THIS CYCLE</b></div></center>';
+                                        echo '<br><a class="btn btn-info btn-block" data-toggle="modal" data-target="#appsModal">VIEW APPLICATIONS</a>';
                                     }
-                                    // IF USER HAS MORE THAN 0 APPLICATIONS
-                                    elseif($getAllCountArray[0] >= '1') {
+                                    // IF THERE IS MORE THAN ONE APP WITH NO APPS THIS CYCLE
+                                    elseif($appCount >= '1') {
                                         echo '<a class="btn btn-primary btn-block" href="app.php">OPEN NEW APPLICATION</a>';
-                                        echo '<br>';
-                                        echo '<a class="btn btn-info btn-block" data-toggle="modal" data-target="#appsModal">VIEW APPLICATIONS</a>';
+                                        echo '<br><a class="btn btn-info btn-block" data-toggle="modal" data-target="#appsModal">VIEW APPLICATIONS</a>';
                                     } else {
-                                        echo 'an error has occured';
+                                        echo '<center><div class="alert alert-danger" role="alert">AN ERROR HAS OCCURED</div></center>';
                                     }
                                 
                                 ?>
@@ -93,8 +111,9 @@ $currentMonth = date('m');
                 
                 
                         <?php
-                            if($getAllCountArray[0] >= '1') {
-                                while($appRow = mysqli_fetch_array($getAllResult)) {
+                            if($appCount >= '1') {
+                                echo '<center><div class="alert alert-info" role="alert">YOU HAVE <b>' . $appCount . '</b> APPLICATIONS ON FILE</div></center>';
+                                while ($appRow = mysqli_fetch_array($getAllResult)) {
                                     echo '<div class="card">';
                                     echo '<div class="card-header">';
                                     echo 'Application Submitted: <b>' . $appRow['appDateTime'] . '</b>' . '<br>Application Status: <b>' . $appRow['appStatus'] . '</b>';
@@ -103,7 +122,7 @@ $currentMonth = date('m');
                                     echo '</div></div><br>';
                                 }
                             } else {
-                                echo 'NO APPS TO RETURN';
+                                echo '<center><div class="alert alert-info" role="alert">NO APPS TO RETURN</div></center>';
                             }
                             
                         ?>
