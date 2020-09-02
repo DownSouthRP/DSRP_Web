@@ -95,7 +95,7 @@ if(isset($_SESSION['id'])) {
 						<?php 
 							// IF USER IS NOT LOGGED IN
 							if(!isset($_SESSION['loggedin']) || $_SESSION["loggedin"] !== TRUE){
-								echo '<a href="/home/auth/login.php" class="nav-link">Login</a>';
+								echo '<a href="/home/auth/" class="nav-link">Login</a>';
 							} else {
 								echo '<li class="nav-item dropdown">';
 								echo '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">';
