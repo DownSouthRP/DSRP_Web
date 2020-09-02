@@ -31,7 +31,7 @@ if(isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == TRUE) {
 						<div class="card-body">
 							<h1 class="card-title">Login</h1>
 							<br>
-							<form role="form" action="scripts/loginScript.php" method="post">
+							<form role="form" action="/sys/scripts/loginScript.php" method="post">
 							<div class="form-group">
 								<label for="authInputUsername">Email Address</label>
 								<input type="email" class="form-control" id="authInputUsername" name="authInputUsername" required/>

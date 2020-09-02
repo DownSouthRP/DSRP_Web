@@ -31,7 +31,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == TRUE) {
 						<div class="card-body">
 							<h1 class="card-title">Register</h1>
 							<br>
-							<form role="form" action="scripts/registerScript.php" method="post">
+							<form role="form" action="/sys/scripts/registerScript.php" method="post">
 								<div class="row">
 									<div class="col">
 										<div class="form-group">
