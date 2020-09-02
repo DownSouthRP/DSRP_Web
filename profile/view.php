@@ -1,7 +1,7 @@
 <?php
 
-include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php");
-include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
 
 
 if (session_status() == PHP_SESSION_NONE) {

@@ -9,24 +9,18 @@ CREATE TABLE `accounts` (
 	`displayName` VARCHAR(50),
 	`email` VARCHAR(100),
 	`password` VARCHAR(100),
-	-- COMMUNITY INFORMATION
-	`communityRank` VARCHAR(100),
 	-- PROFILE INFORMATION
 	`profileBanner` VARCHAR(500),
-	-- SYSTEM PERMISSIONS
-	`headAdmimistration` VARCHAR(5),
-	`communityManager` VARCHAR(5),
-	`seniorAdministration` VARCHAR(5),
-	`adminitration` VARCHAR(5),
-	`jrAdministration` VARCHAR(5),
-	`seniorStaff` VARCHAR(5),
-	`staff` VARCHAR(5),
-	`jrStaff` VARCHAR(5),
-	`member` VARCHAR(5),
-	-- FTO PREMISSIONS
+	-- COMMUNITY INFORMATION
+	`communityTitle` VARCHAR(50),
+	`communityRank` VARCHAR(50),
 	`recruitmentRank` VARCHAR(50),
+	`whitelisted` VARCHAR(5),
+	-- IDENTIFIERS
+	`discordID` VARCHAR(50), 
+	`steamID` VARCHAR(50), 
+	`teamspeakID` VARCHAR(50),
 	-- LATER USAGE
-	`commandRank` VARCHAR(50)
 	-- 
 	PRIMARY KEY (`id`)
 );

@@ -127,7 +127,7 @@ $acceptedApps = $getAcceptedCountResultRow[0];
 
 				<div class="col-md-9">
                     
-                    <table class="table table-hover table-striped bg-dark">
+                    <table class="table table-hover table-striped table-bordered bg-dark">
                         <thead>
                             <tr class="bg-primary">
                                 <th><center>App ID</center></th>

@@ -4,7 +4,6 @@ include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php");
 include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getDSRPInfo.php");
 include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
 
-
 ?>
 
 <div class="container-fluid">
@@ -53,11 +52,14 @@ include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
                                 <center><h4>Quick References</h4>
                                     <br>
                                     <button class="btn btn-primary" href="https://discord.gg/Qg8Hkwb" target="_blank">Public Relations Discord</button>
+                                
+                                    <br><br>
+
+                                    <h6>Community Director <br>Jay L.</h6>
+                                    <h6>Community Deputy Director <br>Braden B.</h6>
+                                    <h6>Community Coordinator <br>Ryan D.</h6>
+                                    <h6>Development Coordinator <br>Anderson B.</h6>
                                 </center>
-                                <br><br>
-                                <h6>Director: <b>Jay L.</b></h6>
-                                <h6>Deputy Director: <b>Braden B.</b></h6>
-                                <h6>Community Manger: <b>Ryan D.</b></h6>
                             </div>
                         </div>
                         <br>
