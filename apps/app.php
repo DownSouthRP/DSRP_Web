@@ -40,7 +40,7 @@ if(!isset($getCurrentUserRow['communityRank'])|| $getCurrentUserRow['communityRa
                                 <p>----</p>
                                 <br>
 
-                                <form action="scripts/appScript.php" method="post">
+                                <form action="/sys/scripts/appScript.php" method="post">
                                     <div class="form-row">
                                         <div class="col">
                                         <div class="form-group">

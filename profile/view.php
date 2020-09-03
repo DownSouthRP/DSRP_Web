@@ -1,6 +1,8 @@
 <?php
 
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbconnection.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
 
 
@@ -70,19 +72,22 @@ if(!isset($getUserRow['id']) || is_null($getUserRow['id'])) {
                         <div class="card">
                             <div class="row">
                                 <div class="col-md-12">
+                                <div class="card-header">Account Activity</div>
                                     <div class="card-body">
-                                        <h3 class="card-title">Profile Information</h3>
-                                        <br>
-                                        <div class="row">
-                                            <div class="col">
-                                            
-                                            </div>
-                                            <div class="col">
-                                            </div>
-                                        </div>
-                                        <h5></h5>
+
+                                        <?php
+
+                                            // GET ACTIVITY LOGS FOR USER
+                                            $getAccountActivitySQL = " SELECT * FROM accountactivity WHERE account = '".$accountID."' ";
+                                            $getAccountActivityResult = mysqli_query($con, $getAccountActivitySQL);
+                                            while($activityRow = mysqli_fetch_array($getAccountActivityResult)) {
+                                                echo $activityRow['activityDetails'];
+                                                echo '<br>';
+                                            }
+                                        
+                                        ?>
+
                                     </div>
-                                    <br>
                                 </div>
                             </div>
                         </div>
