@@ -4,7 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-include $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.**
 if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) {

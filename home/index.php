@@ -7,11 +7,6 @@ include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-if(!isset($_SESSION['loggedin']) || empty($_SESSION['loggedin']) || is_null($_SESSION['loggedin'])) {
-    $_SESSION['id'] = '';
-    $_SESSION['loggedin'] = FALSE;
-}
-
 
 ?>
 

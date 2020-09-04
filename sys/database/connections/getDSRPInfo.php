@@ -1,6 +1,6 @@
 <?php
 
-include($_SERVER['DOCUMENT_ROOT']."/sys/database/dbconnection.php");
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
