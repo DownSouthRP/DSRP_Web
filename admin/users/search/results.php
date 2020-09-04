@@ -1,17 +1,43 @@
+<!-- DOWNSOUTHRP.COM -->
+<!-- CREATED BY THE DOWNSOUTHRP DEVELOPMENT DIVISION -->
+
 <?php
 
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/config.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php";
+
+// GET USER FROM $_GET
+$userID = '';
+if(isset($_GET) && !is_null($_GET) && !empty($_GET)) {
+    // SERACH TO MAKE SURE $_GET[userID] IS VALID
+    $validationSQL = " SELECT * FROM accounts WHERE id = '".$_GET['userID']."' ";
+    $validationResults = mysqli_query($con, $validationSQL);
+    // CHECKS FOR NUMBER OF ROWS IN RESULT
+    if($validationResults->num_rows >= 1) {
+        $userID = $_GET['userID'];
+    } else {
+        echo "<script>alert('An error has occured. Try again!');</script>";
+        echo '<script type="text/javascript">location.href = "/admin/users/";</script>';
+    }
+    
+    
+} else {
+    echo "<script>alert('An error has occured. Try again!');</script>";
+    echo '<script type="text/javascript">location.href = "/admin/users/";</script>';
+}
+
 // START SESSION IF NOT ALREADY STARTED
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
 // CHECK IF USER IS LOGGED IN
 if(!isset($_SESSION['loggedin']) && is_null($_SESSION['loggedin']) && empty($_SESSION['loggedin'])) {
     echo '<script type="text/javascript">location.href = "/home/";</script>';
     exit;
 }
+
 // CHECK IF USER HAS ADMIN PERMISSIONS (Jr Admin, Admin, Sr. Admin, Core Admin)
 if(!isset($getCurrentUserRow['permissionRank']) && is_null($getCurrentUserRow['permissionRank']) && empty($getCurrentUserRow['permissionRank'])) {
     echo '<script type="text/javascript">location.href = "/home/";</script>';
@@ -41,38 +67,13 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
                 ?>
                 <!-- ADMIN DASHBOARD CONTENT -->
                 <div class="col-md-10">
-
-                    <!-- ADMIN DASHBOARD BREADCRUM -->
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/home/">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Admin</li>
-                        </ol>
-                    </nav>
                 
+                    
                 
                 </div>
 
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            
         </div>
     </div>
 </div>

@@ -19,6 +19,9 @@
             <!-- FAVICON -->
             <link rel="shortcut icon" href="/sys/design/imgs/dsrpLogo.png" type="image/png">
 
+            <!-- ICONS -->
+            <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@2.0.0-beta.3/css/all.min.css">
+
             <!-- BOOTSTRAP THEME -->
             <link rel="stylesheet" href="https://bootstrapbuildspace.sfo2.cdn.digitaloceanspaces.com//GZRModirGGBW/NMTjxhujiMgL/bootstrap.css">
             <link rel="stylesheet" href="https://bootstrapbuildspace.sfo2.cdn.digitaloceanspaces.com//GZRModirGGBW/NMTjxhujiMgL/bootstrap.min.css">

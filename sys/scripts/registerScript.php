@@ -24,7 +24,7 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) 
 		echo 'Email exists, please choose another or login!';
 	} else {
 		// Username doesnt exists, insert new account
-		if ($stmt = $con->prepare('INSERT INTO accounts (displayName, email, password) VALUES (?, ?, ?)')) {
+		if ($stmt = $con->prepare('INSERT INTO accounts (displayName, email, password, communityRank, permissionRank) VALUES (?, ?, ?, "Applicant", "Applicant")')) {
 			// We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
 			$password = password_hash($_POST['regInputPassword'], PASSWORD_DEFAULT);
 			$stmt->bind_param('sss', $_POST['regInputDisplayName'], $_POST['regInputEmail'], $password);

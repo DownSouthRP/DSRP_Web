@@ -1,15 +1,15 @@
 <?php
 
 include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php");
-include($_SERVER['DOCUMENT_ROOT']."/sys/config.php");
 include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getDSRPInfo.php");
+include($_SERVER['DOCUMENT_ROOT']."/sys/config.php");
+include($_SERVER['DOCUMENT_ROOT']."/sys/config.php");
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 // CHECK IF USER IS LOGGED IN
-
-if(isset($_SESSION['id'])) {
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 
 	$needSteam = FALSE;
 	$needDiscord = FALSE;
@@ -113,11 +113,11 @@ if(isset($_SESSION['id'])) {
 									echo '<div class="dropdown-divider"></div>';
 								}
 								// IF IS STAFF
-								if(in_array($getCurrentUserRow['permissionRank'],$staff)) {
+								if(in_array($getCurrentUserRow['permissionRank'],$staffRanks)) {
 									echo '<a class="dropdown-item" href="/staff/">Staff Panel</a>';
 								}
 								// IF IS ADMIN
-								if(in_array($getCurrentUserRow['permissionRank'],$admin)) {
+								if(in_array($getCurrentUserRow['permissionRank'],$adminRanks)) {
 									echo '<a class="dropdown-item" href="/admin/">Admin Panel</a>';
 								}
 								// IF MEMBER OF RT DEPARTMENT

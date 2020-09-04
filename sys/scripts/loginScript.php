@@ -32,10 +32,10 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) 
         }
     } else {
         echo "<script>alert('Incorrect Username!');</script>";
-            echo '<script type="text/javascript">location.href = "/home/auth/";</script>';
+        echo '<script type="text/javascript">location.href = "/home/auth/";</script>';
     }
 } else {
     echo "<script>alert('An error has occured!');</script>";
-            echo '<script type="text/javascript">location.href = "/home/auth/";</script>';
+    echo '<script type="text/javascript">location.href = "/home/auth/";</script>';
 }
 ?>
