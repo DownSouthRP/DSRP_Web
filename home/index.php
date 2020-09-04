@@ -4,6 +4,15 @@ include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php");
 include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getDSRPInfo.php");
 include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if(!isset($_SESSION['loggedin']) || empty($_SESSION['loggedin']) || is_null($_SESSION['loggedin'])) {
+    $_SESSION['id'] = '';
+    $_SESSION['loggedin'] = FALSE;
+}
+
+
 ?>
 
 <div class="container-fluid">
@@ -32,6 +41,7 @@ include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
                                         <center>
                                             <img style="width:50%;height:auto;" src="/sys/design/imgs/dsrpLogo.png"><br>
                                             <p style="font-size:20px;">Down South Roleplay Community was founded in 2020 by Jay & Braden. Along with some friends, they want to enhance the roleplay without having many restrictions. Our main purpose here at Down South Roleplay is to make RP better for everyone.</p>
+                                            <?php echo session_status();?>
                                         </center>
                                     </div>
                                     <!-- <div class="card">

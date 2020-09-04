@@ -22,6 +22,8 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) 
         if (password_verify($_POST['authInputPassword'], $password)) {
             // Verification success! User has loggedin!
             // Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
+            session_destroy();
+            session_start();
             session_regenerate_id();
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['id'] = $id;

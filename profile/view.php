@@ -10,11 +10,11 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-if($_SESSION['loggedin'] !== TRUE && is_null($_GET['id'])) {
-	echo '<script type="text/javascript">location.href = "/home/index.php";</script>';
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== TRUE) {
+	echo '<script type="text/javascript">location.href = "/home/";</script>';
 }
 
-if(empty($_GET)) {
+if(empty($_GET) || is_null($_GET['id'])) {
     echo '<script type="text/javascript">location.href = "/home/index.php";</script>';
 } else {
     $accountID = $_GET['id'];
