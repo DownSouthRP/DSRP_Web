@@ -1,8 +1,4 @@
 <?php
-if(isset($_SESSION['loggedin'])) {
-    echo '<script type="text/javascript">location.href = "/home/index.php";</script>';
-    exit;
-}
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
