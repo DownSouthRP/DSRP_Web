@@ -6,8 +6,8 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 // CHECKS IF THERE IS SESSION - IF THERE IS REDIRECT TO HOME PAGE
-if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
-	echo '<script type="text/javascript">location.href = "/home/index.php";</script>';
+if(isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == TRUE) {
+	echo '<script type="text/javascript">location.href = "/home/";</script>';
 }
 
 ?>
