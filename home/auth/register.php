@@ -10,6 +10,7 @@ if(isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == TRUE) {
 	echo '<script type="text/javascript">location.href = "/home/";</script>';
 }
 
+
 ?>
 <br><br>
 <div class="container-fluid">

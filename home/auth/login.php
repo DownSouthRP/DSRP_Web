@@ -5,6 +5,12 @@ include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php");
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+// CHECK IF USER IS LOGGED IN
+if($_SESSION['loggedin'] == TRUE) {
+    echo '<script type="text/javascript">location.href = "/home/";</script>';
+    exit;
+}
+
 
 ?>
 <br>

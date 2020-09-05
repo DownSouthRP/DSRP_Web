@@ -20,7 +20,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     <div class="card">
                         <div class="card-body">
                             <center><img style="width:15%;height:auto;" src="/sys/design/imgs/dsrpLogo.png"><br></center>
-                        </div>
+                            </div>
                     </div>
                 <br>
                 <div class="row">
@@ -36,7 +36,6 @@ if (session_status() == PHP_SESSION_NONE) {
                                         <center>
                                             <img style="width:50%;height:auto;" src="/sys/design/imgs/dsrpLogo.png"><br>
                                             <p style="font-size:20px;">Down South Roleplay Community was founded in 2020 by Jay & Braden. Along with some friends, they want to enhance the roleplay without having many restrictions. Our main purpose here at Down South Roleplay is to make RP better for everyone.</p>
-                                            <?php echo session_status();?>
                                         </center>
                                     </div>
                                     <!-- <div class="card">
@@ -78,6 +77,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                         } else {
                                             echo '<button class="btn btn-primary disabled">CURRENTLY CLOSED</button>';
                                         }
+                                        
                                     ?>
                                     </center>
                             </div>
@@ -92,3 +92,4 @@ if (session_status() == PHP_SESSION_NONE) {
         </div>
     </div>
 </div>
+

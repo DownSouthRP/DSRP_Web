@@ -11,7 +11,7 @@
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="/home/">DSRP Home</a>
                     <div class="dropdown-divider">
-                    </div> <a class="dropdown-item" href="/sys/logout.php">logout</a>
+                    </div> <a class="dropdown-item" href="/sys/logout.php">Logout</a>
                 </div>
             </li>
         </ul>

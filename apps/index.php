@@ -32,7 +32,7 @@ $currentCycleCount = $appCurrentCycleArray[0];
 // /////////////////////// //
 $recruitmentApps = FALSE;
 
-if($getCurrentUserRow['communityRank'] == 'Applicant') {
+if($getCurrentUserRow['permissionRank'] == 'Applicant') {
     $recruitmentApps = TRUE;
 } else {
     $recruitmentApps = FALSE;

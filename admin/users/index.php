@@ -88,6 +88,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
                                         </div>
                                         <div class="card-body">
                                             <h4><?php echo $getAllUsersCount[0]; ?> users</h4>
+                                            <a class="btn btn-outline-primary btn-block" href="/admin/users/">REFRESH</a>
                                         </div>
                                     </div>
 
@@ -111,7 +112,6 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
                                         <?php
                                             while($userRow = mysqli_fetch_array($allUsersResult)) {
                                                 echo '<tr>';
-
                                                 echo '<td>';
                                                 echo $userRow['id'];
                                                 echo '</td>';
@@ -128,11 +128,9 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
                                                 echo $userRow['permissionRank'];
                                                 echo '</td>';
                                                 echo '<td>';
-                                                echo 'EDIT';
+                                                echo '<a class="btn btn-outline-warning btn-block" href="/admin/users/search/results.php?id=' . $userRow['id'] . '">View / Edit</a>';
                                                 echo '</td>';
-
                                                 echo '</tr>';
-
                                             }
                                         ?>
 

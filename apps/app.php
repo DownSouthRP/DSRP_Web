@@ -11,7 +11,7 @@ if (session_status() == PHP_SESSION_NONE) {
 if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== TRUE) {
     echo '<script type="text/javascript">location.href = "/apps/nli.php";</script>';
 }
-if(!isset($getCurrentUserRow['communityRank'])|| $getCurrentUserRow['communityRank'] !== 'Applicant') {
+if(!isset($getCurrentUserRow['permissionRank'])|| $getCurrentUserRow['permissionRank'] !== 'Applicant') {
     echo '<script type="text/javascript">location.href = "/apps/na.php";</script>';
 }
 
