@@ -4,7 +4,7 @@ include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php");
 include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getDSRPInfo.php");
 include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
 
-if (session_status() == PHP_SESSION_NONE) {
+if(session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
@@ -20,7 +20,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     <div class="card">
                         <div class="card-body">
                             <center><img style="width:15%;height:auto;" src="/sys/design/imgs/dsrpLogo.png"><br></center>
-                            </div>
+                        </div>
                     </div>
                 <br>
                 <div class="row">
