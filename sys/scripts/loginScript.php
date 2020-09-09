@@ -1,10 +1,23 @@
+<!-- Created by: DownSouthRP Development Department -->
+<!-- Down South Roleplay Community was founded in 2020 by Jay & Braden. 
+Along with some friends, they want to enhance the roleplay without having many restrictions. 
+Our main purpose here at Down South Roleplay is to make RP better for everyone. -->
+
 <?php
+session_start();
+session_destroy();
 // STARTS SESSION IF NOT ALREADY STARTED
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+// if(session_status() !== PHP_SESSION_ACTIVE) {
+//     session_start();
+// }
 
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
+
+$email = '';
+$password = '';
+
+
+
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.**
 if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) {
@@ -22,11 +35,11 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) 
         if (password_verify($_POST['authInputPassword'], $password)) {
             // Verification success! User has loggedin!
             // Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
-            session_destroy();
+            
             session_start();
-            session_regenerate_id();
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['id'] = $id;
+            $_SESSION['sessionID'] = '';
             echo '<script type="text/javascript">location.href = "/profile/";</script>';
         } else {
             echo "<script>alert('Wrong Password!');</script>";
@@ -41,3 +54,6 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) 
     echo '<script type="text/javascript">location.href = "/home/auth/";</script>';
 }
 ?>
+
+
+

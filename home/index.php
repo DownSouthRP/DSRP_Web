@@ -1,12 +1,23 @@
+<!-- Created by: DownSouthRP Development Department -->
+<!-- Down South Roleplay Community was founded in 2020 by Jay & Braden. 
+Along with some friends, they want to enhance the roleplay without having many restrictions. 
+Our main purpose here at Down South Roleplay is to make RP better for everyone. -->
+
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getDSRPInfo.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
-
+// STARTS SESSION IF NOT ALREADY STARTED
 if(session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+// IMPORTS FILES LATER USED IN CODE
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
+
+
+
+
+
 
 ?>
 
@@ -22,9 +33,6 @@ if(session_status() == PHP_SESSION_NONE) {
                             <center><img style="width:15%;height:auto;" src="/sys/design/imgs/dsrpLogo.png"><br></center>
                         </div>
                     </div>
-                    <?php
-                        
-                    ?>
                 <br>
                 <div class="row">
                     <div class="col-md-9">
@@ -75,6 +83,7 @@ if(session_status() == PHP_SESSION_NONE) {
                                 <center><h4>Application Status</h4>
                                     <br>
                                     <?php
+                                        include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getDSRPInfo.php";
                                         if($getDSRPInfoRow['appStatus'] == "TRUE") {
                                             echo '<a class="btn btn-primary" href="/apps/">CURRENTLY OPEN</a>';
                                         } else {

@@ -273,6 +273,10 @@ $allCommunityDepartmentRanks = [
     'Senior Developer',
     'Developer',
     'Development Affiliate',
+    // Administrative Ranks
+    'Director',
+    'Deputy Director',
+    'Community Coordinator'
 ]
 
 

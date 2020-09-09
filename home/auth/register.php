@@ -1,31 +1,40 @@
+<!-- Created by: DownSouthRP Development Department -->
+<!-- Down South Roleplay Community was founded in 2020 by Jay & Braden. 
+Along with some friends, they want to enhance the roleplay without having many restrictions. 
+Our main purpose here at Down South Roleplay is to make RP better for everyone. -->
+
 <?php
 
-include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php");
-
-if (session_status() == PHP_SESSION_NONE) {
+// STARTS SESSION IF NOT ALREADY STARTED
+if(session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
-// CHECKS IF THERE IS SESSION - IF THERE IS REDIRECT TO HOME PAGE
-if(isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == TRUE) {
-	echo '<script type="text/javascript">location.href = "/home/";</script>';
+
+// PULLS IN THE PAGE REQUIREMENTS FOR HTML
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
+
+// CHECK IF USER IS LOGGED IN
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
+    echo '<script type="text/javascript">location.href = "/home/";</script>';
+    exit;
 }
 
 
 ?>
-<br><br>
+
+
+<br>
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="row">
-				<div class="col-md-2">
+				<div class="col-md-3">
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-6">
 					
-					<div class="card">
-                        <div class="card-body">
-                            <center><img style="width:15%;height:auto;" src="/sys/design/imgs/dsrpLogo.png"><br></center>
-                        </div>
-					</div>
+					<center><img style="width:100%;height:auto;" src="/sys/design/imgs/dsrpBanner.png"><br></center>
+					
 					<br>
 
 					<div class="card" style="width: 100%;">
@@ -81,7 +90,7 @@ if(isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == TRUE) {
 					</div>
 
 				</div>
-				<div class="col-md-2">
+				<div class="col-md-3">
 				</div>
 			</div>
 		</div>

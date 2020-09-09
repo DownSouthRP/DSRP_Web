@@ -1,7 +1,22 @@
+<!-- Created by: DownSouthRP Development Department -->
+<!-- Down South Roleplay Community was founded in 2020 by Jay & Braden. 
+Along with some friends, they want to enhance the roleplay without having many restrictions. 
+Our main purpose here at Down South Roleplay is to make RP better for everyone. -->
+
 <?php
 
-include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php");
-include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
+// STARTS SESSION IF NOT ALREADY STARTED
+if(session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+
+// IMPORTS FILES LATER USED IN CODE
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
+
+
+
+
 
 
 ?>

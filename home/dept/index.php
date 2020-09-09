@@ -5,7 +5,7 @@ Our main purpose here at Down South Roleplay is to make RP better for everyone. 
 
 <?php
 
-header("Location: login.php");
+header("Location: /home/");
 exit();
 
 ?>
