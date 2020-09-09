@@ -11,11 +11,24 @@ session_destroy();
 //     session_start();
 // }
 
+// IMPORTS DATABASE CONNECTION - $con 
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
 
+// VALIDATE INPUTS
 $email = '';
 $password = '';
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = validate($_POST["authInputUsername"]);
+    $password = validate($_POST["authInputPassword"]);
+  }
+// IF VALID RE-SET VARIABLE
+function validate($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 
 
 
