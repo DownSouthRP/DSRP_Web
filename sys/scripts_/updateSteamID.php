@@ -17,11 +17,11 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 include $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
 
 // VALIDATE INPUTS
-$tsID = '';
+$steamID = '';
 $user = $_SESSION['id'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $tsID = validate($_POST["inputTeamSpeakID"]);
+    $steamID = validate($_POST["inputSteamID"]);
   }
 // IF VALID RE-SET VARIABLE
 function validate($data) {
@@ -32,9 +32,9 @@ function validate($data) {
 }
 
 // PREPARES UPDATE STATEMENT
-$updateSQL = " UPDATE accounts SET teamspeakID = ? WHERE id = ? ";
+$updateSQL = " UPDATE accounts SET steamID = ? WHERE id = ? ";
 $stmt = $con->prepare($updateSQL);
-$stmt->bind_param("ss", $tsID, $_SESSION['id']);
+$stmt->bind_param("ss", $steamID, $_SESSION['id']);
 $stmt->execute();
 
 echo('<script>location.href = "/profile/settings.php"</script>');

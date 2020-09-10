@@ -28,11 +28,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                 <div class="col-md-2">
                 </div>
                 <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-body">
-                            <center><img style="width:15%;height:auto;" src="/sys/design/imgs/dsrpLogo.png"><br></center>
-                        </div>
-                    </div>
+                    <center><img style="width:100%;height:auto;" src="/sys/design/imgs/dsrpBanner.png"><br></center>
                 <br>
                 <div class="row">
                     <div class="col-md-9">
@@ -42,10 +38,8 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h3 class="card-title"></h3>
-                                        <br>
                                         <center>
-                                            <img style="width:50%;height:auto;" src="/sys/design/imgs/dsrpLogo.png"><br>
+                                            <img style="width:50%;height:auto;" src="/sys/design/imgs/dsrpLogo.png"><br><br>
                                             <p style="font-size:20px;">Down South Roleplay Community was founded in 2020 by Jay & Braden. Along with some friends, they want to enhance the roleplay without having many restrictions. Our main purpose here at Down South Roleplay is to make RP better for everyone.</p>
                                         </center>
                                     </div>

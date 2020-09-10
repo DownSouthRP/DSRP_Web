@@ -46,7 +46,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 					<div class="card" style="width: 100%;">
 
 						<div class="card-header">
-							<h4><center>Login</center></h4>
+							<h4><center>Reset Password</center></h4>
 						</div>
 						
 						<div class="card-body">
@@ -56,16 +56,14 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 								<div class="col-md-4">
 									<form role="form" action="/sys/scripts/loginScript.php" method="post">
 										<div class="form-group">
-											<label for="authInputUsername">Email Address</label>
-											<input type="email" class="form-control" id="authInputUsername" name="authInputUsername" required/>
+											<label for="resetPassword">New Password</label>
+											<input type="password" class="form-control" id="resetPassword" name="resetPassword" required/>
 										</div>
 										<div class="form-group">
-											<label for="authInputPassword">Password</label>
-											<input type="password" class="form-control" id="authInputPassword" name="authInputPassword" required/>
+											<label for="resetPasswordConfirm">Confirm New Password</label>
+											<input type="password" class="form-control" id="resetPasswordConfirm" name="resetPasswordConfirm" required/>
 										</div>
-										<button type="submit" class="btn btn-primary btn-block">Login</button>
-										<br>
-										<p>If you have forgotten your password please seek out a member of the <b>DownSouthRP Administration Team</b>.</p>
+										<button type="submit" class="btn btn-primary btn-block">Reset</button>
 									</form>
 
 								</div>
@@ -79,11 +77,8 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 					<br>
 
 					<div class="card" style="width: 100%;">
-						<div class="card-header">
-							<center><h4 class="card-title">Don't have an account yet?</h4></center>
-						</div>
 						<div class="card-body">
-							<a class="btn btn-primary btn-large btn-block" href="register.php">Register Here</a>
+							<a class="btn btn-primary btn-large btn-block" href="login.php">Cancel</a>
 						</div>
 					</div>
 

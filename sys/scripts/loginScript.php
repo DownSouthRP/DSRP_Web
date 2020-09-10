@@ -1,15 +1,16 @@
-<!-- Created by: DownSouthRP Development Department -->
-<!-- Down South Roleplay Community was founded in 2020 by Jay & Braden. 
+<!-- [[
+
+Created by: DownSouthRP Development Department
+
+Down South Roleplay Community was founded in 2020 by Jay & Braden. 
 Along with some friends, they want to enhance the roleplay without having many restrictions. 
-Our main purpose here at Down South Roleplay is to make RP better for everyone. -->
+Our main purpose here at Down South Roleplay is to make RP better for everyone.
+
+]] -->
 
 <?php
 session_start();
 session_destroy();
-// STARTS SESSION IF NOT ALREADY STARTED
-// if(session_status() !== PHP_SESSION_ACTIVE) {
-//     session_start();
-// }
 
 // IMPORTS DATABASE CONNECTION - $con 
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
@@ -30,8 +31,6 @@ function validate($data) {
     return $data;
 }
 
-
-
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.**
 if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) {
     // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
@@ -48,23 +47,26 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) 
         if (password_verify($_POST['authInputPassword'], $password)) {
             // Verification success! User has loggedin!
             // Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
-            
             session_start();
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['id'] = $id;
             $_SESSION['sessionID'] = '';
             echo '<script type="text/javascript">location.href = "/profile/";</script>';
+            exit;
         } else {
             echo "<script>alert('Wrong Password!');</script>";
             echo '<script type="text/javascript">location.href = "/home/auth/";</script>';
+            exit;
         }
     } else {
         echo "<script>alert('Incorrect Username!');</script>";
         echo '<script type="text/javascript">location.href = "/home/auth/";</script>';
+        exit;
     }
 } else {
     echo "<script>alert('An error has occured!');</script>";
     echo '<script type="text/javascript">location.href = "/home/auth/";</script>';
+    exit;
 }
 ?>
 

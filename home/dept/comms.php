@@ -1,7 +1,12 @@
-<!-- Created by: DownSouthRP Development Department -->
-<!-- Down South Roleplay Community was founded in 2020 by Jay & Braden. 
+<!-- [[
+
+Created by: DownSouthRP Development Department
+
+Down South Roleplay Community was founded in 2020 by Jay & Braden. 
 Along with some friends, they want to enhance the roleplay without having many restrictions. 
-Our main purpose here at Down South Roleplay is to make RP better for everyone. -->
+Our main purpose here at Down South Roleplay is to make RP better for everyone.
+
+]] -->
 
 <?php
 
@@ -13,11 +18,6 @@ if(session_status() !== PHP_SESSION_ACTIVE) {
 // IMPORTS FILES LATER USED IN CODE
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
-
-
-
-
-
 
 ?>
 <div class="container-fluid">
@@ -53,11 +53,28 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Department Information</h5>
-                                    <center>
-                                    <img style="width:50%;" src="/sys/design/imgs/depts/comms.png">
-                                    <br><br>
-                                    <p>There will more information announced and placed here when it becomes available.</p>
-                                    </center>
+                                    <p>
+                                        <b>About the Dispatch Department</b>
+                                        <br> The Communication Department’s Mission is to provide top notch service to all members of the First Responder Community while maintaining a high level of professionalism. Furthermore, we help the community when they need urgent help by answering their 911 calls and providing help and service over the phone until First Responders arrive.
+                                        <br>
+                                        <br><b>Communications Code of Conduct</b>
+                                        <br>The Communications Department has a Code of Conduct which all members have to follow:
+                                        <br><b>§ 2.1.</b> Respect must be given to all Department of Justice Members, and Communications Members at all times. Any person who violates this section is eligible for disciplinary actions, up to instant dismissal from the Communications Department and/or Down South Roleplay.
+                                        <br>
+                                        <br><b>§ 2.2.</b> Respect must be given to all Staff, Senior Staff, Junior Administrators, Administrators, and Head Admins at all times.
+                                        A person who violates this section is eligible for disciplinary actions, up to instant dismissal from the Communications Department and/or Down South Roleplay.
+                                        <br>
+                                        <br><b>§ 2.3.</b> Respect must be given to all Communications Command Staff (as defined in a previous section) at all times.
+                                        A person who violates this section is eligible for disciplinary actions, up to instant dismissal from the Communications Department and/or Down South Roleplay.
+                                        <br>
+                                        <br><b>§ 2.4.</b> All Operators, Dispatchers, and Communications Department Members must follow the Chain of Command at all times.
+                                        Any member who violates this section is eligible for disciplinary actions, up to the demotion of rank and recertification of Communications Department Standard Operating Procedure.
+                                        This section can be waived with the verbal or written explicit instructions of a Communication Department Command Staff Member (as defined in a previous section).
+                                        <br>
+                                        <br><b>§ 2.5.</b> Reserve Operators may not overstep any Regular “Full-Time” Operator at any time.
+                                        Any member who violates this section is eligible for disciplinary actions, up to the removal of the Reserve Dispatch Tag and termination of Membership within the Communications Division.
+                                        This section can be waived with the verbal or written explicit instructions of a Communication Division Command Staff Member (as defined in a previous section).
+                                    </p>
                                 </div>
                             </div>
 						</div>
@@ -100,7 +117,19 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                                 </div>
                             </div>
 						</div>
+
 					</div>
+                    
+
+                    <br>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <center>DownSouthRP Community - 2020</center>
+                        </div>
+                    </div>
+
+                    <br><br>
 				</div>
 				<div class="col-md-2">
 				</div>

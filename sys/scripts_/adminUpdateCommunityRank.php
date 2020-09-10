@@ -5,9 +5,6 @@
 
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
 
-
-
-
 $user = $_GET['userID'];
 $url = $_GET['return'];
 

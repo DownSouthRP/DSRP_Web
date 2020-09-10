@@ -7,7 +7,12 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// $oldPassword = $_POST['oldPassword'];
+// SET VARIABLES
+
+
+
+
+$oldPassword = $_POST['oldPassword'];
 $newPassword = $_POST['newPassword'];
 $confirmNewPassword = $_POST['confirmNewPassword'];
 $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
@@ -24,6 +29,7 @@ $updateSQL = " UPDATE accounts SET password = '".$hashedPassword."' WHERE id = '
 if($confirmNewPassword !== $newPassword) {
     echo "passes dont match";
 } else {
+// elseif($oldPassword == $newPassword)
 
     if(mysqli_query($con, $updateSQL)) {
         if(mysqli_query($con, $logSQL)) {
