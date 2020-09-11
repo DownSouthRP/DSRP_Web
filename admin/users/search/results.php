@@ -93,7 +93,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
                                             <p class="list-group-item bg-info text-center">Currently: <br><b><?php echo $userRow['displayName']?></b></p>
                                             <label for="newDisplayName">Change Display Name</label>
                                             <div class="input-group mb-3">
-                                            <input type="text" class="form-control" name="newDisplayName" id="newDisplayName" required/>
+                                            <input type="text" class="form-control" value="<?php echo $userRow['displayName']?>" name="newDisplayName" id="newDisplayName" required/>
                                                 <div class="input-group-append">
                                                     <button class="btn btn-primary" type="submit">Update</button>
                                                 </div>
@@ -107,7 +107,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
                                             <p class="list-group-item bg-info text-center">Currently: <br><b><?php echo $userRow['email']?></b></p>
                                             <label for="newEmailAddress">Change Email Address</label>
                                             <div class="input-group mb-3">
-                                            <input type="email" class="form-control" name="newEmailAddress" id="newEmailAddress" required/>
+                                            <input type="email" class="form-control" value="<?php echo $userRow['email']?>" name="newEmailAddress" id="newEmailAddress" required/>
                                                 <div class="input-group-append">
                                                     <button class="btn btn-primary" type="submit">Update</button>
                                                 </div>
@@ -119,24 +119,11 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
                             </div>
 
                         </div>
-                        <div class="col-md-4">
-
-                            <div class="card">
-                                <div class="card-header">
-                                    Featured
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Special title treatment</h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-
-                            
                         
-                            
+                        <div class="col-md-4">
                         
                         </div>
+                        
                         <div class="col-md-4">
 
                         

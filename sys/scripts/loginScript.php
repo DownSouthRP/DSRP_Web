@@ -50,7 +50,7 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) 
             session_start();
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['id'] = $id;
-            $_SESSION['sessionID'] = '';
+            // $_SESSION['sessionID'] = '';
             echo '<script type="text/javascript">location.href = "/profile/";</script>';
             exit;
         } else {

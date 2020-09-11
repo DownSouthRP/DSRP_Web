@@ -65,9 +65,16 @@ if($_SESSION['loggedin'] !== TRUE || is_null($getCurrentUserRow['id'])) {
                                 <form action="/sys/scripts/changePassword.php" method="post">
                                 
                                     <div class="card-body">
+                                        
+                                        <label for="oldPassword">Current Password</label>
+                                        <input type="password" class="form-control" name="oldPassword" id="oldPassword" required/>
+
+                                        <br>
 
                                         <label for="newPassword">New Password</label>
                                         <input type="password" class="form-control" name="newPassword" id="newPassword" required/>
+
+                                        <br>
 
                                         <label for="confirmNewPassword">Confirm New Password</label>
                                         <input type="password" class="form-control" name="confirmNewPassword" id="confirmNewPassword" required/>
@@ -133,8 +140,8 @@ if($_SESSION['loggedin'] !== TRUE || is_null($getCurrentUserRow['id'])) {
 
                                         <input class="form-control" type="text" placeholder="Currently: <?php echo $getCurrentUserRow['discordID']?>" readonly>
                                         <br>
-                                        <label for="newDiscordID">New Discord ID</label>
-                                        <input class="form-control" type="text" id ="newDiscordID" name="newDiscordID" required/>
+                                        <label for="inputDiscordID">New Discord ID</label>
+                                        <input class="form-control" type="text" id ="inputDiscordID" name="inputDiscordID" required/>
 
                                     </div>
                                 <div class="card-footer">

@@ -1,43 +1,91 @@
+<!-- [[
+
+Created by: DownSouthRP Development Department
+
+Down South Roleplay Community was founded in 2020 by Jay & Braden. 
+Along with some friends, they want to enhance the roleplay without having many restrictions. 
+Our main purpose here at Down South Roleplay is to make RP better for everyone.
+
+]] -->
+
 <?php
-
-include $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
-include $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php";
-
-if (session_status() == PHP_SESSION_NONE) {
+// START SESSION IF NOT ALERADY STARTED
+if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
+// IMPORTS DATABASE CONNECTION
+include $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
 
-// SET VARIABLES
+// VALIDATE INPUTS
+$oldPassword = '';
+$newPassword = '';
+$confirmNewPassword = '';
 
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $oldPassword = validate($_POST["oldPassword"]);
+    $newPassword = validate($_POST["newPassword"]);
+    $confirmNewPassword = validate($_POST["confirmNewPassword"]);
+}
+// IF VALID RE-SET VARIABLE
+function validate($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 
+// IF OLD PASSWORD ISNT CORRECT
+if ($findStmt = $con->prepare(' SELECT password FROM accounts WHERE id = ?')) {
+    
+    $findStmt->bind_param('s', $_SESSION['id']);
+    $findStmt->execute();
+    $findStmt->store_result();
 
+    // IF THERE IS NO MATCH
+    if ($findStmt->num_rows > 0) {
+        $findStmt->bind_result($password);
+        $findStmt->fetch();
+        
+        // CHECKS IF OLD PASSWORD IS CORRECT
+        if($oldPassword === $password) {
 
-$oldPassword = $_POST['oldPassword'];
-$newPassword = $_POST['newPassword'];
-$confirmNewPassword = $_POST['confirmNewPassword'];
-$hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+            // CHECKS IF NEW PASSWORDS MATCH
+            if($confirmNewPassword === $newPassword) {
+                // PREPARES UPDATE STATEMENT
+                $updateStmt = $con->prepare(' UPDATE accounts SET password = ? WHERE id = ? ');
+                $hashedPassword = password_hash($confirmNewPassword, PASSWORD_DEFAULT);
+                $updateStmt->bind_param("ss", $hashedPassword, $_SESSION['id']);
+                $updateStmt->execute();
 
-$systemLogTimeDate = date('H:i:s');
-$systemLogDate = date('Y-m-d');
-$systemLogName = "Account Password Changed";
-$systemLogType = "settingUpdate";
-$systemLogDetails = $getCurrentUserRow['displayName'] . " has changed their account password.";
-$logSQL = " INSERT INTO systemLogs (systemLogTime, systemLogDate, systemLogName, systemLogType, systemLogDetails) VALUES ('$systemLogTimeDate', '$systemLogDate', '$systemLogName', '$systemLogType', '$systemLogDetails') ";
+                echo "<script>alert('Password reset!');</script>";
+                echo('<script>location.href = "/profile/settings.php"</script>');
+                exit;
 
-$updateSQL = " UPDATE accounts SET password = '".$hashedPassword."' WHERE id = '".$_SESSION['id']."' ";
+            } else {
+                echo "<script>alert('Your new passwords don't match.');</script>";
+                echo '<script type="text/javascript">location.href = "/profile/settings.php";</script>';
+                exit;
+            }
 
-if($confirmNewPassword !== $newPassword) {
-    echo "passes dont match";
-} else {
-// elseif($oldPassword == $newPassword)
-
-    if(mysqli_query($con, $updateSQL)) {
-        if(mysqli_query($con, $logSQL)) {
-            echo("<script>location.href = '/profile/settings.php';</script>");
+        } else {
+            echo "<script>alert('Your old password doesn't fit our records.');</script>";
+            echo '<script type="text/javascript">location.href = "/profile/settings.php";</script>';
+            exit;
         }
+
+    } else {
+        echo "<script>alert('An error has occured!--');</script>";
+        echo '<script type="text/javascript">location.href = "/profile/settings.php";</script>';
+        exit;
     }
 
+} else {
+    echo "<script>alert('An error has occured!-');</script>";
+    echo '<script type="text/javascript">location.href = "/profile/settings.php";</script>';
+    exit;
 }
+
+
 
 
 ?>
