@@ -1,8 +1,5 @@
 <?php
-// START SESSION IF NOT ALERADY STARTED
-if (session_status() !== PHP_SESSION_ACTIVE) {
-    session_start();
-}
+session_start();
 // IMPORTS DATABASE CONNECTION
 include $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
 
@@ -11,8 +8,8 @@ $steamID = '';
 $user = $_SESSION['id'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $steamID = validate($_POST["inputSteamID"]);
-  }
+  $steamID = validate($_POST["inputSteamID"]);
+}
 // IF VALID RE-SET VARIABLE
 function validate($data) {
     $data = trim($data);

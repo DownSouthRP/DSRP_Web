@@ -46,27 +46,18 @@ if(!isset($getUserRow['id']) || is_null($getUserRow['id'])) {
                     </nav>
                 <div class="row">
                     <div class="col-md-9">
-                        <div class="card">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="card-body">
-                                        <h3 class="card-title"></h3>
-                                        <br>
-                                        <center>
-                                            <?php 
-                                                if(!isset($getUserRow['profileBanner'])) {
-                                                    echo '<img src="/sys/design/imgs/dsrpLogo.png"><br>';
-                                                } else {
-                                                    echo '<img style="width:80%;height:auto;"src="';
-                                                    echo $getUserRow['profileBanner'];
-                                                    echo '"><br>';
-                                                }
-                                            ?>
-                                        </center>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <center>
+                            <?php 
+                                if(!isset($getUserRow['profileBanner'])) {
+                                    echo '<img style="width:100%;height:auto;" src="/sys/design/imgs/dsrpBanner.png"><br>';
+                                } else {
+                                    echo '<img style="width:100%;height:auto;"src="';
+                                    echo $getUserRow['profileBanner'];
+                                    echo '"><br>';
+                                }
+                            ?>
+                        </center>
+                        
                         <br>
                         <div class="card">
                             <div class="row">

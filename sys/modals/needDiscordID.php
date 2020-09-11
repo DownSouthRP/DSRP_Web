@@ -15,7 +15,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputDiscordIDLabel">Discord ID</span>
                         </div>
-                        <input type="text" class="form-control" id="inputDiscordID" name="inputDiscordID" aria-describedby="inputSteamIDLabel" required />
+                        <input type="text" class="form-control" id="inputDiscordID" name="inputDiscordID" aria-describedby="inputDiscordIDLabel" required />
                     </div>
                     
                     <br>

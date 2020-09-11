@@ -1,8 +1,5 @@
 <?php
-// START SESSION IF NOT ALERADY STARTED
-if (session_status() !== PHP_SESSION_ACTIVE) {
-    session_start();
-}
+session_start();
 // IMPORTS DATABASE CONNECTION
 include $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
 
@@ -22,7 +19,7 @@ function validate($data) {
 }
 
 // PREPARES UPDATE STATEMENT
-$updateSQL = " UPDATE accounts SET teamspeakID = ? WHERE id = ? ";
+$updateSQL = " UPDATE accounts SET displayName = ? WHERE id = ? ";
 $stmt = $con->prepare($updateSQL);
 $stmt->bind_param("ss", $newDisplayName, $_SESSION['id']);
 $stmt->execute();

@@ -1,8 +1,5 @@
 <?php
-// START SESSION IF NOT ALERADY STARTED
-if (session_status() !== PHP_SESSION_ACTIVE) {
-    session_start();
-}
+session_start();
 // IMPORTS DATABASE CONNECTION
 include $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
 

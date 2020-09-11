@@ -3,51 +3,52 @@
 include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php");
 include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getDSRPInfo.php");
 include($_SERVER['DOCUMENT_ROOT']."/sys/config.php");
-include($_SERVER['DOCUMENT_ROOT']."/sys/config.php");
 
 // CHECK IF USER IS LOGGED IN
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 
-	$needSteam = FALSE;
-	$needDiscord = FALSE;
-	$needTeamSpeak = FALSE;
-	// CHECKS FOR steamID, discordID, and teamspeakID - IF NOT SET IN DATABASE IT WILL SHOW MODAL
-	// CHECKS FOR steamID
-	if(!isset($getCurrentUserRow['steamID']) || is_null($getCurrentUserRow['steamID']) || empty($getCurrentUserRow['steamID'])) {
-		$needSteam = TRUE;
-	}
-	elseif(!isset($getCurrentUserRow['discordID']) || is_null($getCurrentUserRow['discordID']) || empty($getCurrentUserRow['discordID'])) {
-		$needDiscord = TRUE;
-	}
-	elseif(!isset($getCurrentUserRow['teamspeakID']) || is_null($getCurrentUserRow['teamspeakID']) || empty($getCurrentUserRow['teamspeakID'])) {
-		$needTeamSpeak = TRUE;
-	}
-	if($needSteam == TRUE) {
-		include($_SERVER['DOCUMENT_ROOT']."/sys/modals/needSteamID.php");
-		// SHOW MODAL
-		echo '<script> $(window).on(';
-		echo "'load'";
-		echo ',function(){ $("#steamIDModal").modal(';
-		echo "'show'";
-		echo '); }); </script>';
-	}
-	elseif($needDiscord == TRUE) {
-		include($_SERVER['DOCUMENT_ROOT']."/sys/modals/needDiscordID.php");
-		// SHOW MODAL
-		echo '<script> $(window).on(';
-		echo "'load'";
-		echo ',function(){ $("#discordIDModal").modal(';
-		echo "'show'";
-		echo '); }); </script>';
-	}
-	elseif($needTeamSpeak == TRUE) {
-		include($_SERVER['DOCUMENT_ROOT']."/sys/modals/needTeamspeakID.php");
-		// SHOW MODAL
-		echo '<script> $(window).on(';
-		echo "'load'";
-		echo ',function(){ $("#tsIDModal").modal(';
-		echo "'show'";
-		echo '); }); </script>';
+	if($getCurrentUserRow['permissionRank'] !== "Applicant") {
+		$needSteam = FALSE;
+		$needDiscord = FALSE;
+		$needTeamSpeak = FALSE;
+		// CHECKS FOR steamID, discordID, and teamspeakID - IF NOT SET IN DATABASE IT WILL SHOW MODAL
+		// CHECKS FOR steamID
+		if(!isset($getCurrentUserRow['steamID']) || is_null($getCurrentUserRow['steamID']) || empty($getCurrentUserRow['steamID'])) {
+			$needSteam = TRUE;
+		}
+		elseif(!isset($getCurrentUserRow['discordID']) || is_null($getCurrentUserRow['discordID']) || empty($getCurrentUserRow['discordID'])) {
+			$needDiscord = TRUE;
+		}
+		elseif(!isset($getCurrentUserRow['teamspeakID']) || is_null($getCurrentUserRow['teamspeakID']) || empty($getCurrentUserRow['teamspeakID'])) {
+			$needTeamSpeak = TRUE;
+		}
+		if($needSteam == TRUE) {
+			include($_SERVER['DOCUMENT_ROOT']."/sys/modals/needSteamID.php");
+			// SHOW MODAL
+			echo '<script> $(window).on(';
+			echo "'load'";
+			echo ',function(){ $("#steamIDModal").modal(';
+			echo "'show'";
+			echo '); }); </script>';
+		}
+		elseif($needDiscord == TRUE) {
+			include($_SERVER['DOCUMENT_ROOT']."/sys/modals/needDiscordID.php");
+			// SHOW MODAL
+			echo '<script> $(window).on(';
+			echo "'load'";
+			echo ',function(){ $("#discordIDModal").modal(';
+			echo "'show'";
+			echo '); }); </script>';
+		}
+		elseif($needTeamSpeak == TRUE) {
+			include($_SERVER['DOCUMENT_ROOT']."/sys/modals/needTeamspeakID.php");
+			// SHOW MODAL
+			echo '<script> $(window).on(';
+			echo "'load'";
+			echo ',function(){ $("#tsIDModal").modal(';
+			echo "'show'";
+			echo '); }); </script>';
+		}
 	}
 }
 
