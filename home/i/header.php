@@ -5,9 +5,6 @@ include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getDSRPInfo.php");
 include($_SERVER['DOCUMENT_ROOT']."/sys/config.php");
 include($_SERVER['DOCUMENT_ROOT']."/sys/config.php");
 
-if(session_status() !== PHP_SESSION_ACTIVE) {
-    session_start();
-}
 // CHECK IF USER IS LOGGED IN
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 

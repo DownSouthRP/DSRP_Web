@@ -1,14 +1,12 @@
 <?php
-
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/config.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getDSRPInfo.php";
 
-// START SESSION IF NOT ALREADY STARTED
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
 
 // CHECK IF USER IS LOGGED IN
 if(!isset($_SESSION['loggedin']) && is_null($_SESSION['loggedin']) && empty($_SESSION['loggedin'])) {

@@ -1,12 +1,12 @@
 <?php
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
 include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php");
 include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php");
 include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
 
 if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== TRUE) {
     echo '<script type="text/javascript">location.href = "/apps/nli.php";</script>';

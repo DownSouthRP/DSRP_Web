@@ -1,17 +1,3 @@
-<!-- CREATD BY THE DOWNSOUTHRP DEVELOPMENT DEPARTMENT - SOFTWARE TEAM -->
-<!-- THIS FILE CONTAINS ALL SYSTEM CONFIGURATION -->
-
-<!-- [[
-THIS FILE CONTAINS THE FOLLOING
-
-- Main Site Configuration and Redirections
-- DSRP Rank Arrays
-
-]] -->
-
-
-<!-- DSRP Site Ranking Arrays -->
-<!-- THESE ARRAYS CAN BE REFERENCED USING THE CODE BELOW FOR VARIOUS USES -->
 <?php
 
 $staffRanks = [

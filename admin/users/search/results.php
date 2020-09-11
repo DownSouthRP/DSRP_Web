@@ -1,7 +1,7 @@
-<!-- DOWNSOUTHRP.COM -->
-<!-- CREATED BY THE DOWNSOUTHRP DEVELOPMENT DIVISION -->
-
 <?php
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/config.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
@@ -26,11 +26,6 @@ if(isset($_GET) && !is_null($_GET) && !empty($_GET)) {
 } else {
     echo "<script>alert('An error has occured. Try again!');</script>";
     echo '<script type="text/javascript">location.href = "/admin/users/";</script>';
-}
-
-// START SESSION IF NOT ALREADY STARTED
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
 }
 
 // CHECK IF USER IS LOGGED IN

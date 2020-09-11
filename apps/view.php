@@ -1,12 +1,13 @@
 <?php
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+
 
 include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php");
 include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php");
 include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
-// START SESSION IF NOT ALREADY STARTED
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+
 // SETS $appid VARIABLE
 $appid = "";
 // CHECK TO SEE IF USER IS LOGGED IN - IF NOT REDIRECT

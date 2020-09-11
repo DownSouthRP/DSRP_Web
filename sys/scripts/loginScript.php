@@ -1,16 +1,4 @@
-<!-- [[
-
-Created by: DownSouthRP Development Department
-
-Down South Roleplay Community was founded in 2020 by Jay & Braden. 
-Along with some friends, they want to enhance the roleplay without having many restrictions. 
-Our main purpose here at Down South Roleplay is to make RP better for everyone.
-
-]] -->
-
 <?php
-session_start();
-session_destroy();
 
 // IMPORTS DATABASE CONNECTION - $con 
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
@@ -47,7 +35,7 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) 
         if (password_verify($_POST['authInputPassword'], $password)) {
             // Verification success! User has loggedin!
             // Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
-            session_start();
+            session_regenerate_id();
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['id'] = $id;
             // $_SESSION['sessionID'] = '';
@@ -69,6 +57,3 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) 
     exit;
 }
 ?>
-
-
-

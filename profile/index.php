@@ -1,14 +1,7 @@
-<!-- Created by the DownSouthRP Development Department -->
-<!-- Copywrite 2020 | DSRP | DownSouthRP -->
-
-<!-- 
-    FILE INFORMAITON
-
-    THIS FILE AUTOMATICALLY REDIRECTS THE USER FROM THIS PAGE 
-    TO THE view.php PAGE GIVING THE URL THEIR ID 
--->
-
 <?php
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 // PULLS THE CURRENT USER SQL
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php";
 // REDIRECTS WITH URL
