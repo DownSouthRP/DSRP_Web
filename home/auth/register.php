@@ -37,7 +37,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 									<div class="col">
 										<div class="form-group">
 											<label for="regInputDisplayName">Display Name</label>
-											<input type="text" class="form-control" id="regInputdisplayName" name="regInputDisplayName" required/>
+											<input type="text" class="form-control" id="regInputDisplayName" name="regInputDisplayName" required/>
 										</div>
 									</div>
 									<div class="col">

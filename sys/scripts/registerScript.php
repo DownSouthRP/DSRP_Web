@@ -10,7 +10,7 @@ $password = '';
 $confirmPassword = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $displayName = validate($_POST["regInputdisplayName"]);
+    $displayName = validate($_POST["regInputDisplayName"]);
     $email = validate($_POST["regInputEmail"]);
     $password = validate($_POST["regInputPassword"]);
     $confirmPassword = validate($_POST["regInputConfirmPassword"]);
@@ -24,13 +24,13 @@ function validate($data) {
 }
 
 // CHECK IF $email IS AN EMAIL
-if (!filter_var($_POST['regInputEmail'], FILTER_VALIDATE_EMAIL)) {
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 	exit('Email is not valid!');
 }
 
 if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), hash the password using the PHP password_hash function.
-	$stmt->bind_param('s', $_POST['regInputEmail']);
+	$stmt->bind_param('s', $email);
 	$stmt->execute();
 	$stmt->store_result();
 	// Store the result so we can check if the account exists in the database.
@@ -40,13 +40,29 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) 
 		echo '<script type="text/javascript">location.href = "/home/auth/";</script>';
 		exit;
 	} else {
+		$str = rand(); 
+		$hash = hash("sha256", $str); 
 		// Username doesnt exists, insert new account
-		if ($stmt = $con->prepare('INSERT INTO accounts (displayName, email, password, communityRank, permissionRank) VALUES (?, ?, ?, "Applicant", "Applicant")')) {
+		if ($stmt = $con->prepare(' INSERT INTO tempaccounts (displayName, email, password, hash) VALUES (?, ?, ?, ?) ')) {
 			// We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
-			$password = password_hash($_POST['regInputPassword'], PASSWORD_DEFAULT);
-			$stmt->bind_param('sss', $_POST['regInputDisplayName'], $_POST['regInputEmail'], $password);
+			$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+			$stmt->bind_param('ssss', $displayName, $email, $hashedPassword, $hash);
 			$stmt->execute();
-			echo '<script type="text/javascript">location.href = "/home/auth/login.php";</script>';
+
+			$mailTo = $email;
+			$mailSubject = "Confirmation Code";
+			$mailLink = 'https://www.dsrp.online/home/auth/confirm.php?e="' . $email . '&h=' . $hash;
+			$mailTxt = "Hello, thank you for registering for dsrp.online. <a href='$mailLink'>CLICK HERE</a> to finish your registration.";
+			$mailHeaders = "From: registration@dsrp.online";
+
+			if(mail($mailTo,$mailSubject,$mailTxt,$mailHeaders)) {
+				echo '<script type="text/javascript">location.href = "/home/auth/check.php";</script>';
+			}
+
+
+
+
+			
 		} else {
 			// Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.
             echo "<script>alert('ERROR! An error has occured at level 2.');</script>";
