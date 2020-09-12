@@ -55,7 +55,7 @@ if($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) {
 			$mailSubject = "Confirmation Code";
 			$mailLink = 'https://www.dsrp.online/home/auth/confirm.php?e=' . $email . '&h=' . $hash;
 			$mailTxt = "Hello, thank you for registering for dsrp.online. <a href='$mailLink'>CLICK HERE</a> to finish your registration.";
-			$mailHeaders = "From: DSRP.ONLINE";
+			$mailHeaders = "From: <REG@DSRP.ONLINE>";
 
 			if(mail($mailTo,$mailSubject,$mailTxt,$mailHeaders)) {
 				echo '<script type="text/javascript">location.href = "/home/auth/check.php";</script>';

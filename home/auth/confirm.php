@@ -133,7 +133,7 @@ if($stmt = $con->prepare(" SELECT email, password, displayName FROM tempaccounts
                 $mailTo = $e;
                 $mailSubject = "Registration Complete";
                 $mailTxt = "Thank you for registering for dsrp.online. You can now signin with the email and password you used to register.";
-                $mailHeaders = "From: DSRP.ONLINE";
+                $mailHeaders = "From: <REG@DSRP.ONLINE>";
 
                 if(mail($mailTo,$mailSubject,$mailTxt,$mailHeaders)) {
                     echo '<script type="text/javascript">location.href = "/home/auth/login.php";</script>';
