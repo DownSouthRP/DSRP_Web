@@ -107,7 +107,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 								echo '<a class="dropdown-item" href="/profile/settings/">Settings</a>';
 
 								// IF STAFF OR ADMIN OR RECRUITMENT STAFF
-								if(in_array($getCurrentUserRow['recruitmentRank'],$recruitmentRanks) || in_array($getCurrentUserRow['permissionRank'],$staff)) {
+								if(isset($getCurrentUserRow['recruitmentRank']) && in_array($getCurrentUserRow['recruitmentRank'],$recruitmentRanks) || isset($getCurrentUserRow['permissionRank']) && in_array($getCurrentUserRow['permissionRank'],$staff)) {
 									echo '<div class="dropdown-divider"></div>';
 								}
 								// IF IS STAFF
