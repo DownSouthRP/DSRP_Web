@@ -28,23 +28,20 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 	exit('Email is not valid!');
 }
 
-if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) {
-	// Bind parameters (s = string, i = int, b = blob, etc), hash the password using the PHP password_hash function.
+if($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) {
 	$stmt->bind_param('s', $email);
 	$stmt->execute();
 	$stmt->store_result();
-	// Store the result so we can check if the account exists in the database.
+
 	if ($stmt->num_rows > 0) {
-		// Username already exists
 		echo "<script>alert('This email already exists in the system. Choose another one or login.');</script>";
 		echo '<script type="text/javascript">location.href = "/home/auth/";</script>';
 		exit;
 	} else {
 		$str = rand();
 		$hash = md5($str);
-		// Username doesnt exists, insert new account
-		if ($stmt = $con->prepare(' INSERT INTO tempaccounts (displayName, email, password, hash) VALUES (?, ?, ?, ?) ')) {
-			// We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
+
+		if($stmt = $con->prepare(' INSERT INTO tempaccounts (displayName, email, password, hash) VALUES (?, ?, ?, ?) ')) {
 			$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 			$stmt->bind_param('ssss', $displayName, $email, $hashedPassword, $hash);
 			$stmt->execute();
