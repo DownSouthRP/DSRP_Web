@@ -6,16 +6,11 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 // PULLS IN THE PAGE REQUIREMENTS FOR HTML
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 
-$mailTo = 'andersonbrown833@gmail.com';
-$mailSubject = "Registration Complete";
-$mailTxt = "Thank you for registering for dsrp.online. Head over to https://www.dsrp.online/home/auth/login.php to signin with the email and password you used to register.";
-$mailHeaders = "From: <REGISTRATION@DSRP.ONLINE>";
-
-if(mail($mailTo,$mailSubject,$mailTxt,$mailHeaders)) {
-	exit;
+// CHECK IF USER IS LOGGED IN
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
+    echo '<script type="text/javascript">location.href = "/home/";</script>';
+    exit;
 }
-
-exit;
 
 ?>
 <br>
