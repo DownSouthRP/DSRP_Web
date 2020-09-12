@@ -123,17 +123,13 @@ if($stmt = $con->prepare(" SELECT email, password, displayName FROM tempaccounts
             $newAcc->bind_param("sss", $displayName, $email, $hashedPassword);
             $newAcc->execute();
             $newAcc->store_result();
-            $newAcc->bind_result($id);
 
             // DELETE TEMP ACCOUNT FROM tempaccounts
             if($deleteTemp = $con->prepare(" DELETE FROM tempaccounts WHERE hash = ? ")) {
                 $deleteTemp->bind_param("s", $h);
                 $deleteTemp->exeucte();
                
-                $_SESSION['loggedin'] = TRUE;
-                $_SESSION['id'] = $id;
-
-                echo '<script type="text/javascript">location.href = "/profile/";</script>';
+                echo '<script type="text/javascript">location.href = "/home/auth/login.php";</script>';
                 exit;
            
             } else {
