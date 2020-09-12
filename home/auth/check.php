@@ -8,7 +8,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 
 $mailTo = 'andersonbrown833@gmail.com';
 $mailSubject = "Registration Complete";
-$mailTxt = "Thank you for registering for dsrp.online. You can now signin with the email and password you used to register.";
+$mailTxt = "Thank you for registering for dsrp.online. <a href='www.dsrp.online/home/auth/login.php'>CLICK HERE</a> to signin with the email and password you used to register.";
 $mailHeaders = "From: <REGISTRATION@DSRP.ONLINE>";
 
 if(mail($mailTo,$mailSubject,$mailTxt,$mailHeaders)) {
