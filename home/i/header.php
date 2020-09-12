@@ -104,7 +104,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 								echo '/profile/view.php?id=';
 								echo $getCurrentUserRow['id'];
 								echo '">View Profile</a>';
-								echo '<a class="dropdown-item" href="/profile/settings.php">Settings</a>';
+								echo '<a class="dropdown-item" href="/profile/settings/">Settings</a>';
 
 								// IF STAFF OR ADMIN OR RECRUITMENT STAFF
 								if(in_array($getCurrentUserRow['recruitmentRank'],$recruitmentRanks) || in_array($getCurrentUserRow['permissionRank'],$staff)) {

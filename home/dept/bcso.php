@@ -46,11 +46,13 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Department Information</h5>
-                                    <center>
-                                    <img style="width:50%;" src="/sys/design/imgs/depts/bcso.png">
-                                    <br><br>
-                                    <p>There will more information announced and placed here when it becomes available.</p>
-                                    </center>
+                                    <p>
+                                        Our mission as Blaine County Sheriff’s Office Deputies is to ensure that the citizens of Blaine County are provided with a consistent sense of protection and security on a day to day basis. As a department, we showcase this promise of new-level law enforcement through advanced crime prevention and criminal extermination across the state. We will maintain this standard with the continuous growth in terms of tactic-improvements and resource-development.
+                                        <br><br>
+                                        <b>Message From the Sheriff:</b>
+                                            <br>“Throughout your time in DSRP and BCSO, there stands a chance to be a time of adversity.  Everywhere you go, adversity awaits at some point. I encourage members of the Blaine County Sheriff’s Office to persevere during their tenure here and remain positive. We here at the Blaine County Sheriff’s Office are all a puzzle.  To complete that puzzle, you need every piece, and its members are those pieces we need to be complete. I look forward to working alongside everyone to make this department prosper and plentiful, and create an enthusiastic and welcoming atmosphere for everyone to enjoy their time here.”
+                                        <br>-Blake L. 3C-1
+                                    </p>
                                 </div>
                             </div>
 						</div>

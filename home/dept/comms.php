@@ -47,7 +47,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                                         <br>
                                         <br><b>Communications Code of Conduct</b>
                                         <br>The Communications Department has a Code of Conduct which all members have to follow:
-                                        <br><b>§ 2.1.</b> Respect must be given to all Department of Justice Members, and Communications Members at all times. Any person who violates this section is eligible for disciplinary actions, up to instant dismissal from the Communications Department and/or Down South Roleplay.
+                                        <br><b>§ 2.1.</b> Respect must be given to all DownSouthRP Members, and Communications Members at all times. Any person who violates this section is eligible for disciplinary actions, up to instant dismissal from the Communications Department and/or Down South Roleplay.
                                         <br>
                                         <br><b>§ 2.2.</b> Respect must be given to all Staff, Senior Staff, Junior Administrators, Administrators, and Head Admins at all times.
                                         A person who violates this section is eligible for disciplinary actions, up to instant dismissal from the Communications Department and/or Down South Roleplay.

@@ -95,7 +95,7 @@ if(!isset($getUserRow['id']) || is_null($getUserRow['id'])) {
                                 <br>
                                 <?php
                                     if($accountID == $_SESSION['id']) {
-                                        echo '<a class="btn btn-primary btn-block" type="button" href="settings.php">Edit Profile</a>';
+                                        echo '<a class="btn btn-primary btn-block" type="button" href="/profile/settings/">Edit Profile</a>';
                                     } else {
                                         exit;
                                     }

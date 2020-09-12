@@ -24,6 +24,6 @@ $stmt = $con->prepare($updateSQL);
 $stmt->bind_param("ss", $tsID, $_SESSION['id']);
 $stmt->execute();
 
-echo('<script>location.href = "/profile/settings.php"</script>');
+echo('<script>location.href = "/profile/settings/"</script>');
 
 ?>
