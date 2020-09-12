@@ -125,13 +125,25 @@ if($stmt = $con->prepare(" SELECT email, password, displayName FROM tempaccounts
             $newAcc->store_result();
 
             // DELETE TEMP ACCOUNT FROM tempaccounts
-            if($deleteTemp = $con->prepare(" DELETE FROM tempaccounts WHERE hash = ? ")) {
-                $deleteTemp->bind_param("s", $h);
-                $deleteTemp->exeucte();
-               
-                echo '<script type="text/javascript">location.href = "/home/auth/login.php";</script>';
-                exit;
-           
+            if($deleteTemp = $con->prepare(" DELETE FROM tempaccounts WHERE hash = ? AND email = ? ")) {
+                $deleteTemp->bind_param("ss", $h, $e);
+                $deleteTemp->execute();
+                $deleteTemp->store_result();
+
+                $mailTo = $e;
+                $mailSubject = "Registration Complete";
+                $mailTxt = "Thank you for registering for dsrp.online. You can now signin with the email and password you used to register.";
+                $mailHeaders = "From: DSRP.ONLINE";
+
+                if(mail($mailTo,$mailSubject,$mailTxt,$mailHeaders)) {
+                    echo '<script type="text/javascript">location.href = "/home/auth/login.php";</script>';
+                    exit;
+
+                } else {
+                    echo $errCode . '5';
+                    exit;
+                }
+
             } else {
                 echo $errCode . '4';
                 exit;
