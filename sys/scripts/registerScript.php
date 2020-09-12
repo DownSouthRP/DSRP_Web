@@ -10,17 +10,17 @@ $password = '';
 $confirmPassword = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $displayName = validate($_POST["regInputDisplayName"]);
-    $email = validate($_POST["regInputEmail"]);
-    $password = validate($_POST["regInputPassword"]);
-    $confirmPassword = validate($_POST["regInputConfirmPassword"]);
-  }
+	$displayName = validate($_POST["regInputDisplayName"]);
+	$email = validate($_POST["regInputEmail"]);
+	$password = validate($_POST["regInputPassword"]);
+	$confirmPassword = validate($_POST["regInputConfirmPassword"]);
+}
 // IF VALID RE-SET VARIABLE
 function validate($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
 }
 
 // CHECK IF $email IS AN EMAIL
@@ -41,14 +41,14 @@ if($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) {
 		$str = rand();
 		$hash = md5($str);
 
-		if($stmt = $con->prepare(' INSERT INTO tempaccounts (displayName, email, password, hash) VALUES (?, ?, ?, ?) ')) {
+		if($stmt = $con->prepare(' INSERT INTO tempaccounts (hash, email, password, displayName) VALUES (?, ?, ?, ?) ')) {
 			$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-			$stmt->bind_param('ssss', $displayName, $email, $hashedPassword, $hash);
+			$stmt->bind_param('ssss', $hash, $email, $hashedPassword, $displayName);
 			$stmt->execute();
 
 			$mailTo = $email;
 			$mailSubject = "Confirmation Code";
-			$mailLink = 'https://www.dsrp.online/home/auth/confirm.php?e="' . $email . '"&h="' . $hash . '"';
+			$mailLink = 'https://www.dsrp.online/home/auth/confirm.php?e=' . $email . '&h=' . $hash;
 			$mailTxt = "Hello, thank you for registering for dsrp.online. <a href='$mailLink'>CLICK HERE</a> to finish your registration.";
 			$mailHeaders = "From: DSRP.ONLINE";
 
