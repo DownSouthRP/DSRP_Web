@@ -41,7 +41,7 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) 
 		exit;
 	} else {
 		$str = rand(); 
-		$hash = hash("sha256", $str); 
+		$hash = hash("sha256", $str);
 		// Username doesnt exists, insert new account
 		if ($stmt = $con->prepare(' INSERT INTO tempaccounts (displayName, email, password, hash) VALUES (?, ?, ?, ?) ')) {
 			// We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
@@ -51,17 +51,14 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) 
 
 			$mailTo = $email;
 			$mailSubject = "Confirmation Code";
-			$mailLink = 'https://www.dsrp.online/home/auth/confirm.php?e="' . $email . '&h=' . $hash;
+			$mailLink = 'https://www.dsrp.online/home/auth/confirm.php?e="' . $email . '"&h="' . $hash . '"';
 			$mailTxt = "Hello, thank you for registering for dsrp.online. <a href='$mailLink'>CLICK HERE</a> to finish your registration.";
-			$mailHeaders = "From: registration@dsrp.online";
+			$mailHeaders = "From: DSRP.ONLINE";
 
 			if(mail($mailTo,$mailSubject,$mailTxt,$mailHeaders)) {
 				echo '<script type="text/javascript">location.href = "/home/auth/check.php";</script>';
+				exit;
 			}
-
-
-
-
 			
 		} else {
 			// Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.
