@@ -116,11 +116,9 @@ if($stmt = $con->prepare(" SELECT email, password, displayName FROM tempaccounts
         $stmt->bind_result($email, $password, $displayName);
         $stmt->fetch();
 
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
         // CREATE ACCOUNT FROM TEMP ACCOUNT INFORMAITON
         if($newAcc = $con->prepare(' INSERT INTO accounts (displayName, email, password, communityRank, permissionRank) VALUES (?,?,?, "Applicant", "Applicant") ')) {
-            $newAcc->bind_param("sss", $displayName, $email, $hashedPassword);
+            $newAcc->bind_param("sss", $displayName, $email, $password);
             $newAcc->execute();
             $newAcc->store_result();
 
@@ -132,8 +130,8 @@ if($stmt = $con->prepare(" SELECT email, password, displayName FROM tempaccounts
 
                 $mailTo = $e;
                 $mailSubject = "Registration Complete";
-                $mailTxt = "Thank you for registering for dsrp.online. You can now signin with the email and password you used to register.";
-                $mailHeaders = "From: <REG@DSRP.ONLINE>";
+                $mailTxt = "Thank you for registering for dsrp.online. Head over to https://www.dsrp.online/home/auth/login.php to signin with the email and password you used to register.";
+                $mailHeaders = "From: <REGISTRATION@DSRP.ONLINE>";
 
                 if(mail($mailTo,$mailSubject,$mailTxt,$mailHeaders)) {
                     echo '<script type="text/javascript">location.href = "/home/auth/login.php";</script>';
