@@ -48,73 +48,7 @@ function validate($data) {
     return $data;
 }
 
-
-sleep(3);
-
-// IMPORTS DATABASE CONNECTION - $con 
-include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
-
-// GETS TEMP ACCOUNT INFORMAITON
-if($stmt = $con->prepare(" SELECT * FROM tempaccounts WHERE hash = ? ")) {
-    $stmt->bind_param("s", $h);
-    $stmt->execute();
-    $stmt->store_result();
-    
-    // IF THERE WAS AN ACCOUNT
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($email, $password, $displayName);
-        $stmt->fetch();
-
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-        // CREATE ACCOUNT FROM TEMP ACCOUNT INFORMAITON
-        if($newAcc = $con->prepare(" INSERT INTO accounts (displayName, email, password, communityRank, permissionRank) VALUES (?,?,?,?,?) ")) {
-            $newAcc->bind_param("sssss", $displayName, $email, $hashedPassword, 'Applicant', 'Applicant');
-            $newAcc->execute();
-            $newAcc->store_result();
-            $newAcc->bind_result($id);
-
-            // DELETE TEMP ACCOUNT FROM tempaccounts
-            if($deleteTemp = $con->prepare(" DELETE FROM tempaccounts WHERE hash = ? ")) {
-                $deleteTemp->bind_param("s", $h);
-                $deleteTemp->exeucte();
-               
-                $_SESSION['loggedin'] = TRUE;
-                $_SESSION['id'] = $id;
-
-                echo '<script type="text/javascript">location.href = "/profile/";</script>';
-           
-            } else {
-                echo $errCode . '4';
-                exit;
-            }
-
-        } else {
-            echo $errCode . '3';
-            exit;
-        }
-
-    } else {
-        echo $errCode . '2';
-        exit;
-    }
-
-} else {
-    echo $errCode . '1';
-    exit;
-}
-    
-
-
-// IF ALL IS WELL ABOVE CREATE NEW ACCOUNT AND SEND WELCOME EMAIL
-
-
-
-// CLOSE AND EXIT
-
-
 ?>
-
 <br>
 
 <div class="container-fluid">
@@ -165,4 +99,73 @@ if($stmt = $con->prepare(" SELECT * FROM tempaccounts WHERE hash = ? ")) {
 		</div>
 	</div>
 </div>
+<?php
+sleep(3);
+
+// IMPORTS DATABASE CONNECTION - $con 
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
+
+// GETS TEMP ACCOUNT INFORMAITON
+if($stmt = $con->prepare(" SELECT email, password, displayName FROM tempaccounts WHERE hash = ? ")) {
+    $stmt->bind_param("s", $h);
+    $stmt->execute();
+    $stmt->store_result();
+    
+    // IF THERE WAS AN ACCOUNT
+    if ($stmt->num_rows > 0) {
+        $stmt->bind_result($email, $password, $displayName);
+        $stmt->fetch();
+
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        // CREATE ACCOUNT FROM TEMP ACCOUNT INFORMAITON
+        if($newAcc = $con->prepare(' INSERT INTO accounts (displayName, email, password, communityRank, permissionRank) VALUES (?,?,?, "Applicant", "Applicant") ')) {
+            $newAcc->bind_param("sss", $displayName, $email, $hashedPassword);
+            $newAcc->execute();
+            $newAcc->store_result();
+            $newAcc->bind_result($id);
+
+            // DELETE TEMP ACCOUNT FROM tempaccounts
+            if($deleteTemp = $con->prepare(" DELETE FROM tempaccounts WHERE hash = ? ")) {
+                $deleteTemp->bind_param("s", $h);
+                $deleteTemp->exeucte();
+               
+                $_SESSION['loggedin'] = TRUE;
+                $_SESSION['id'] = $id;
+
+                echo '<script type="text/javascript">location.href = "/profile/";</script>';
+                exit;
+           
+            } else {
+                echo $errCode . '4';
+                exit;
+            }
+
+        } else {
+            echo $errCode . '3';
+            exit;
+        }
+
+    } else {
+        echo $errCode . '2';
+        exit;
+    }
+
+} else {
+    echo $errCode . '1';
+    exit;
+}
+    
+
+
+// IF ALL IS WELL ABOVE CREATE NEW ACCOUNT AND SEND WELCOME EMAIL
+
+
+
+// CLOSE AND EXIT
+
+
+?>
+
+
 
