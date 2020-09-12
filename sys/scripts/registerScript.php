@@ -40,8 +40,8 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) 
 		echo '<script type="text/javascript">location.href = "/home/auth/";</script>';
 		exit;
 	} else {
-		$str = rand(); 
-		$hash = hash("sha256", $str);
+		$str = rand();
+		$hash = md5($str);
 		// Username doesnt exists, insert new account
 		if ($stmt = $con->prepare(' INSERT INTO tempaccounts (displayName, email, password, hash) VALUES (?, ?, ?, ?) ')) {
 			// We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
