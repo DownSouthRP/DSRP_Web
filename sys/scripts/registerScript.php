@@ -23,6 +23,10 @@ function validate($data) {
 	return $data;
 }
 
+$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+$str = rand();
+$hash = md5($str);
+
 // CHECK IF $email IS AN EMAIL
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 	exit('Email is not valid!');
@@ -38,13 +42,14 @@ if($stmt = $con->prepare('SELECT id, password FROM accounts WHERE email = ?')) {
 		echo '<script type="text/javascript">location.href = "/home/auth/";</script>';
 		exit;
 	} else {
+		
 		$str = rand();
 		$hash = md5($str);
 
-		if($stmt = $con->prepare(' INSERT INTO tempaccounts (hash, email, password, displayName) VALUES (?, ?, ?, ?) ')) {
-			$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-			$stmt->bind_param('ssss', $hash, $email, $hashedPassword, $displayName);
-			$stmt->execute();
+		if($iStmt = $con->prepare(' INSERT INTO tempaccounts (hash, email, password, displayName) VALUES (?, ?, ?, ?) ')) {
+			$iStmt->bind_param('ssss', $hash, $email, $hashedPassword, $displayName);
+			$iStmt->execute();
+			$iStmt->store_result();
 
 			$mailTo = $email;
 			$mailSubject = "Confirmation Code";
