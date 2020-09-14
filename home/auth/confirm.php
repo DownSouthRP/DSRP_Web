@@ -117,7 +117,7 @@ if($stmt = $con->prepare(" SELECT email, password, displayName FROM tempaccounts
         $stmt->fetch();
 
         // CREATE ACCOUNT FROM TEMP ACCOUNT INFORMAITON
-        if($newAcc = $con->prepare(' INSERT INTO accounts (displayName, email, password, communityRank, permissionRank) VALUES (?,?,?, "Applicant", "Applicant") ')) {
+        if($newAcc = $con->prepare(' INSERT INTO accounts (displayName, email, password, communityRank, permissionRank, profileBanner) VALUES (?,?,?, "Applicant", "Applicant", "/sys/design/imgs/dsrpBanner.png") ')) {
             $newAcc->bind_param("sss", $displayName, $email, $password);
             $newAcc->execute();
             $newAcc->store_result();
@@ -128,6 +128,7 @@ if($stmt = $con->prepare(" SELECT email, password, displayName FROM tempaccounts
                 $deleteTemp->execute();
                 $deleteTemp->store_result();
 
+                // SEND FINAL REGISTRATION EMAIL
                 $mailTo = $e;
                 $mailSubject = "Registration Complete";
                 $mailTxt = "Thank you for registering for dsrp.online. Head over to https://www.dsrp.online/home/auth/login.php to signin with the email and password you used to register.";
@@ -161,15 +162,6 @@ if($stmt = $con->prepare(" SELECT email, password, displayName FROM tempaccounts
     echo $errCode . '1';
     exit;
 }
-    
-
-
-// IF ALL IS WELL ABOVE CREATE NEW ACCOUNT AND SEND WELCOME EMAIL
-
-
-
-// CLOSE AND EXIT
-
 
 ?>
 

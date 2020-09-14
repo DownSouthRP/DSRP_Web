@@ -45,11 +45,18 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Department Information</h5>
-                                    <center>
-                                    <img style="width:50%;" src="/sys/design/imgs/depts/fire.png">
-                                    <br><br>
-                                    <p>There will more information announced and placed here when it becomes available.</p>
-                                    </center>
+                                    <p>
+                                    <br><b>Who are we and what do we do?</b>
+                                    <br>We are the Los Santos Fire Department, a team of highly skilled full-time and volunteer firefighters and paramedics. We do what we can to keep the citizens of San Andreas safe and alive together with the law enforcement agencies.
+                                    <br>
+                                    <br>We provide emergency medical care and firefighting services to the citizens of San Andreas. We have both ground and air units offering BLS and ALS services. We have firefighting apparatus with up-to-date equipment. We respond to various different calls which include, but are not limited to, structure fires, motor vehicle accidents, cardiac arrests and gunshot victims. 
+                                    <br>
+                                    <br><b>Joining the Los Santos Fire Department</b>
+                                    <br>If you are interested in becoming a firefighter within the Down South Roleplay Community, you are required to pass a training. The training will be conducted by a certified Field Training Officer (FTO) and will give you all the information you need to start your career within the Fire Department. We have a Cadet Guide made for the cadets to read and memorize before the training. Once you have passed the training, you will achieve the rank Probationary Firefighter. You will then need to complete a certain amount of ridealong hours before you are allowed to operate by yourself. 
+                                    <br>
+                                    <br><b>Expectations of a Firefighter</b>
+                                    <br>All members of the Los Santos Fire Department are expected to provide realistic roleplay, show respect as well as to act professionally at all times. This also means being responsible and being able to work as a team with your fellow colleagues as well as the law enforcement agencies. You are expected to follow these Standard Operating Procedures as well as the community Rules and Regulations, policies within the department and further announcements put out by the community and department administration
+                                    </p>
                                 </div>
                             </div>
 						</div>
@@ -93,6 +100,16 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                             </div>
 						</div>
 					</div>
+                    
+                    <br>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <center>DownSouthRP Community - 2020</center>
+                        </div>
+                    </div>
+
+                    <br><br>
 				</div>
 				<div class="col-md-2">
 				</div>

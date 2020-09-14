@@ -3,14 +3,14 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php");
-include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php");
-include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
-
-if($_SESSION['loggedin'] !== TRUE || is_null($getCurrentUserRow['id'])) {
-	echo '<script type="text/javascript">location.href = "/home/index.php";</script>';
+if($_SESSION['loggedin'] !== TRUE) {
+    echo '<script type="text/javascript">location.href = "/home/index.php";</script>';
+    exit;
 }
 
+include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php");
+include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
+include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php");
 
 ?>
 <div class="container-fluid">
@@ -24,10 +24,10 @@ if($_SESSION['loggedin'] !== TRUE || is_null($getCurrentUserRow['id'])) {
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item active"><a href="/home/index.php">Home</a></li>
-                            <li class="breadcrumb-item active"><a href="/profile/view.php?id=<?php echo $getCurrentUserRow['id'];?>">Profile</a></li>
+                            <li class="breadcrumb-item active"><a href="/profile/view.php?id=<?php echo $id; ?>">Profile</a></li>
                             <li class="breadcrumb-item active">Settings</li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                <?php if(isset($getCurrentUserRow['displayName'])) {echo $getCurrentUserRow['displayName'];}?>
+                                <?php echo $displayName; ?>
                             </li>
                         </ol>
                     </nav>
@@ -38,7 +38,7 @@ if($_SESSION['loggedin'] !== TRUE || is_null($getCurrentUserRow['id'])) {
                         <div class="col-md-3">
                             <div class="card">
                                 <div class="card-header">
-                                Welcome, <?php echo $getCurrentUserRow['displayName']; ?>
+                                Welcome, <?php echo $displayName; ?>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@ if($_SESSION['loggedin'] !== TRUE || is_null($getCurrentUserRow['id'])) {
                                         <div class="form-row">
                                             <div class="col">
                                                 <label for="newDisplayName">Display Name</label>
-                                                <input type="text" class="form-control" value="<?php echo $getCurrentUserRow['displayName']; ?>" id="newDisplayName" name="newDisplayName" required/>
+                                                <input type="text" class="form-control" value="<?php echo $displayName; ?>" id="newDisplayName" name="newDisplayName" required/>
                                             </div>
                                             <div class="col">
                                                 <!-- <label for="displayName">Display Name</label>
@@ -76,14 +76,14 @@ if($_SESSION['loggedin'] !== TRUE || is_null($getCurrentUserRow['id'])) {
                                         <div class="form-row">
                                             <div class="col">
                                                 <label for="steamID">Steam HEX</label>
-                                                <input type="text" class="form-control" value="<?php echo $getCurrentUserRow['steamID']; ?>" id="steamID" name="steamID" required/>
+                                                <input type="text" class="form-control" value="<?php echo $steamID; ?>" id="steamID" name="steamID" required/>
                                                 <br>
                                                 <label for="discordID">TeamSpeak Unique ID</label>
-                                                <input type="text" class="form-control" value="<?php echo $getCurrentUserRow['discordID']; ?>" id="discordID" name="discordID" required/>
+                                                <input type="text" class="form-control" value="<?php echo $discordID; ?>" id="discordID" name="discordID" required/>
                                             </div>
                                             <div class="col">
                                                 <label for="teamspeakID">Discord ID</label>
-                                                <input type="text" class="form-control" value="<?php echo $getCurrentUserRow['teamspeakID']; ?>" id="displayName" name="teamspeakID" required/>
+                                                <input type="text" class="form-control" value="<?php echo $teamspeakID; ?>" id="displayName" name="teamspeakID" required/>
                                             </div>
                                         </div>
                                         <br>
@@ -98,10 +98,19 @@ if($_SESSION['loggedin'] !== TRUE || is_null($getCurrentUserRow['id'])) {
                                 <div class="col-md-6">
                                     <div class="card">
                                         <div class="card-header">
-                                            Update Email Address
+                                            Change Profile Banner
                                         </div>
                                         <div class="card-body">
-                                            <p>- PENDING FUTURE UPDATE -</p>
+                                            <form action="/sys/scripts/updateIDs.php" method="post">
+                                                    <label for="profileBanner">Current Banner URL</label>
+                                                    <input type="text" class="form-control" value="<?php echo $profileBanner; ?>" id="profileBanner" name="profileBanner" required/>
+                                                <br>
+                                                <button type="submit" class="btn btn-primary">Update</button>
+                                            </form>
+                                            <br>
+                                            <center>
+                                                <img src="<?php echo $profileBanner; ?>">
+                                            </center>
                                         </div>
                                     </div>
                                 </div>
@@ -111,7 +120,30 @@ if($_SESSION['loggedin'] !== TRUE || is_null($getCurrentUserRow['id'])) {
                                             Change Password
                                         </div>
                                         <div class="card-body">
-                                            <p>- PENDING FUTURE UPDATE -</p>
+                                            <form action="/sys/scripts_/changePassword.php" method="post">
+                                                <div>
+                                                    <label for="oldPassword">Old Password</label>
+                                                    <input type="password" class="form-control" id="oldPassword" name="oldPassword" required />
+                                                </div>
+
+                                                <br>
+
+                                                <div>
+                                                    <label for="newPassword">New Password</label>
+                                                    <input type="password" class="form-control" id="newPassword" name="newPassword" required />
+                                                </div>
+
+                                                <br>
+
+                                                <div>
+                                                    <label for="confirmNewPassword">Confirm New Password</label>
+                                                    <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" required />
+                                                </div>
+
+                                                <br>
+
+                                                <button class="btn btn-primary" type="submit">Update</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -121,21 +153,28 @@ if($_SESSION['loggedin'] !== TRUE || is_null($getCurrentUserRow['id'])) {
                             
                             <div class="card">
                                 <div class="card-header">
-                                    Change Profile Banner
+                                    Update Email Address
                                 </div>
                                 <div class="card-body">
-                                    <form action="/sys/scripts/updateIDs.php" method="post">
-                                            <label for="profileBanner">Current Banner URL</label>
-                                            <input type="text" class="form-control" value="<?php echo $getCurrentUserRow['profileBanner']; ?>" id="profileBanner" name="profileBanner" required/>
-                                        <br>
-                                        <button type="submit" class="btn btn-primary">Update</button>
-                                    </form>
+                                    <p>- PENDING FUTURE UPDATE -</p>
                                 </div>
                             </div>
+                            
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <center>DownSouthRP Community - 2020</center>
                         </div>
                     </div>
 
+                    <br><br>
+
                 </div>
+                
+                
 
                 <div class="col-md-2">
                 </div>

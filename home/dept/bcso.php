@@ -96,6 +96,16 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                             </div>
 						</div>
 					</div>
+                    
+                    <br>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <center>DownSouthRP Community - 2020</center>
+                        </div>
+                    </div>
+
+                    <br><br>
 				</div>
 				<div class="col-md-2">
 				</div>

@@ -34,7 +34,7 @@ CREATE TABLE `accountactivity` (
   `activityDateTime` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
+-- -------------------------------------------------------- 
 
 --
 -- Table structure for table `accounts`
@@ -303,5 +303,14 @@ CREATE TABLE `tempAccounts` (
 	`email` INT,
 	`password` INT,
 	`displayName` INT,
+	PRIMARY KEY (`id`)
+);
+
+
+CREATE TABLE `temppass` (
+	`id` INT(20) NOT NULL AUTO_INCREMENT,
+	`email` VARCHAR(100),
+	`hash` VARCHAR(100),
+	`return` VARCHAR(100),
 	PRIMARY KEY (`id`)
 );

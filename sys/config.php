@@ -25,6 +25,7 @@ $communityRanks = [
     'Staff',
     'Junior Staff',
     'Member',
+    'Recruit',
     'Applicant',
 ];
 
@@ -82,8 +83,8 @@ $bcsoRanks = [
     'Sergeant', // DEPARTMENT STAFF
     'Senior Corporal', // DEPARTMENT JUNIOR STAFF
     'Corporal', // DEPARTMENT JUNIOR STAFF
-    'Senior Deputy II', // DEPARTMENT MEMBER
-    'Senior Deputy I', // DEPARTMENT MEMBER
+    'Senior Deputy', // DEPARTMENT MEMBER
+    'Deputy III', // DEPARTMENT MEMBER
     'Deputy II', // DEPARTMENT MEMBER
     'Deputy I', // DEPARTMENT MEMBER
     'Probationary Deputy', // DEPARTMENT PROBATIONARY MEMBER

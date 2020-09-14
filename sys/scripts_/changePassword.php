@@ -1,17 +1,22 @@
 <?php
-
+session_start();
 // IMPORTS DATABASE CONNECTION
-include $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php";
 
 // VALIDATE INPUTS
 $oldPassword = '';
 $newPassword = '';
 $confirmNewPassword = '';
+$accountID = '';
+$hashedPassword = '';
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $oldPassword = validate($_POST["oldPassword"]);
     $newPassword = validate($_POST["newPassword"]);
     $confirmNewPassword = validate($_POST["confirmNewPassword"]);
+    $accountID = $_SESSION['id'];
+    
 }
 // IF VALID RE-SET VARIABLE
 function validate($data) {
@@ -20,57 +25,58 @@ function validate($data) {
     $data = htmlspecialchars($data);
     return $data;
 }
+$hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
 // IF OLD PASSWORD ISNT CORRECT
-if ($findStmt = $con->prepare(' SELECT password FROM accounts WHERE id = ?')) {
+if ($stmt = $con->prepare(' SELECT id, password FROM accounts WHERE id = ?')) {
     
-    $findStmt->bind_param('s', $_SESSION['id']);
-    $findStmt->execute();
-    $findStmt->store_result();
+    $stmt->bind_param('s', $_SESSION['id']);
+    $stmt->execute();
+    $stmt->store_result();
 
     // IF THERE IS NO MATCH
-    if ($findStmt->num_rows > 0) {
-        $findStmt->bind_result($password);
-        $findStmt->fetch();
-        
+    if ($stmt->num_rows > 0) {
+        $stmt->bind_result($id, $oldPass);
+        $stmt->fetch();
+
         // CHECKS IF OLD PASSWORD IS CORRECT
-        if($oldPassword === $password) {
+        if(password_verify($oldPass, $hashedPassword)) {
 
-            // CHECKS IF NEW PASSWORDS MATCH
-            if($confirmNewPassword === $newPassword) {
-                // PREPARES UPDATE STATEMENT
-                $updateStmt = $con->prepare(' UPDATE accounts SET password = ? WHERE id = ? ');
-                $hashedPassword = password_hash($confirmNewPassword, PASSWORD_DEFAULT);
-                $updateStmt->bind_param("ss", $hashedPassword, $_SESSION['id']);
-                $updateStmt->execute();
+                // CHECKS IF NEW PASSWORDS MATCH
+                if($confirmNewPassword == $newPassword) {
+                    // PREPARES UPDATE STATEMENT
+                    $stmt = $con->prepare(' UPDATE accounts SET password = ? WHERE id = ? ');
+                    
+                    $stmt->bind_param("ss", $hashedPassword, $accountID);
+                    $stmt->execute();
 
-                echo "<script>alert('Password reset!');</script>";
-                echo('<script>location.href = "/profile/settings.php"</script>');
-                exit;
+                    echo "<script>alert('Password successfully reset!');</script>";
+                   // echo('<script>location.href = "/profile/settings"</script>');
+                    exit;
+
+                } else {
+                    echo "<script>alert('Your new passwords don't match." . $stmt->error . "');</script>";
+                    //echo '<script type="text/javascript">location.href = "/profile/settings";</script>';
+                    exit;
+                }
 
             } else {
-                echo "<script>alert('Your new passwords don't match.');</script>";
-                echo '<script type="text/javascript">location.href = "/profile/settings.php";</script>';
+                echo "<script>alert('Your old password does not fit our records.');</script>";
+                // echo '<script type="text/javascript">location.href = "/profile/settings";</script>';
                 exit;
             }
 
         } else {
-            echo "<script>alert('Your old password doesn't fit our records.');</script>";
-            echo '<script type="text/javascript">location.href = "/profile/settings.php";</script>';
+            echo "<script>alert('Your old password doesn't fit our records." . $stmt->error . "');</script>";
+          //  echo '<script type="text/javascript">location.href = "/profile/settings";</script>';
             exit;
         }
 
     } else {
-        echo "<script>alert('An error has occured!--');</script>";
-        echo '<script type="text/javascript">location.href = "/profile/settings.php";</script>';
+        echo "<script>alert('An error has occured! -- " . $stmt->error . "');</script>";
+      //  echo '<script type="text/javascript">location.href = "/profile/settings";</script>';
         exit;
     }
-
-} else {
-    echo "<script>alert('An error has occured!-');</script>";
-    echo '<script type="text/javascript">location.href = "/profile/settings.php";</script>';
-    exit;
-}
 
 
 

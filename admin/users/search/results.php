@@ -7,27 +7,6 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/config.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php";
 
-// GET USER FROM $_GET
-$userID = '';
-if(isset($_GET) && !is_null($_GET) && !empty($_GET)) {
-    // SERACH TO MAKE SURE $_GET[userID] IS VALID
-    $validationSQL = " SELECT * FROM accounts WHERE id = '".$_GET['id']."' ";
-    $validationResults = mysqli_query($con, $validationSQL);
-    $userRow = mysqli_fetch_assoc($validationResults);
-    // CHECKS FOR NUMBER OF ROWS IN RESULT
-    if(!is_null($userRow['id']) && $userRow['id'] !== '') {
-        $userID = $_GET['id'];
-    } else {
-        echo "<script>alert('An error has occured. Try again!');</script>";
-        echo '<script type="text/javascript">location.href = "/admin/users/";</script>';
-    }
-    
-    
-} else {
-    echo "<script>alert('An error has occured. Try again!');</script>";
-    echo '<script type="text/javascript">location.href = "/admin/users/";</script>';
-}
-
 // CHECK IF USER IS LOGGED IN
 if(!isset($_SESSION['loggedin']) && is_null($_SESSION['loggedin']) && empty($_SESSION['loggedin'])) {
     echo '<script type="text/javascript">location.href = "/home/";</script>';
@@ -35,12 +14,43 @@ if(!isset($_SESSION['loggedin']) && is_null($_SESSION['loggedin']) && empty($_SE
 }
 
 // CHECK IF USER HAS ADMIN PERMISSIONS (Jr Admin, Admin, Sr. Admin, Core Admin)
-if(!isset($getCurrentUserRow['permissionRank']) && is_null($getCurrentUserRow['permissionRank']) && empty($getCurrentUserRow['permissionRank'])) {
+if(!isset($getCurrentUserRow['permissionRank']) || is_null($getCurrentUserRow['permissionRank']) || empty($getCurrentUserRow['permissionRank'])) {
     echo '<script type="text/javascript">location.href = "/home/";</script>';
 } else {
     if(!in_array($getCurrentUserRow['permissionRank'], $adminRanks)) {
         echo '<script type="text/javascript">location.href = "/home/";</script>';
     }
+}
+
+// IF GET IS ISSUE
+if(!isset($_GET) && is_null($_GET) && empty($_GET)) {
+    echo "<script>alert('This user has not been found.');</script>";
+    echo '<script type="text/javascript">location.href = "/admin/users/";</script>';
+    exit;
+}
+// GET USER FROM $_GET
+$userID = '';
+
+if($_SERVER["REQUEST_METHOD"] == "GET") {
+    $userID = validate($_GET["userID"]);
+  }
+
+function validate($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+// SERACH TO MAKE SURE $_GET[userID] IS VALID
+$validationSQL = " SELECT * FROM accounts WHERE id = '".$userID."' ";
+$validationResults = mysqli_query($con, $validationSQL);
+$userRow = mysqli_fetch_assoc($validationResults);
+// CHECKS FOR NUMBER OF ROWS IN RESULT
+if(!isset($userRow['id']) || is_null($userRow['id']) || empty($userRow['id'])) {
+    echo "<script>alert('An error has occured. Try again!');</script>";
+    echo '<script type="text/javascript">location.href = "/admin/users/";</script>';
+    exit;
 }
 
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";

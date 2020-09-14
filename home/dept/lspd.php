@@ -46,11 +46,28 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Department Information</h5>
-                                    <center>
-                                    <img style="width:50%;" src="/sys/design/imgs/depts/lspd.png">
-                                    <br><br>
-                                    <p>There will more information announced and placed here when it becomes available.</p>
-                                    </center>
+                                    <p>
+                                    <br><b>About Los Santos Police Department</b>
+                                    <br>The Los Santos Police Department's mission statement is to protect lives and property of the people we serve, to reduce the fear of crime, and to enforce public safety. Los Santos Police Department's Police Officers will carry out their duties with honor and integrity, while at all times conducting ourselves with the highest ethical standards to maintain public confidence and to keep our city safe.
+                                    <br>
+                                    <br><b>Join the Police Department Today!</b>
+                                    <br>The department is always looking for individuals dedicated to serving and protecting the public of Los Santos. If you think you got it in you to protect the people of Los Santos then join us to serve this amazing city with honor, integrity, and to protect the people of Los Santos. Applications for the Los Santos Police Department are OPEN every cycle!
+                                    <br>
+                                    <br><b>LSPD's Command Staff</b>
+                                    <br>Chief of Police | Tim A. 2B-1
+                                    <br>Assistant Chief of Police | Vacant
+                                    <br>Deputy Chief of Police | Vacant
+                                    <br>
+                                    <br><b>LSPD'S Subdivisions</b>
+                                    <br>The Los Santos Police Department has 2 subdivisions that are currently active and serve as specialized divisions and allow the department to respond to any situation that normal officers can not attend to. Any LSPD officer may join a subdivision once they reach Police Officer I. Subdivisions allow expansions in roleplay and brings our officers to a whole new world.
+                                    <br>
+                                    <br><b>- Detective Bureau</b>
+                                    <br>LSPD's Detective Bureau specialize in investigations of criminal activities to protect life and property. Detective's have the resources to activate K9 with the right certification, Detective's also work closely with other Investigation Services.
+                                    <br>
+                                    <br><b>- Port Authority</b>
+                                    <br>LSPD's Port Authority is currently in production. Please wait for more information.
+                                    
+                                    </p>
                                 </div>
                             </div>
 						</div>
@@ -94,6 +111,16 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                             </div>
 						</div>
 					</div>
+                    
+                    <br>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <center>DownSouthRP Community - 2020</center>
+                        </div>
+                    </div>
+
+                    <br><br>
 				</div>
 				<div class="col-md-2">
 				</div>

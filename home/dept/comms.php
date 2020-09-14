@@ -108,7 +108,6 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
 
 					</div>
                     
-
                     <br>
 
                     <div class="card">

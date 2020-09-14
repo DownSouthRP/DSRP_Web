@@ -7,19 +7,19 @@ include($_SERVER['DOCUMENT_ROOT']."/sys/config.php");
 // CHECK IF USER IS LOGGED IN
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 
-	if($getCurrentUserRow['permissionRank'] !== "Applicant") {
+	if($permissionRank !== "Applicant") {
 		$needSteam = FALSE;
 		$needDiscord = FALSE;
 		$needTeamSpeak = FALSE;
 		// CHECKS FOR steamID, discordID, and teamspeakID - IF NOT SET IN DATABASE IT WILL SHOW MODAL
 		// CHECKS FOR steamID
-		if(!isset($getCurrentUserRow['steamID']) || is_null($getCurrentUserRow['steamID']) || empty($getCurrentUserRow['steamID'])) {
+		if(!isset($steamID) || is_null($steamID) || empty($steamID)) {
 			$needSteam = TRUE;
 		}
-		elseif(!isset($getCurrentUserRow['discordID']) || is_null($getCurrentUserRow['discordID']) || empty($getCurrentUserRow['discordID'])) {
+		elseif(!isset($discordID) || is_null($discordID) || empty($discordID)) {
 			$needDiscord = TRUE;
 		}
-		elseif(!isset($getCurrentUserRow['teamspeakID']) || is_null($getCurrentUserRow['teamspeakID']) || empty($getCurrentUserRow['teamspeakID'])) {
+		elseif(!isset($teamspeakID) || is_null($teamspeakID) || empty($teamspeakID)) {
 			$needTeamSpeak = TRUE;
 		}
 		if($needSteam == TRUE) {
@@ -97,29 +97,29 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 							} else {
 								echo '<li class="nav-item dropdown">';
 								echo '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">';
-								if(isset($getCurrentUserRow['displayName'])) { echo $getCurrentUserRow['displayName']; }
+								echo $displayName;
 								echo '</a>';
 								echo '<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">';
 								echo '<a class="dropdown-item" href="';
 								echo '/profile/view.php?id=';
-								echo $getCurrentUserRow['id'];
+								echo $id;
 								echo '">View Profile</a>';
 								echo '<a class="dropdown-item" href="/profile/settings/">Settings</a>';
 
 								// IF STAFF OR ADMIN OR RECRUITMENT STAFF
-								if(isset($getCurrentUserRow['recruitmentRank']) && in_array($getCurrentUserRow['recruitmentRank'],$recruitmentRanks) || isset($getCurrentUserRow['permissionRank']) && in_array($getCurrentUserRow['permissionRank'],$staff)) {
+								if(isset($recruitmentRank ) && in_array($recruitmentRank,$recruitmentRanks) && $permissionRank !== 'Applicant' || isset($permissionRank) && in_array($permissionRank,$staffRanks) && $permissionRank !== 'Applicant') {
 									echo '<div class="dropdown-divider"></div>';
 								}
 								// IF IS STAFF
-								if(in_array($getCurrentUserRow['permissionRank'],$staffRanks)) {
+								if(in_array($permissionRank ,$staffRanks)) {
 									echo '<a class="dropdown-item" href="/staff/">Staff Panel</a>';
 								}
 								// IF IS ADMIN
-								if(in_array($getCurrentUserRow['permissionRank'],$adminRanks)) {
+								if(in_array($permissionRank ,$adminRanks)) {
 									echo '<a class="dropdown-item" href="/admin/">Admin Panel</a>';
 								}
 								// IF MEMBER OF RT DEPARTMENT
-								if(in_array($getCurrentUserRow['recruitmentRank'],$recruitmentRanks)) {
+								if(in_array($recruitmentRank ,$recruitmentRanks) && $permissionRank !== 'Applicant') {
 									echo '<a class="dropdown-item" href="/rt/">Recruitment Portal</a>';
 								}
 								echo '<div class="dropdown-divider"></div>';

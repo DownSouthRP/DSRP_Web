@@ -11,7 +11,7 @@ include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
 if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== TRUE) {
     echo '<script type="text/javascript">location.href = "/apps/nli.php";</script>';
 }
-if(!isset($getCurrentUserRow['permissionRank'])|| $getCurrentUserRow['permissionRank'] !== 'Applicant') {
+if(!isset($permissionRank)|| $permissionRank !== 'Applicant') {
     echo '<script type="text/javascript">location.href = "/apps/na.php";</script>';
 }
 
@@ -87,7 +87,7 @@ if(!isset($getCurrentUserRow['permissionRank'])|| $getCurrentUserRow['permission
                                             <label for="appDept">Department</label>
                                             <select class="form-control" id="appDept" name="appDept" required>
                                                 <option></option>
-                                                <option>Los Santos Police Departemnt</option>
+                                                <option>Los Santos Police Department</option>
                                                 <option> San Andreas State Police</option>
                                                 <option>Blaine County Sheriff’s Office</option>
                                                 <option>Communications Department</option>

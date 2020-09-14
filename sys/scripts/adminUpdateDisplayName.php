@@ -36,7 +36,7 @@ function validate($data) {
 }
 
 // PREPARE, BIND PARAMs, EXECUTE SQL
-$stmt = $con->prepare(' UPDATE accounts SET communityRank = ? WHERE id = ? ');
+$stmt = $con->prepare(' UPDATE accounts SET displayName = ? WHERE id = ? ');
 $stmt->bind_param("ss", $newDisplayName, $userID);
 $stmt->execute();
 
