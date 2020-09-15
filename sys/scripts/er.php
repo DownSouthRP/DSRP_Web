@@ -6,7 +6,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 
 // CHECK IF $_POST IS A THING
 if(!isset($_POST) || empty($_POST) || is_null($_POST)) {
-    echo "<script>alert('An error has occured. Try again!');</script>";
+    echo "<script>alert('An error has occured. Try again! Code: Tyler');</script>";
     echo '<script type="text/javascript">location.href = "/home/auth/request.php";</script>';
     exit;
 }
@@ -49,7 +49,7 @@ if($_SESSION['loggedin'] == TRUE) {
         $r = '/home/auth/login.php';
     
     } else {
-        echo "<script>alert('An error has occured. Try again!');</script>";
+        echo "<script>alert('An error has occured. Try again! Code: Jay');</script>";
         echo '<script type="text/javascript">location.href = "/home/auth/request.php";</script>';
         exit;
     }
@@ -81,13 +81,13 @@ if($stmt = $con->prepare(' INSERT INTO temppass (email, hash, r) VALUES (?,?,?) 
         exit;
 
     } else {
-        echo "<script>alert('An error has occured! Please try again.-');</script>";
+        echo "<script>alert('An error has occured! Please try again. Code: Blake');</script>";
         echo '<script type="text/javascript">location.href = "/profile/settings/";</script>';
         exit; 
     }
 
 } else {
-    echo "<script>alert('An error has occured! Please try again.');</script>";
+    echo "<script>alert('An error has occured! Please try again. Code: William');</script>";
     echo '<script type="text/javascript">location.href = "/profile/settings/";</script>';
     exit; 
 }
