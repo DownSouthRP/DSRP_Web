@@ -35,6 +35,7 @@ if($stmt = $con->prepare(' INSERT INTO temppass (email, hash, r) VALUES (?,?,?) 
     $mailHeaders = "From: <DOWNSOUTHRP@DSRP.ONLINE>";
 
     if(mail($mailTo,$mailSubject,$mailTxt,$mailHeaders)) {
+        echo "<script>alert('Request successfully submitted. Check your email.');</script>";
         echo '<script type="text/javascript">location.href = "/profile/settings/";</script>';
         exit;
 

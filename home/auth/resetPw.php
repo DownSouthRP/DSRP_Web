@@ -80,16 +80,16 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 						<div class="card-body">
 							<center>
                                 <form action="#" method="post">
-                                    <div>
+                                    <div class="form-group">
                                         <label for="newPassword">New Password</label>
-                                        <input type="password" id="newPassword" name="newPassword" required />
+                                        <input class="form-control" type="password" id="newPassword" name="newPassword" required />
                                     </div>
 
                                     <br>
 
-                                    <div>
+                                    <div class="form-group">
                                         <label for="confirmNewPassword">Confirm New Password</label>
-                                        <input type="password" id="confirmNewPassword" name="confirmNewPassword" required />
+                                        <input class="form-control" type="password" id="confirmNewPassword" name="confirmNewPassword" required />
                                     </div>
 
                                     <br>
