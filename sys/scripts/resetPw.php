@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+// INCLUDE DATABASE CONECTION - $con
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
+
+
 // VALIDATES EVERYTHING
 $newPassword = '';
 $confirmNewPassword = '';
