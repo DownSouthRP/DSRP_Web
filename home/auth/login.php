@@ -52,7 +52,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 										</div>
 										<button type="submit" class="btn btn-primary btn-block">Login</button>
 										<br>
-										<a class="btn btn-secondary btn-block" href="">Request Password Reset</a>
+										<a class="btn btn-secondary btn-block" href="/home/auth/request.php">Request Password Reset</a>
 									</form>
 
 								</div>
