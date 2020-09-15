@@ -154,7 +154,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $newHashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
     // GET STATEMENT READY AND EXECUTES
-    if($stmt = $con-prepare(' UPDATE accounts SET password = ? WHERE email = ? ')) {
+    if($stmt = $con->prepare(' UPDATE accounts SET password = ? WHERE email = ? ')) {
         $stmt->bind_param("ss", $newHashedPassword, $e);
         
         if($stmt->execute()) {
