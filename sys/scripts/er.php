@@ -3,14 +3,6 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-
-// CHECK IF $_POST IS A THING
-if(!isset($_POST) || empty($_POST) || is_null($_POST)) {
-    echo "<script>alert('An error has occured. Try again! Code: Tyler');</script>";
-    echo '<script type="text/javascript">location.href = "/home/auth/request.php";</script>';
-    exit;
-}
-
 // CHECK IF USER IS LOGGED IN AND THEN GO TO EITHER A OR B
 if($_SESSION['loggedin'] == TRUE) {
     include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php";
@@ -23,7 +15,12 @@ if($_SESSION['loggedin'] == TRUE) {
 
 } else {
 
-    
+    // CHECK IF $_POST IS A THING
+    if(!isset($_POST) || empty($_POST) || is_null($_POST)) {
+        echo "<script>alert('An error has occured. Try again! Code: Tyler');</script>";
+        echo '<script type="text/javascript">location.href = "/home/auth/request.php";</script>';
+        exit;
+    }
 
     // CHECKS IF $_POST['resetEmail'] IS ACTUALLY A THING
     if(!isset($_POST['resetEmail']) || empty($_POST['resetEmail']) || is_null($_POST['resetEmail'])) {
