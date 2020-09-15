@@ -77,7 +77,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 							<h4><center>Reset Password</center></h4>
 						</div>
 						
-						<div class="card-body">
+						<div class="card-body" style="width: 50%;">
 							<center>
                                 <form action="#" method="post">
                                     <div class="form-group">
