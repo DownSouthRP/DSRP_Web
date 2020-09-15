@@ -77,26 +77,39 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 							<h4><center>Reset Password</center></h4>
 						</div>
 						
-						<div class="card-body" style="width: 50%;">
-							<center>
-                                <form action="#" method="post">
-                                    <div class="form-group">
-                                        <label for="newPassword">New Password</label>
-                                        <input class="form-control" type="password" id="newPassword" name="newPassword" required />
-                                    </div>
+						<div class="card-body">
+                            <div class="row">
+                
+                                <div class="col-md-4">
+                                </div>
 
-                                    <br>
+                                <div class="col-md-4">
+                                    <center>
+                                        <form action="#" method="post">
+                                            <div class="form-group">
+                                                <label for="newPassword">New Password</label>
+                                                <input class="form-control" type="password" id="newPassword" name="newPassword" required />
+                                            </div>
 
-                                    <div class="form-group">
-                                        <label for="confirmNewPassword">Confirm New Password</label>
-                                        <input class="form-control" type="password" id="confirmNewPassword" name="confirmNewPassword" required />
-                                    </div>
+                                            <br>
 
-                                    <br>
+                                            <div class="form-group">
+                                                <label for="confirmNewPassword">Confirm New Password</label>
+                                                <input class="form-control" type="password" id="confirmNewPassword" name="confirmNewPassword" required />
+                                            </div>
 
-                                    <button class="btn btn-primary" type="submit">Submit</button>
-                                </form>
-                            </center>
+                                            <br>
+
+                                            <button class="btn btn-primary" type="submit">Submit</button>
+                                        </form>
+                                    </center>
+                                </div>
+
+                                <div class="col-md-4">
+                                </div>
+
+                            </div>
+							
 						</div>
 					</div>
 
