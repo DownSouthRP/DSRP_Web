@@ -133,7 +133,7 @@ $confirmNewPassword = '';
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $newPassword = validateNew($_POST["newPassword"]);
-    $confirmNewPassword = validateNew($_POSt["confirmNewPassword"]);
+    $confirmNewPassword = validateNew($_POST["confirmNewPassword"]);
 }
 function validateNew($data) {
     $data = trim($data);
