@@ -43,7 +43,7 @@ if($_SESSION['loggedin'] == TRUE) {
         $str = rand();
         $h = md5($str);
         $e = validate($_POST["resetEmail"]);
-        $r = '/home/auth/login.php';
+        $r = '/home/index.php';
     
     } else {
         echo "<script>alert('An error has occured. Try again! Code: Jay');</script>";
