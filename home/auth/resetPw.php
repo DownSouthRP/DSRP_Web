@@ -134,14 +134,15 @@ $confirmNewPassword = '';
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $newPassword = validateNew($_POST["newPassword"]);
     $confirmNewPassword = validateNew($_POSt["confirmNewPassword"]);
+}
+function validateNew($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 
-    function validateNew($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
-
+if($_SERVER["REQUEST_METHOD"] == "POST") {
     // IF NEW PASSWORDS DONT MATCH
     if($confirmNewPassword !== $newPassword) {
         echo "<script>alert('Youre two new passwords do not match. Please head back to your email and try again.');</script>";
@@ -162,7 +163,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '<script type="text/javascript">location.href = "/home/";</script>';
         exit;
     }
-
 }
 
 
