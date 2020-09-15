@@ -17,21 +17,22 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
 
 // GENERATE HASH
 $str = rand();
-$hash = md5($str);
+$h = md5($str);
 $r = '/profile/settings/sp.php';
+$e = $email;
+
 
 // GENERATE TEMP PASS RESET CODE
 if($stmt = $con->prepare(' INSERT INTO temppass (email, hash, r) VALUES (?,?,?) ')) {
-    $stmt->bind_param('sss', $email, $hash, $r);
+    $stmt->bind_param('sss', $e, $h, $r);
     $stmt->execute();
-        
     $stmt->store_result();
-    $stmt->bind_result($email, $hash, $r);
+    $stmt->bind_result($e, $h, $r);
     $stmt->fetch();
 
-    $mailTo = $email;
+    $mailTo = $e;
     $mailSubject = "Password Reset";
-    $mailLink = 'https://' . $_SERVER['HTTP_HOST'] . '/home/auth/resetPw.php?e=' . $email . '&h=' . $hash . '$r=' . $return;
+    $mailLink = 'https://' . $_SERVER['HTTP_HOST'] . '/home/auth/resetPw.php?e=' . $e . '&h=' . $h . '$r=' . $r;
     $mailTxt = "Hello, we have your request for a password reset for dsrp.online." . "Head over to " . $mailLink . " to reset your password. If you did not request a password reset please ignore this message. Your password has NOT been changed.";
     $mailHeaders = "From: <DOWNSOUTHRP@DSRP.ONLINE>";
 
