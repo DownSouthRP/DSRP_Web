@@ -27,8 +27,6 @@ if($stmt = $con->prepare(' INSERT INTO temppass (email, hash, r) VALUES (?,?,?) 
     $stmt->bind_param('sss', $e, $h, $r);
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($e, $h, $r);
-    $stmt->fetch();
 
     $mailTo = $e;
     $mailSubject = "Password Reset";

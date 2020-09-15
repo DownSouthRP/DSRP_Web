@@ -118,10 +118,33 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 $newPassword = '';
 $confirmNewPassword = '';
 
-if($_SERVER["REQUEST_METHOD"] == "GET") {
+if($_SERVER["REQUEST_METHOD"] == "POST") {
     $newPassword = validateNew($_POST["newPassword"]);
     $confirmNewPassword = validateNew($_POSt["confirmNewPassword"]);
-  }
+
+    // IF NEW PASSWORDS DONT MATCH
+    if($confirmNewPassword !== $newPassword) {
+        echo "<script>alert('Youre two new passwords do not match. Please head back to your email and try again.');</script>";
+        echo '<script type="text/javascript">location.href = "/home/";</script>';
+        exit;
+    }
+
+    // CREATES THE NEW PASSWORD HASH
+    $newHashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
+    // GET STATEMENT READY AND EXECUTES
+    if($stmt = $con-prepare(' UPDATE accounts SET password = ? WHERE email = ? ')) {
+        $stmt->bind_param("ss", $newHashedPassword, $e);
+        $stme->execute();
+        $stmt->close();
+
+        echo "<script>alert('Your password has been reset! You will now be redirected.');</script>";
+        echo '<script type="text/javascript">location.href = "/home/";</script>';
+        exit;
+    }
+
+}
+
 function validateNew($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -129,26 +152,7 @@ function validateNew($data) {
     return $data;
 }
 
-// IF NEW PASSWORDS DONT MATCH
-if($confirmNewPassword !== $newPassword) {
-    echo "<script>alert('Youre two new passwords do not match. Please head back to your email and try again.');</script>";
-    echo '<script type="text/javascript">location.href = "/home/";</script>';
-    exit;
-}
 
-// CREATES THE NEW PASSWORD HASH
-$newHashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-
-// GET STATEMENT READY AND EXECUTES
-if($stmt = $con-prepare(' UPDATE accounts SET password = ? WHERE email = ? ')) {
-    $stmt->bind_param("ss", $newHashedPassword, $e);
-    $stme->execute();
-    $stmt->close();
-
-    echo "<script>alert('Your password has been reset! You will now be redirected.');</script>";
-    echo '<script type="text/javascript">location.href = "/home/";</script>';
-    exit;
-}
 
 
 
