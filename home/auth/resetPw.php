@@ -85,7 +85,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 
                                 <div class="col-md-4">
                                     <center>
-                                        <form action="/sys/scripts/resetPw.php" method="post">
+                                        <form action="/sys/scripts/resetPw.php?h=<?php echo $h; ?>" method="post">
                                             <div class="form-group">
                                                 <label for="newPassword">New Password</label>
                                                 <input class="form-control" type="password" id="newPassword" name="newPassword" required />

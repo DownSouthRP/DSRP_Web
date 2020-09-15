@@ -5,15 +5,33 @@ session_start();
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php";
 
+// CHECKS TO SEE IF GET IS THERE
+if(!isset($_GET) || empty($_GET) || is_null($_GET)) {
+    echo "<script>alert('An error has occured! Please head back to your email and try again.----');</script>";
+    echo '<script type="text/javascript">location.href = "/profile/settings/";</script>';
+    exit;
+}
+// CHECKS TO SEE IF GET VALUES ARE THERE
+if(!isset($_GET['h']) || empty($_GET['h']) || is_null($_GET['h'])) {
+    echo "<script>alert('An error has occured! Please head back to your email and try again.---');</script>";
+    echo '<script type="text/javascript">location.href = "/profile/settings/";</script>';
+    exit;
+}
+
+
 // VALIDATES EVERYTHING
 $newPassword = '';
 $confirmNewPassword = '';
+$h = '';
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-    $newPassword = validateNew($_POST["newPassword"]);
-    $confirmNewPassword = validateNew($_POST["confirmNewPassword"]);
+    $newPassword = validate($_POST["newPassword"]);
+    $confirmNewPassword = validate($_POST["confirmNewPassword"]);
 }
-function validateNew($data) {
+if($_SERVER["REQUEST_METHOD"] == "GET") {
+    $h = validate($_GET["h"]);
+}
+function validate($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
