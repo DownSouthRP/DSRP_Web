@@ -102,7 +102,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser
                                             Change Profile Banner
                                         </div>
                                         <div class="card-body">
-                                            <form action="/sys/scripts/updateIDs.php" method="post">
+                                            <form action="#" method="post">
                                                     <label for="profileBanner">Current Banner URL</label>
                                                     <input type="text" class="form-control" value="<?php echo $profileBanner; ?>" id="profileBanner" name="profileBanner" required/>
                                                 <br>
