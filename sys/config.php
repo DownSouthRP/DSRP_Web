@@ -37,12 +37,12 @@ $recruitmentCommand = [
 
 $recruitmentRanks = [
     'Department Director',
+    'Department Manager',
     'Department Supervisor',
-    'Department Lead',
-    'Department Evaluator',
     'Department Liasion',
+    'Department Senior Officer',
     'Department Officer',
-    'Department Assistant',
+    'Department Assistant Officer',
     'Department Retired',
 ];
 
@@ -51,9 +51,10 @@ $developmentRanks = [
     'Development Manager',
     'Development Supervisor',
     'Development Team Lead',
-    'Senior Developer',
     'Developer',
     'Development Affiliate',
+    'BETA Coordinator',
+    'BETA Tester',
 ];
 
 $lspdRanks = [
@@ -257,9 +258,19 @@ $allCommunityDepartmentRanks = [
     'Development Manager',
     'Development Supervisor',
     'Development Team Lead',
-    'Senior Developer',
     'Developer',
     'Development Affiliate',
+    'BETA Coordinator',
+    'BETA Tester',
+    // Recruitment Ranks    
+    'Department Director',
+    'Department Manager',
+    'Department Supervisor',
+    'Department Liasion',
+    'Department Senior Officer',
+    'Department Officer',
+    'Department Assistant Officer',
+    'Department Retired',
     // Administrative Ranks
     'Director',
     'Deputy Director',

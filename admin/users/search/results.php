@@ -126,14 +126,10 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
                         </div>
                         
                         <div class="col-md-4">
-                        
-                        </div>
-                        
-                        <div class="col-md-4">
 
                         
                             <div class="card">
-                                <div class="card-header">Community Information</div>
+                                <div class="card-header">Community Information & Permissions</div>
                                     <div class="card-body">
                                         <form action="/sys/scripts/adminUpdateCommunityRank.php?userID=<?php echo $userRow['id']; ?>&return=/admin/users/search/results.php?id=<?php echo $userRow['id']; ?>" method="post">
                                             <!-- COMMUNITY RANK -->
@@ -141,7 +137,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
                                             <label for="newCommunityRank">Change Community Rank</label>
                                             <div class="input-group mb-3">
                                                 <select class="form-control" name="newCommunityRank" id="newCommunityRank" required>
-                                                    <option selected="selected" disabled>Choose one</option>
+                                                    <option selected="selected" disabled><?php echo $userRow['communityRank']?></option>
                                                     <?php
                                                         foreach($allCommunityDepartmentRanks as $rank) {
                                                             echo '<option value="' . $rank . '">' . $rank . '</option>';
@@ -162,9 +158,30 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
                                             <label for="newPermissionRank">Change System Permission</label>
                                             <div class="input-group mb-3">
                                                 <select class="form-control" name="newPermissionRank" id="newPermissionRank" required>
-                                                    <option selected="selected" disabled>Choose one</option>
+                                                    <option selected="selected" disabled><?php echo $userRow['permissionRank']?></option>
                                                     <?php
                                                         foreach($communityRanks as $rank) {
+                                                            echo '<option value="' . $rank . '">' . $rank . '</option>';
+                                                        }
+                                                    ?>
+                                                </select>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="submit">Update</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        
+                                        <br>
+                                        
+                                        <form action="/sys/scripts/adminUpdateRecruitmentRank.php?userID=<?php echo $userRow['id']; ?>&return=/admin/users/search/results.php?id=<?php echo $userRow['id']; ?>" method="post">
+                                            <!-- COMMUNITY RANK -->
+                                            <p class="list-group-item bg-info text-center">Currently: <br><b><?php echo $userRow['recruitmentRank']?></b></p>
+                                            <label for="newRecruitmentRank">Change Recruitment Permission</label>
+                                            <div class="input-group mb-3">
+                                                <select class="form-control" name="newRecruitmentRank" id="newRecruitmentRank" required>
+                                                    <option selected="selected" disabled><?php echo $userRow['recruitmentRank']?></option>
+                                                    <?php
+                                                        foreach($recruitmentRanks as $rank) {
                                                             echo '<option value="' . $rank . '">' . $rank . '</option>';
                                                         }
                                                     ?>
@@ -178,10 +195,8 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
                                 </div>
                             </div>
                         </div>
-
-
-
-
+                        
+                        <div class="col-md-4"></div>
 
 
 

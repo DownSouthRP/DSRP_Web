@@ -3,12 +3,11 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php");
-include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 
 
 ?>
-
+<br><br><br><br>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -16,30 +15,21 @@ include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
                 <div class="col-md-2">
                 </div>
                 <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-body">
-                            <center><img style="width:15%;height:auto;" src="/sys/design/imgs/dsrpLogo.png"><br></center>
-                        </div>                         
-                    </div>
+                    <center><img style="width:100%;height:auto;" src="/sys/design/imgs/dsrpBanner.png"><br></center>
                     <br>
                     <div class="card" style="width: 100%;">
-                        <div class="card-body">
-                            <h1 class="card-title">Login</h1>
-                            <br>
-                            <form role="form" action="/home/auth/scripts/loginScript.php" method="post">
-                            <div class="form-group">
-                                <label for="authInputUsername">Email Address</label>
-                                <input type="email" class="form-control" id="authInputUsername" name="authInputUsername" required/>
+                        <center>
+                            <div class="card-header">
+                                <h1 class="card-title">Not Logged In</h1>
                             </div>
-                            <div class="form-group">
-                                <label for="authInputPassword">Password</label>
-                                <input type="password" class="form-control" id="authInputPassword" name="authInputPassword" required/>
+                            <div class="card-body">
+                                
+                                    <p>Please login before attempting to open a new application.</p>
+                                    <br>
+                                    <a class="btn btn-primary" href="/home/auth/login.php">Login Here</a>
+                                
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block">Login</button>
-                            <br>
-                            <p>If you have forgotten your password please seek out a member of the <b>DownSouthRP Administration Team</b>.</p>
-                            </form>
-                        </div>
+                        </center>
                     </div> 
                 </div>
 

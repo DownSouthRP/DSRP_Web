@@ -2,6 +2,7 @@
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
+
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/config.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php";
@@ -15,10 +16,10 @@ if(!isset($_SESSION['loggedin']) && is_null($_SESSION['loggedin']) && empty($_SE
 }
 
 // CHECK IF USER HAS ADMIN PERMISSIONS (Jr Admin, Admin, Sr. Admin, Core Admin)
-if(!isset($getCurrentUserRow['permissionRank']) && is_null($getCurrentUserRow['permissionRank']) && empty($getCurrentUserRow['permissionRank'])) {
+if(!isset($permissionRank) && is_null($permissionRank) && empty($permissionRank)) {
     echo '<script type="text/javascript">location.href = "/home/";</script>';
 } else {
-    if(!in_array($getCurrentUserRow['permissionRank'], $adminRanks)) {
+    if(!in_array($permissionRank, $adminRanks)) {
         echo '<script type="text/javascript">location.href = "/home/";</script>';
     }
 }
@@ -66,11 +67,10 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
                                             Application Settings
                                         </div>
                                         <div class="card-body">
-
-                                            <form action="/sys/scripts/adminUpdateSystemApplicationSettings.php" method="post">
+                                            
                                             <p class="list-group-item bg-info text-center">Currently: <br><b>
                                                 <?php 
-                                                    if($getDSRPInfoRow['appStatus'] == TRUE) {
+                                                    if($getDSRPInfoRow['appStatus'] == 'TRUE') {
                                                         echo 'Currently Open';
                                                     } else {
                                                         echo 'Currently Closed';
@@ -78,11 +78,27 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
                                                 ?>
                                             </b></p>
                                             <label for="newSystemApplicationStatus">Change Application Status</label>
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <button type="button" class="btn btn-secondary">Close</button>
-                                                <button type="button" class="btn btn-secondary">Open</button>
+                                            <div class="btn-group btn-group-toggle" data-toggle="buttons" role="group">
+                                                <form action="/sys/scripts/adminUpdateSystemApplicationSettingsClose.php" method="post">
+                                                    <button type="submit" class="btn btn-<?php 
+                                                        if($getDSRPInfoRow['appStatus'] == 'TRUE') {
+                                                            echo 'primary';
+                                                        } else {
+                                                            echo 'secondary';
+                                                        }
+                                                    ?>">Close</button>
+                                                </form>
+                                                <form action="/sys/scripts/adminUpdateSystemApplicationSettingsOpen.php" method="post">
+                                                    <button type="submit" class="btn btn-<?php 
+                                                        if($getDSRPInfoRow['appStatus'] == 'FALSE') {
+                                                            echo 'primary';
+                                                        } else {
+                                                            echo 'secondary';
+                                                        }
+                                                    ?>">Open</button>
+                                                </form>
                                             </div>
-                                        </form>
+                                            
 
                                         </div>
                                     </div>
@@ -104,19 +120,6 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
                 </div>
 
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

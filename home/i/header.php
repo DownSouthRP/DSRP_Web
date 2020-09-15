@@ -7,7 +7,7 @@ include($_SERVER['DOCUMENT_ROOT']."/sys/config.php");
 // CHECK IF USER IS LOGGED IN
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 
-	if($permissionRank !== "Applicant") {
+	if(isset($permissionRank) && $permissionRank !== "Applicant") {
 		$needSteam = FALSE;
 		$needDiscord = FALSE;
 		$needTeamSpeak = FALSE;

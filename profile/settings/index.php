@@ -79,12 +79,12 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser
                                                 <label for="steamID">Steam HEX</label>
                                                 <input type="text" class="form-control" value="<?php echo $steamID; ?>" id="steamID" name="steamID" required/>
                                                 <br>
-                                                <label for="discordID">TeamSpeak Unique ID</label>
+                                                <label for="discordID">Discord ID</label>
                                                 <input type="text" class="form-control" value="<?php echo $discordID; ?>" id="discordID" name="discordID" required/>
                                             </div>
                                             <div class="col">
-                                                <label for="teamspeakID">Discord ID</label>
-                                                <input type="text" class="form-control" value="<?php echo $teamspeakID; ?>" id="displayName" name="teamspeakID" required/>
+                                                <label for="teamspeakID">TeamSpeak Unique ID</label>
+                                                <input type="text" class="form-control" value="<?php echo $teamspeakID; ?>" id="teamspeakID" name="teamspeakID" required/>
                                             </div>
                                         </div>
                                         <br>
@@ -102,21 +102,15 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser
                                             Change Profile Banner
                                         </div>
                                         <div class="card-body">
-                                            <form action="#" method="post">
-                                                    <label for="profileBanner">Current Banner URL</label>
-                                                    <input type="text" class="form-control" value="<?php echo $profileBanner; ?>" id="profileBanner" name="profileBanner" required/>
+                                            <form action="/sys/scripts/updateProfileBanner.php" method="post">
+                                                    <label for="newProfileBanner">Current Banner URL</label>
+                                                    <input type="text" class="form-control" value="<?php echo $profileBanner; ?>" id="newProfileBanner" name="newProfileBanner" required/>
                                                 <br>
                                                 <button type="submit" class="btn btn-primary">Update</button>
                                             </form>
                                             <br>
                                             <center>
-                                                <img style="width:90%;" src="<?php 
-                                                            if(!isset($profileBanner)) {
-                                                                echo '/sys/design/imgs/dsrpBanner.png';
-                                                            } else {
-                                                                echo $profileBanner;
-                                                            }
-                                                        ?>">
+                                                <img style="width:90%;" src="<?php echo $profileBanner; ?>">
                                             </center>
                                         </div>
                                     </div>
