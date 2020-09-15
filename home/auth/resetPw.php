@@ -176,10 +176,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-} else {
-    echo "<script>alert('Your password has been reset! You will now be redirected.-');</script>";
-    echo '<script type="text/javascript">location.href = "/home/";</script>';
-    exit;
 }
 
 
