@@ -4,7 +4,7 @@
 
         <!-- SIDEBAR TITLE -->
         <div class="card-header text-center">
-            Welcome, <?php echo $getCurrentUserRow['displayName']; ?>
+            Welcome, <?php echo $displayName; ?>
         </div>
 
         <!-- SIDEBAR CONTENT -->

@@ -8,11 +8,12 @@ if($_SESSION['loggedin'] !== TRUE) {
     exit;
 }
 
-include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php");
-include($_SERVER['DOCUMENT_ROOT']."/home/i/header.php");
-include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php");
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php";
 
 ?>
+<br>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -109,7 +110,13 @@ include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php"
                                             </form>
                                             <br>
                                             <center>
-                                                <img src="<?php echo $profileBanner; ?>">
+                                                <img style="width:90%;" src="<?php 
+                                                            if(!isset($profileBanner)) {
+                                                                echo '/sys/design/imgs/dsrpBanner.png';
+                                                            } else {
+                                                                echo $profileBanner;
+                                                            }
+                                                        ?>">
                                             </center>
                                         </div>
                                     </div>
@@ -120,46 +127,24 @@ include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php"
                                             Change Password
                                         </div>
                                         <div class="card-body">
-                                            <form action="/sys/scripts_/changePassword.php" method="post">
-                                                <div>
-                                                    <label for="oldPassword">Old Password</label>
-                                                    <input type="password" class="form-control" id="oldPassword" name="oldPassword" required />
-                                                </div>
-
-                                                <br>
-
-                                                <div>
-                                                    <label for="newPassword">New Password</label>
-                                                    <input type="password" class="form-control" id="newPassword" name="newPassword" required />
-                                                </div>
-
-                                                <br>
-
-                                                <div>
-                                                    <label for="confirmNewPassword">Confirm New Password</label>
-                                                    <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" required />
-                                                </div>
-
-                                                <br>
-
-                                                <button class="btn btn-primary" type="submit">Update</button>
+                                            <form action="/sys/scripts/er.php" method="post">
+                                                <button class="btn btn-primary" type="submit">Request Password Change</button>
                                             </form>
+                                        </div>
+                                    </div>
+                            
+                                    <br>
+                                    
+                                    <div class="card">
+                                        <div class="card-header">
+                                            Update Email Address
+                                        </div>
+                                        <div class="card-body">
+                                            <p>- PENDING FUTURE UPDATE -</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <br>
-                            
-                            <div class="card">
-                                <div class="card-header">
-                                    Update Email Address
-                                </div>
-                                <div class="card-body">
-                                    <p>- PENDING FUTURE UPDATE -</p>
-                                </div>
-                            </div>
-                            
                         </div>
                     </div>
                     <br>

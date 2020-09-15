@@ -71,7 +71,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 							<center><h4 class="card-title">Don't have an account yet?</h4></center>
 						</div>
 						<div class="card-body">
-							<a class="btn btn-primary btn-large btn-block" href="register.php">Register Here</a>
+							<a class="btn btn-primary btn-large btn-block" href="/home/auth/reg/">Register Here</a>
 						</div>
 					</div>
 

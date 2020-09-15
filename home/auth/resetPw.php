@@ -4,7 +4,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 }
 
 // CHECK IF USER IS LOGGED IN
-if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== TRUE) {
     echo '<script type="text/javascript">location.href = "/home/";</script>';
     exit;
 }
@@ -79,38 +79,23 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 						
 						<div class="card-body">
 							<center>
+                                <form action="#" method="post">
+                                    <div>
+                                        <label for="newPassword">New Password</label>
+                                        <input type="password" id="newPassword" name="newPassword" required />
+                                    </div>
 
-                            <form action="#" method="post">
-                                <div>
-                                    <label for="newPassword">New Password</label>
-                                    <input type="password" id="newPassword" name="newPassword" required />
-                                </div>
+                                    <br>
 
-                                <br>
+                                    <div>
+                                        <label for="confirmNewPassword">Confirm New Password</label>
+                                        <input type="password" id="confirmNewPassword" name="confirmNewPassword" required />
+                                    </div>
 
-                                <div>
-                                    <label for="confirmNewPassword">Confirm New Password</label>
-                                    <input type="password" id="confirmNewPassword" name="confirmNewPassword" required />
-                                </div>
+                                    <br>
 
-                                <br>
-
-                                <button class="btn btn-primary" type="submit">Submit</button>
-                            </form>
-
-                            <?php
-                                if($errmsg !== '') {
-                                    if($errmsg == 'dm') {
-                                        echo $message;
-                                    } else {
-                                        echo '';
-                                    }
-                                } else {
-
-                                }
-                            
-                            ?>
-
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                </form>
                             </center>
 						</div>
 					</div>
@@ -146,7 +131,7 @@ function validateNew($data) {
 
 // IF NEW PASSWORDS DONT MATCH
 if($confirmNewPassword !== $newPassword) {
-    echo "<script>alert('An error has occured! Please head back to your email and try again.');</script>";
+    echo "<script>alert('Youre two new passwords do not match. Please head back to your email and try again.');</script>";
     echo '<script type="text/javascript">location.href = "/home/";</script>';
     exit;
 }
