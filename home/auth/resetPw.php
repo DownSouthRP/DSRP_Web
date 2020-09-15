@@ -11,23 +11,23 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== TRUE) {
 
 // CHECKS TO SEE IF GET IS THERE
 if(!isset($_GET) || empty($_GET) || is_null($_GET)) {
-    echo "<script>alert('An error has occured! Please head back to your email and try again.');</script>";
+    echo "<script>alert('An error has occured! Please head back to your email and try again.----');</script>";
     echo '<script type="text/javascript">location.href = "/home/";</script>';
     exit;
 }
 // CHECKS TO SEE IF GET VALUES ARE THERE
 if(!isset($_GET['e']) || empty($_GET['e']) || is_null($_GET['e'])) {
-    echo "<script>alert('An error has occured! Please head back to your email and try again.');</script>";
+    echo "<script>alert('An error has occured! Please head back to your email and try again.---');</script>";
     echo '<script type="text/javascript">location.href = "/home/";</script>';
     exit;
 }
 if(!isset($_GET['h']) || empty($_GET['h']) || is_null($_GET['h'])) {
-    echo "<script>alert('An error has occured! Please head back to your email and try again.');</script>";
+    echo "<script>alert('An error has occured! Please head back to your email and try again.--');</script>";
     echo '<script type="text/javascript">location.href = "/home/";</script>';
     exit;
 }
 if(!isset($_GET['r']) || empty($_GET['r']) || is_null($_GET['r'])) {
-    echo "<script>alert('An error has occured! Please head back to your email and try again.');</script>";
+    echo "<script>alert('An error has occured! Please head back to your email and try again.-');</script>";
     echo '<script type="text/javascript">location.href = "/home/";</script>';
     exit;
 }

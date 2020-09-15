@@ -32,7 +32,7 @@ if($stmt = $con->prepare(' INSERT INTO temppass (email, hash, r) VALUES (?,?,?) 
 
     $mailTo = $e;
     $mailSubject = "Password Reset";
-    $mailLink = 'https://' . $_SERVER['HTTP_HOST'] . '/home/auth/resetPw.php?e=' . $e . '&h=' . $h . '$r=' . $r;
+    $mailLink = 'https://' . $_SERVER['HTTP_HOST'] . '/home/auth/resetPw.php?e=' . $e . '&h=' . $h . '&r=' . $r;
     $mailTxt = "Hello, we have your request for a password reset for dsrp.online." . "Head over to " . $mailLink . " to reset your password. If you did not request a password reset please ignore this message. Your password has NOT been changed.";
     $mailHeaders = "From: <DOWNSOUTHRP@DSRP.ONLINE>";
 
