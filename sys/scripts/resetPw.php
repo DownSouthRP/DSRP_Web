@@ -3,7 +3,7 @@ session_start();
 
 // INCLUDE DATABASE CONECTION - $con
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
-
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php";
 
 // VALIDATES EVERYTHING
 $newPassword = '';
@@ -29,27 +29,31 @@ if($confirmNewPassword !== $newPassword) {
 
 // CREATES THE NEW PASSWORD HASH
 $newHashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+$e = $email;
 
 // GET STATEMENT READY AND EXECUTES
 if($stmt = $con->prepare(' UPDATE accounts SET password = ? WHERE email = ? ')) {
-    $stmt->bind_param("ss", $newHashedPassword, $e);
+    $stmt->bind_param('ss', $newHashedPassword, $e);
     
     if($stmt->execute()) {
 
         $stmt = $con->prepare(' DELETE FROM temppass WHERE hash = ? ');
         $stmt->bind_param('s', $h);
-        $stmt->execute();
+        if($stmt->execute()) {
+            echo '<script type="text/javascript">location.href = "/profile/settings/";</script>';
+            exit;
+        }
 
     } else {
         echo "<script>alert('Your password has been reset! You will now be redirected.---');</script>";
-        echo '<script type="text/javascript">location.href = "/home/";</script>';
+        echo '<script type="text/javascript">location.href = "/profile/settings/";</script>';
         exit;
     }
 
     
 } else {
     echo "<script>alert('Your password has been reset! You will now be redirected.--');</script>";
-    echo '<script type="text/javascript">location.href = "/home/";</script>';
+    echo '<script type="text/javascript">location.href = "/profile/settings/";</script>';
     exit;
 }
 
