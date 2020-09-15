@@ -3,24 +3,65 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-// CHECK IF USER IS LOGGED IN
-if(isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == TRUE) {
-    
-} else {
-    echo '<script type="text/javascript">location.href = "/home/";</script>';
+
+// CHECK IF $_POST IS A THING
+if(!isset($_POST) || empty($_POST) || is_null($_POST)) {
+    echo "<script>alert('An error has occured. Try again!');</script>";
+    echo '<script type="text/javascript">location.href = "/home/auth/request.php";</script>';
     exit;
 }
 
+// CHECK IF USER IS LOGGED IN AND THEN GO TO EITHER A OR B
+if($_SESSION['loggedin'] == TRUE) {
+    include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php";
+    // GENERATE HASH
+    $str = rand();
+    $h = md5($str);
+    $e = $email;
+    $r = '/profile/settings/sp.php';
+    
+
+} else {
+
+    
+
+    // CHECKS IF $_POST['resetEmail'] IS ACTUALLY A THING
+    if(!isset($_POST['resetEmail']) || empty($_POST['resetEmail']) || is_null($_POST['resetEmail'])) {
+        echo "<script>alert('You never entered an email. Please try again and this time enter an email.');</script>";
+        echo '<script type="text/javascript">location.href = "/home/auth/request.php";</script>';
+        exit;
+    }
+
+    
+    $e = '';
+    function validate($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+        // GENERATE HASH
+        $str = rand();
+        $h = md5($str);
+        $e = validate($_POST["resetEmail"]);
+        $r = '/home/auth/login.php';
+    
+    } else {
+        echo "<script>alert('An error has occured. Try again!');</script>";
+        echo '<script type="text/javascript">location.href = "/home/auth/request.php";</script>';
+        exit;
+    }
+
+}
+
+
+
+
+
 // GET CURRENT ACCOUNT
-include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
-
-// GENERATE HASH
-$str = rand();
-$h = md5($str);
-$r = '/profile/settings/sp.php';
-$e = $email;
-
 
 // GENERATE TEMP PASS RESET CODE
 if($stmt = $con->prepare(' INSERT INTO temppass (email, hash, r) VALUES (?,?,?) ')) {

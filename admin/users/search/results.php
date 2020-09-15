@@ -14,10 +14,10 @@ if(!isset($_SESSION['loggedin']) && is_null($_SESSION['loggedin']) && empty($_SE
 }
 
 // CHECK IF USER HAS ADMIN PERMISSIONS (Jr Admin, Admin, Sr. Admin, Core Admin)
-if(!isset($getCurrentUserRow['permissionRank']) || is_null($getCurrentUserRow['permissionRank']) || empty($getCurrentUserRow['permissionRank'])) {
+if(!isset($permissionRank) || is_null($permissionRank) || empty($permissionRank)) {
     echo '<script type="text/javascript">location.href = "/home/";</script>';
 } else {
-    if(!in_array($getCurrentUserRow['permissionRank'], $adminRanks)) {
+    if(!in_array($permissionRank, $adminRanks)) {
         echo '<script type="text/javascript">location.href = "/home/";</script>';
     }
 }
@@ -32,7 +32,7 @@ if(!isset($_GET) && is_null($_GET) && empty($_GET)) {
 $userID = '';
 
 if($_SERVER["REQUEST_METHOD"] == "GET") {
-    $userID = validate($_GET["userID"]);
+    $userID = validate($_GET["id"]);
   }
 
 function validate($data) {

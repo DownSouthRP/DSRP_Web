@@ -46,11 +46,13 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Department Information</h5>
-                                    <center>
-                                    <img style="width:50%;" src="/sys/design/imgs/depts/sasp.png">
+                                    <p>
+                                    The San Andreas State Police is a highly trained group of individuals sworn in to protect and serve the citizens of San Andreas. Our job is to protect the lives and rights of all people within our state. State troopers have the authority to ticket, and even arrest citizens who violate state law. State troopers are responsible for enforcing vehicle safety on all highways and interstates located in San Andreas. State troopers must abide by all rules and regulations set forth by administration.
                                     <br><br>
-                                    <p>There will more information announced and placed here when it becomes available.</p>
-                                    </center>
+                                    <b>Code of Conduct</b>
+                                    <br>All members of the San Andreas State Police must be fully aware of the ethical responsibilities of their positions and must live up to the highest standards of law enforcement. All troopers must maintain an adult level maturity and must have respect for ALL members of this community and department. Failing to maintain that level of respect can result in disciplinary actions.
+
+                                    </p>
                                 </div>
                             </div>
 						</div>

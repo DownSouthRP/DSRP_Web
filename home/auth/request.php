@@ -41,18 +41,12 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 								<div class="col-md-4">
 								</div>
 								<div class="col-md-4">
-									<form role="form" action="/sys/scripts/loginScript.php" method="post">
+									<form role="form" action="/sys/scripts/er.php" method="post">
 										<div class="form-group">
-											<label for="authInputUsername">Email Address</label>
-											<input type="email" class="form-control" id="authInputUsername" name="authInputUsername" required/>
+											<label for="resetEmail">Email Address</label>
+											<input type="email" class="form-control" id="resetEmail" name="resetEmail" required/>
 										</div>
-										<div class="form-group">
-											<label for="authInputPassword">Password</label>
-											<input type="password" class="form-control" id="authInputPassword" name="authInputPassword" required/>
-										</div>
-										<button type="submit" class="btn btn-primary btn-block">Login</button>
-										<br>
-										<a class="btn btn-secondary btn-block" href="">Request Password Reset</a>
+										<button type="submit" class="btn btn-primary btn-block">Submit</button>
 									</form>
 
 								</div>
