@@ -23,37 +23,30 @@ $r = '/profile/settings/sp.php';
 // GENERATE TEMP PASS RESET CODE
 if($stmt = $con->prepare(' INSERT INTO temppass (email, hash, r) VALUES (?,?,?) ')) {
     $stmt->bind_param('sss', $email, $hash, $r);
-
-    if($stmt->execute()) {
+    $stmt->execute();
         
-        $stmt->store_result();
-        $stmt->bind_result($email, $hash, $return);
-        $stmt->fetch();
-    
-        $mailTo = $email;
-        $mailSubject = "Password Reset";
-        $mailLink = 'https://' . $_SERVER['HTTP_HOST'] . '/home/auth/resetPw.php?e=' . $email . '&h=' . $hash . '$r=' . $return;
-        $mailTxt = "Hello, we have your request for a password reset for dsrp.online." . "Head over to " . $mailLink . " to reset your password. If you did not request a password reset please ignore this message. Your password has NOT been changed.";
-        $mailHeaders = "From: <DOWNSOUTHRP@DSRP.ONLINE>";
-    
-        if(mail($mailTo,$mailSubject,$mailTxt,$mailHeaders)) {
-            echo '<script type="text/javascript">location.href = "/profile/settings/";</script>';
-            exit;
-    
-        } else {
-            echo "<script>alert('An error has occured! Please try again.---');</script>";
-            echo '<script type="text/javascript">location.href = "/profile/settings/";</script>';
-            exit; 
-        }
+    $stmt->store_result();
+    $stmt->bind_result($email, $hash, $r);
+    $stmt->fetch();
+
+    $mailTo = $email;
+    $mailSubject = "Password Reset";
+    $mailLink = 'https://' . $_SERVER['HTTP_HOST'] . '/home/auth/resetPw.php?e=' . $email . '&h=' . $hash . '$r=' . $return;
+    $mailTxt = "Hello, we have your request for a password reset for dsrp.online." . "Head over to " . $mailLink . " to reset your password. If you did not request a password reset please ignore this message. Your password has NOT been changed.";
+    $mailHeaders = "From: <DOWNSOUTHRP@DSRP.ONLINE>";
+
+    if(mail($mailTo,$mailSubject,$mailTxt,$mailHeaders)) {
+        echo '<script type="text/javascript">location.href = "/profile/settings/";</script>';
+        exit;
 
     } else {
-        echo "<script>alert('An error has occured! Please try again.--');</script>";
+        echo "<script>alert('An error has occured! Please try again.-');</script>";
         echo '<script type="text/javascript">location.href = "/profile/settings/";</script>';
         exit; 
     }
 
 } else {
-    echo "<script>alert('An error has occured! Please try again..');</script>";
+    echo "<script>alert('An error has occured! Please try again.');</script>";
     echo '<script type="text/javascript">location.href = "/profile/settings/";</script>';
     exit; 
 }
