@@ -156,13 +156,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     // GET STATEMENT READY AND EXECUTES
     if($stmt = $con-prepare(' UPDATE accounts SET password = ? WHERE email = ? ')) {
         $stmt->bind_param("ss", $newHashedPassword, $e);
-        $stme->execute();
-        $stmt->close();
+        
+        if($stmt->execute()) {
 
-        echo "<script>alert('Your password has been reset! You will now be redirected.');</script>";
+            $stmt = $con->prepare(' DELETE FROM accounts WHERE hash = ? ');
+            $stmt->bind_param('s', $h);
+            $stmt->execute();
+
+        } else {
+            echo "<script>alert('Your password has been reset! You will now be redirected.---');</script>";
+            echo '<script type="text/javascript">location.href = "/home/";</script>';
+            exit;
+        }
+
+        
+    } else {
+        echo "<script>alert('Your password has been reset! You will now be redirected.--');</script>";
         echo '<script type="text/javascript">location.href = "/home/";</script>';
         exit;
     }
+
+} else {
+    echo "<script>alert('Your password has been reset! You will now be redirected.-');</script>";
+    echo '<script type="text/javascript">location.href = "/home/";</script>';
+    exit;
 }
 
 
