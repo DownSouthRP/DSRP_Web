@@ -95,7 +95,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 
                                 <table class="table table-sm table-hover table-striped">
                                     <thead>
-                                        <tr class="table-secondary">
+                                        <tr class="table-primary">
                                             <th>Web ID</th>
                                             <th>Display Name</th>
                                             <th>Email Address</th>
