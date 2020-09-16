@@ -8,12 +8,13 @@ Our main purpose here at Down South Roleplay is to make RP better for everyone. 
     <html lang="en" >
         <head>
             <!-- SITE META TAGS -->
-            <meta charset="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <meta property="og:title" content="DownSouthRP" />
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content="http://downsouthrp.com" />
-            <meta property="og:description" content="Welcome to DownSouthRP, we are glad you came!" />
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta property="og:title" content="DownSouthRP">
+            <meta property="og:type" content="website">
+            <meta property="og:url" content="http://downsouthrp.com">
+            <meta property="og:description" content="Welcome to DownSouthRP, we are glad you came!">
+            
             
             <!-- SITE TAB TITLE -->
             <title>DownSouthRP</title>

@@ -258,7 +258,7 @@ $allCommunityDepartmentRanks = [
     'Development Manager',
     'Development Supervisor',
     'Development Team Lead',
-    'Developer',
+    'DSRP Developer',
     'Development Affiliate',
     'BETA Coordinator',
     'BETA Tester',
@@ -274,7 +274,8 @@ $allCommunityDepartmentRanks = [
     // Administrative Ranks
     'Director',
     'Deputy Director',
-    'Community Coordinator'
+    'Community Coordinator',
+    'DSRP Media',
 ]
 
 

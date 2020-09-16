@@ -44,7 +44,9 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 
                             <br><br><br>
 
-                            <p>Please check your email for a confirmation link to continue with the registration process.</p>
+                            <p>Please check your email for a confirmation link to continue with the registration process.
+							<br>
+							This email might be considered SPAM by some accounts. Be sure to check there as well.</p>
 
                             <br>
 

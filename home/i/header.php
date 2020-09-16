@@ -56,7 +56,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<nav class="navbar navbar-expand-lg navbar-light bg-primary navbar-dark bg-primary fixed-top">
+			<nav class="navbar navbar-expand-sm navbar-light bg-primary navbar-dark bg-primary fixed-top">
 				<a class="navbar-brand" href="/home/">
 					<img src="/sys/design/imgs/dsrpLogo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
                     DownSouthRP
