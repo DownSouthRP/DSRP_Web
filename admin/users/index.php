@@ -138,18 +138,15 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 
                                 </div>
                             </div>
-                            -
-
                         </div>
-                        <div class="card-footer">
-                        </div>
+                        <div class="card-footer"></div>
                     </div>
                 
                 </div>
 
             </div>
 
-
+<br><br><br>
 
 
 
