@@ -13,7 +13,7 @@ $searchRow = mysqli_fetch_assoc($searchResult);
 
 // IF RESULT IS BLANK - RETURN AND SHOW ALERT
 if($searchResult->num_rows >= 1) {
-    echo '<script type="text/javascript">location.href = "/admin/users/search/results.php?userID=' . $searchRow['id'] . '";</script>';
+    echo '<script type="text/javascript">location.href = "/admin/users/search/results.php?id=' . $searchRow['id'] . '";</script>';
 } else {
 // IF NOT BLANK GO TO RESULTS PAGE AND DISPLAY RESULTS
     echo "<script>alert('No users found with that Web ID.');</script>";

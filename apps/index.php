@@ -2,8 +2,7 @@
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
-include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
+
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php";
 
 
@@ -13,17 +12,17 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== TRUE) {
 
 $currentMonth = date('m');
 // THIS GETS A COUNT OF ALL APPLICATIONS SUBMITTED BY ONE USER
-$allAppsSQL = " SELECT COUNT(*) FROM apps WHERE appUser = '".$_SESSION['id']."' ";
+$allAppsSQL = " SELECT COUNT(*) FROM apps WHERE appUser = '".$id."' ";
 $allAppsResult = mysqli_query($con, $allAppsSQL);
 $allAppsRows = mysqli_fetch_array($allAppsResult);
 
 // GET ALL APPS FROM USER THIS CYCLE
-$appCurrentCycleSQL = " SELECT COUNT(*) FROM apps WHERE appUser = '".$_SESSION['id']."' AND appMonth = '".$currentMonth."' ";
+$appCurrentCycleSQL = " SELECT COUNT(*) FROM apps WHERE appUser = '".$id."' AND appMonth = '".$currentMonth."' ";
 $appCurrentCycleResult = mysqli_query($con, $appCurrentCycleSQL);
 $appCurrentCycleArray = mysqli_fetch_array($appCurrentCycleResult);
 
 // GET ALL APPS FROM USER
-$getAllAppArray = " SELECT * FROM apps WHERE appUser = '".$_SESSION['id']."' ";
+$getAllAppArray = " SELECT * FROM apps WHERE appUser = '".$id."' ";
 $getAllResult = mysqli_query($con, $getAllAppArray);
 
 $appCount = $allAppsRows[0];
@@ -39,8 +38,8 @@ if($permissionRank == 'Applicant') {
 }
 
 
-
-
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
 
 ?>
 <div class="container-fluid">

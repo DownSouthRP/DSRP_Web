@@ -37,11 +37,15 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser
 
                     <div class="row">
                         <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-header">
-                                Welcome, <?php echo $displayName; ?>
-                                </div>
+                            <div class="list-group" id="list-tab" role="tablist">
+                                <a class="list-group-item list-group-item-action disabled" id="list-home-list">Welcome, <?php echo $displayName; ?></a>
+                                <!-- <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#" role="tab" aria-controls="home">Home</a>
+                                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#" role="tab" aria-controls="profile">Profile</a>
+                                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#" role="tab" aria-controls="messages">Messages</a>
+                                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#" role="tab" aria-controls="settings">Settings</a> -->
                             </div>
+
+
                         </div>
                         <div class="col-md-9">
                             <div class="card">

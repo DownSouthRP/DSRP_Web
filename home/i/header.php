@@ -56,7 +56,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<nav class="navbar navbar-expand-lg navbar-light bg-primary navbar-dark bg-primary fixed-top">
+			<nav class="navbar navbar-expand-sm navbar-light bg-primary navbar-dark bg-primary fixed-top">
 				<a class="navbar-brand" href="/home/">
 					<img src="/sys/design/imgs/dsrpLogo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
                     DownSouthRP
@@ -120,7 +120,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 								}
 								// IF MEMBER OF RT DEPARTMENT
 								if(in_array($recruitmentRank ,$recruitmentRanks) && $permissionRank !== 'Applicant') {
-									echo '<a class="dropdown-item" href="/rt/">Recruitment Portal</a>';
+									echo '<a class="dropdown-item" href="/recruitment/">Recruitment Portal</a>';
 								}
 								echo '<div class="dropdown-divider"></div>';
 								echo '<a class="dropdown-item" href="/sys/logout.php">Logout</a>';

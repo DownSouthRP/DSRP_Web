@@ -3,7 +3,7 @@
 
 <?php
 
-$DATABASE_HOST = '192.3.157.104';
+$DATABASE_HOST = '69.13.33.171';
 $DATABASE_USER = 'DSRPWebConnection';
 $DATABASE_PASS = 'DSRPAdmin2020!';
 $DATABASE_NAME = 'downsouthrp_main';
@@ -16,3 +16,12 @@ if ($con->connect_error) {
 }
 
 ?>
+
+
+<!-- 
+$DATABASE_HOST = '192.3.157.104';
+$DATABASE_USER = 'DSRPWebConnection';
+$DATABASE_PASS = 'DSRPAdmin2020!';
+$DATABASE_NAME = 'downsouthrp_main'; 
+-->
+

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // IMPORTS DATABASE CONNECTION - $con 
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
 // IMPORTS CURRENT USER CONNECTION $getCurrentUser[''];
@@ -44,7 +44,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $appQ3 = validate($_POST['appQ3']);
     $appQ4 = validate($_POST['appQ4']);
     $appQ5 = validate($_POST['appQ5']);
+    $appUser = $_SESSION['id'];
     $appAgree = validate($_POST['appAgree']);
+    $appDateTime = $dateTime;
+    $appStatus = 'Application Submitted - Pending Review';
+    $appMonth = date('m');
+    $appYear = date('y');
   }
 // IF VALID RE-SET VARIABLE
 function validate($data) {
@@ -54,65 +59,85 @@ function validate($data) {
     return $data;
 }
 
-// FORM FIELDS
-$name = $_POST['appName'];
-$dob = $_POST['appDoB'];
-$age = $_POST['appAge'];
-$email = $_POST['appEmail'];
-$appDept = $_POST['appDept'];
-$appQ1 = $_POST['appQ1'];
-$appQ2 = $_POST['appQ2'];
-$appQ3 = $_POST['appQ3'];
-$appQ4 = $_POST['appQ4'];
-$appQ5 = $_POST['appQ5'];
-$appUser = $_SESSION['id'];
-$appAgree = $_POST['appAgree'];
-$appStatus = 'Application Submitted - Pending Review';
-$appMonth = date('m');
-$appYear = date('y');
-$appSQL = " INSERT INTO apps (id, name, dob, age, email, appDept, appQ1, appQ2, appQ3, appQ4, appQ5, appUser, appAgree, appStatus, appDateTime, appMonth, appYear) 
-VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-
-// SYSTEM LOG
-$systemLogName = "Application Submitted";
-$systemLogType = "appSubmittion";
-$systemLogDetails = $getCurrentUserRow['displayName'] . " sent in an application" . '<a href="/apps/view.php?id=' . $thisApp . '">[VIEW]</a>';
-$logSQL = " INSERT INTO systemLogs (systemLogDateTime, systemLogName, systemLogType, systemLogDetails) 
-VALUES (?,?,?,?) ";
-
-// ACTIVITY LOG
-$account = $_SESSION['id'];
-$activityDetail = 'Application Submitted' . '<a href="/apps/view.php?id=' . $thisApp . '">[VIEW]</a>';
-$accountActivitySQL = " INSERT INTO accoutnActivity (account, activityDetails, activityDateTime)
-VALUES (?,?,?) ";
-
-// APPLICATION ACTIVITY LOG
-$detail = "Application Created & Submitted";
-$appActivitySQL = " INSERT INTO appActivity (app, detail, dateTime) 
-VALUES (?,?,?) ";
 
 
-// SQL STATEMENTS
-$appStmt = $con->prepare($appSQL);
-$appStmt->bind_param("sssssssssssssssss", $thisApp, $name, $dob, $age, $email, $appDept, $appQ1, $appQ2, $appQ3, $appQ4, $appQ5, $appUser, $appAgree, $appStatus, $dateTime, $appMonth, $appYear);
+// // SYSTEM LOG
+// $systemLogName = "Application Submitted";
+// $systemLogType = "appSubmittion";
+// $systemLogDetails = $getCurrentUserRow['displayName'] . " sent in an application" . '<a href="/apps/view.php?id=' . $thisApp . '">[VIEW]</a>';
+// $logSQL = " INSERT INTO systemLogs (systemLogDateTime, systemLogName, systemLogType, systemLogDetails) 
+// VALUES (?,?,?,?) ";
 
-$sysLogStmt = $con->prepare($logSQL);
-$sysLogStmt->bind_param("ssss", $dateTime, $systemLogName, $systemLogType, $systemLogDetails);
+// // ACTIVITY LOG
+// $account = $_SESSION['id'];
+// $activityDetail = 'Application Submitted' . '<a href="/apps/view.php?id=' . $thisApp . '">[VIEW]</a>';
+// $accountActivitySQL = " INSERT INTO accoutnActivity (account, activityDetails, activityDateTime)
+// VALUES (?,?,?) ";
 
-$accActStmt = $con->prepare($accountActivitySQL);
-$accActStmt->bind_param("sss", $account, $activityDetail, $dateTime);
+// // APPLICATION ACTIVITY LOG
+// $detail = "Application Created & Submitted";
+// $appActivitySQL = " INSERT INTO appActivity (app, detail, dateTime) 
+// VALUES (?,?,?) ";
 
-$appActStmt = $con->prepare($appActivitySQL);
-$appActStmt->bind_param("sss", $thisApp, $detail, $dateTime);
+// , appQ1, appQ2, appQ3, appQ4, appQ5, appUser, appAgree, appStatus, appDateTime, appMonth, appYear
+// , $appQ1, $appQ2, $appQ3, $appQ4, $appQ5, $appUser, $appAgree, $appStatus, $appDateTime, $appMonth, $appYear
+// ,?,?,?,?,?,?,?,?,?,?
 
-// SUBMIT THE APP AND LOGS
-$appStmt->execute();
-$sysLogStmt->execute();
-$accActStmt->execute();
-$appActStmt->execute();
+if($stmt = $con->prepare(' INSERT INTO apps (name, dob, age, email, appDept, appQ1, appQ2, appQ3, appQ4, appQ5, appUser, appAgree, appStatus, appDateTime, appMonth, appYear) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ')) {
+    if($stmt->bind_param("ssssssssssssssss", $name, $dob, $age, $email, $appDept, $appQ1, $appQ2, $appQ3, $appQ4, $appQ5, $appUser, $appAgree, $appStatus, $appDateTime, $appMonth, $appYear)) {
+        if($stmt->execute()) {
+            echo('<script>location.href = "/apps/view.php?id=' . $thisApp . '"</script>');
+            exit;
+        } else {
+            echo 'err - 3';
+        }
+    } else {
+        echo 'err - 2';
+    }
+} else {
+    echo 'err - 1';
+}
 
-echo('<script>location.href = "/apps/view?id="' . $thisApp . '</script>');
+// if($stmt = $con->prepare($appSQL)) {
+//     $stmt->bind_param("sssssssssssssssss", $thisApp, $name, $dob, $age, $email, $appDept, $appQ1, $appQ2, $appQ3, $appQ4, $appQ5, $appUser, $appAgree, $appStatus, $dateTime, $appMonth, $appYear); 
+//     if($stmt->execute()) {
+//         if($stmt = $con->prepare($logSQL)) {
+//             $stmt->bind_param("ssss", $dateTime, $systemLogName, $systemLogType, $systemLogDetails);
+//             if($stmt->execute()) {
+//                 if($stmt = $con->prepare($accountActivitySQL)) {
+//                     $stmt->bind_param("sss", $account, $activityDetail, $dateTime);
+//                     if($stmt->execute()) {
+//                         if($stmt = $con->prepare($appActivitySQL)) {
+//                             $stmt->bind_param("sss", $thisApp, $detail, $dateTime);
+//                             if($stmt->execute()) {
+//                                 $stmt->close();
+//                                 $con->close();
+//                                 echo('<script>location.href = "/apps/view?id="' . $thisApp . '</script>');
+//                                 exit;
+//                             } else {
+//                                 echo 'err - 8';
+//                             }
+//                         } else {
+//                             echo 'err - 7';
+//                         }
+//                     } else {
+//                         echo 'err - 6';
+//                     }
+//                 } else {
+//                     echo 'err - 5';
+//                 }
+//             } else {
+//                 echo 'err - 4';
+//             }
+//         } else {
+//             echo 'err - 3';
+//         }
+//     } else {
+//         echo 'err - 2';
+//     }
+// } else {
+//     echo 'err - 1';
+// }
 
-$stmt->close();
-$con->close();
+
 ?>

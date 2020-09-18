@@ -93,9 +93,9 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
                                 </div>
                                 <div class="col-md-9">
 
-                                <table class="table table-hover table-striped">
+                                <table class="table table-sm table-hover table-striped">
                                     <thead>
-                                        <tr>
+                                        <tr class="table-primary">
                                             <th>Web ID</th>
                                             <th>Display Name</th>
                                             <th>Email Address</th>
@@ -108,7 +108,9 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
                                         
                                         <?php
                                             while($userRow = mysqli_fetch_array($allUsersResult)) {
-                                                echo '<tr>';
+                                                echo '<tr';
+                                                // if($userRow['permissionRank'] == "Core Administration") { echo 'class="table-dark"'; } elseif($userRow['permissionRank'] == "Senior Administration") { echo 'class="table-secondary"'; }
+                                                echo '>';
                                                 echo '<td>';
                                                 echo $userRow['id'];
                                                 echo '</td>';
@@ -125,7 +127,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
                                                 echo $userRow['permissionRank'];
                                                 echo '</td>';
                                                 echo '<td>';
-                                                echo '<a class="btn btn-outline-warning btn-block" href="/admin/users/search/results.php?id=' . $userRow['id'] . '">View / Edit</a>';
+                                                echo '<a class="btn btn-sm btn-outline-warning btn-block" href="/admin/users/search/results.php?id=' . $userRow['id'] . '">View / Edit</a>';
                                                 echo '</td>';
                                                 echo '</tr>';
                                             }
@@ -136,18 +138,15 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 
                                 </div>
                             </div>
-                            -
-
                         </div>
-                        <div class="card-footer">
-                        </div>
+                        <div class="card-footer"></div>
                     </div>
                 
                 </div>
 
             </div>
 
-
+<br><br><br>
 
 
 
