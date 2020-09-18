@@ -3,9 +3,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-include($_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php");
-include($_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php");
-include($_SERVER['DOCUMENT_ROOT']."/rt/i/header.php");
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/modules/recruitmentHeader.php";
 
 // GET ALL PENDING REVIEW APPS
 $getPendingAppCount = " SELECT COUNT(*) FROM apps WHERE appStatus = 'Application Submitted - Pending Review' ";
@@ -13,7 +13,7 @@ $getPendingCountResult = mysqli_query($con, $getPendingAppCount);
 $getPendingCountResultRow = mysqli_fetch_array($getPendingCountResult);
 
 // GET ALL PENDING LEAD REVIEW APPS
-$getPendingLeadAppCount = " SELECT COUNT(*) FROM apps WHERE appStatus = 'Application Submitted - Pending Lead Review' ";
+$getPendingLeadAppCount = " SELECT COUNT(*) FROM apps WHERE appStatus = 'Application Submitted - Pending Supervisor Review' ";
 $getPendingLeadCountResult = mysqli_query($con, $getPendingLeadAppCount);
 $getPendingLeadCountResultRow = mysqli_fetch_array($getPendingLeadCountResult);
 
@@ -32,6 +32,7 @@ $pendingApps = $getPendingCountResultRow[0];
 $pendingLeadApps = $getPendingLeadCountResultRow[0];
 $deniedApps = $getDeniedCountResultRow[0];
 $acceptedApps = $getAcceptedCountResultRow[0];
+
 
 ?>
 
@@ -57,7 +58,7 @@ $acceptedApps = $getAcceptedCountResultRow[0];
 
 		<div class="col-md-3">
 			<div class="card text-white bg-secondary mb-3" style="max-width: 100%;">
-				<div class="card-header"><b>Applications Pending Lead Review</b></div>
+				<div class="card-header"><b>Applications Pending Supervisor Review</b></div>
 				<div class="card-body">
 					<center>
 						<h4><?php echo $pendingLeadApps;?></h4>
@@ -105,7 +106,6 @@ $acceptedApps = $getAcceptedCountResultRow[0];
 
 	</div>
 </div>
-<br>
 
 <!-- SIDEBAR & OTHER CONTENTS -->
 <div class="container-fluid">
@@ -114,7 +114,7 @@ $acceptedApps = $getAcceptedCountResultRow[0];
 			<div class="row">
 
 				<!-- SIDEBAR -->
-				<div class="col-md-3">
+				<!-- <div class="col-md-3">
 
                     <div class="card" style="width: 100%;">
                         <div class="card-header">Recruitment Portal</div>
@@ -126,11 +126,11 @@ $acceptedApps = $getAcceptedCountResultRow[0];
                         </ul>
                     </div>
 
-				</div>
+				</div> -->
 
-				<div class="col-md-9">
+				<div class="col-md-12">
                     
-                    <table class="table table-hover table-striped table-bordered bg-dark">
+                    <table class="table table-hover table-striped table-bordered table-sm bg-dark">
                         <thead>
                             <tr class="bg-primary">
                                 <th><center>App ID</center></th>
@@ -158,11 +158,11 @@ $acceptedApps = $getAcceptedCountResultRow[0];
                                     echo '</center></td>'; 
 
                                     echo '<td><center>';
-                                    echo '<a class="btn btn-outline-info btn-block" href="/profile/view.php?id=' . $appRow['appUser'] . '" target="_blank">' . $appRow['name'] . "'s" . ' Profile</a>';
+                                    echo '<a class="btn btn-sm btn-outline-info btn-block" href="/profile/view.php?id=' . $appRow['appUser'] . '" target="_blank">' . $appRow['name'] . "'s" . ' Profile</a>';
                                     echo '</center></td>'; 
 
                                     echo '<td><center>';
-                                    echo '<a class="btn btn-outline-info btn-block" href=/rt/view.php?id=' . $appRow['id'] . '" target="_blank">View Here</a>';
+                                    echo '<a class="btn btn-sm btn-outline-info btn-block" href="/recruitment/view.php?id=' . $appRow['id'] . '" target="_blank">View Here</a>';
                                     echo '</center></td>'; 
 
                                     echo '<td><center>';

@@ -120,7 +120,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 								}
 								// IF MEMBER OF RT DEPARTMENT
 								if(in_array($recruitmentRank ,$recruitmentRanks) && $permissionRank !== 'Applicant') {
-									echo '<a class="dropdown-item" href="/rt/">Recruitment Portal</a>';
+									echo '<a class="dropdown-item" href="/recruitment/">Recruitment Portal</a>';
 								}
 								echo '<div class="dropdown-divider"></div>';
 								echo '<a class="dropdown-item" href="/sys/logout.php">Logout</a>';
