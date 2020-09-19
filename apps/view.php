@@ -96,7 +96,12 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                                         <div class="card border-secondary">
                                             <div class="card-header">Application Status</div>
                                             <div class="card-body bg-secondary">
-                                                <?php echo $appStatus; ?>
+                                                <?php echo $appStatus; 
+                                                if(isset($appStatus) && $appStatus == 'Application Accepted') {
+                                                    echo '<br>Congrats! You are now able to get on and complete an interview. The Recruitment TeamSpeak IP is: recruitment.dsrp.online.';
+                                                }
+                                                
+                                                ?>
                                             </div>
                                         </div>
                                         <?php 

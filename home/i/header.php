@@ -135,7 +135,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 	</div>
 	
 
-<br><br><br>
+<br><br>
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
@@ -149,6 +149,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 
 			// IF THERE ARE NO APPS OPEN
 			if($currentCycleCount >= '1') {
+				echo '<br>';
 				include_once $_SERVER['DOCUMENT_ROOT']."/sys/modules/homeAppStatus.php";
 				echo '<br>';
 			} else {
