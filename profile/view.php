@@ -29,6 +29,7 @@ function validate($data) {
 }
 
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
 
 if($stmt = $con->prepare(" SELECT id, displayName, email, communityRank, permissionRank, recruitmentRank, profileBanner FROM accounts WHERE id = ? ")) {
     $stmt->bind_param("s", $accountID);
@@ -51,7 +52,6 @@ if($stmt = $con->prepare(" SELECT id, displayName, email, communityRank, permiss
 }
 
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
 ?>
 
 <div class="container-fluid">

@@ -5,6 +5,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 // IMPORTS FILES LATER USED IN CODE
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php";
 
 ?>
 
@@ -13,9 +14,13 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
         <div class="col-md-2"></div>
 
         <div class="col-md-8">
+
             <center><img style="width:100%;height:auto;" src="/sys/design/imgs/dsrpBanner.png"><br></center>
         
             <br>
+
+
+
             <div class="row">
                 <div class="col-md-9">
                     <div class="card">

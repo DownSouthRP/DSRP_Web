@@ -59,7 +59,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
                         <div class="card-body">
                             
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="card">
                                         <div class="card-header">
                                             User Search
@@ -68,7 +68,8 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 
                                             <form action="/sys/scripts/adminUserSearch.php" method="post">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" name="searchID" id="searchID" placeholder="Search User by Web ID" aria-label="Search User">
+                                                    <label for="searchID">Search User by Web ID</label>
+                                                    <input type="text" class="form-control" name="searchID" id="searchID" aria-label="Search User">
                                                     <div class="input-group-append">
                                                         <button class="btn btn-outline-primary" type="submit">SEARCH</button>
                                                     </div>
@@ -91,11 +92,12 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 
 
                                 </div>
-                                <div class="col-md-9">
+                                <div class="col-md-10">
 
-                                <table class="table table-sm table-hover table-striped">
+                                <table class="table table-sm table-hover table-bordered">
                                     <thead>
-                                        <tr class="table-primary">
+                                        <tr class="bg-primary">
+                                            <th></th>
                                             <th>Web ID</th>
                                             <th>Display Name</th>
                                             <th>Email Address</th>
@@ -111,6 +113,35 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
                                                 echo '<tr';
                                                 // if($userRow['permissionRank'] == "Core Administration") { echo 'class="table-dark"'; } elseif($userRow['permissionRank'] == "Senior Administration") { echo 'class="table-secondary"'; }
                                                 echo '>';
+                                                echo '<td>';
+                                                
+                                                echo '<img style="width:30px;height:30px;" src="';
+                                                if($userRow['permissionRank'] == 'Core Administration') {
+                                                    echo '/sys/design/imgs/icons/coreAdmin.png';
+                                                } elseif($userRow['permissionRank'] == 'Senior Administration') {
+                                                    echo '/sys/design/imgs/icons/srAdmin.png';
+                                                } elseif($userRow['permissionRank'] == 'Administration') {
+                                                    echo '/sys/design/imgs/icons/admin.png';
+                                                } elseif($userRow['permissionRank'] == 'Junior Administration') {
+                                                    echo '/sys/design/imgs/icons/jrAdmin.png';
+                                                } elseif($userRow['permissionRank'] == 'Senior Staff') {
+                                                    echo '/sys/design/imgs/icons/srStaff.png';
+                                                } elseif($userRow['permissionRank'] == 'Staff') {
+                                                    echo '/sys/design/imgs/icons/staff.png';
+                                                } elseif($userRow['permissionRank'] == 'Junior Staff') {
+                                                    echo '/sys/design/imgs/icons/jrStaff.png';
+                                                } elseif($userRow['permissionRank'] == 'Member') {
+                                                    echo '/sys/design/imgs/icons/member.png';
+                                                } elseif($userRow['permissionRank'] == 'Recruit') {
+                                                    echo '/sys/design/imgs/icons/recruit.png';
+                                                } elseif($userRow['permissionRank'] == 'Applicant') {
+                                                    echo '/sys/design/imgs/icons/new.png';
+                                                }
+                                                
+
+                                                echo '"';
+
+                                                echo '</td>';
                                                 echo '<td>';
                                                 echo $userRow['id'];
                                                 echo '</td>';

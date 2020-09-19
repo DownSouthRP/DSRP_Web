@@ -22,7 +22,6 @@ if(!isset($recruitmentRank) && is_null($recruitmentRank) && empty($recruitmentRa
     }
 }
 
-
 // CHECK $_GET
 if(!isset($_GET) || empty($_GET) || is_null($_GET)) {
     echo '<script type="text/javascript">location.href = "/home/";</script>';
@@ -46,13 +45,13 @@ function validate($data) {
 }
 
 // SET APP VARIABLES
-if($stmt = $con->prepare(" SELECT name, dob, age, email, appDept, appQ1, appQ3, appQ2, appQ4, appQ5, appUser, appAgree, appStatus, appDateTime, appMonth, appYear, appDeniedReasons FROM apps WHERE id = ? ")) {
+if($stmt = $con->prepare(" SELECT name, dob, age, email, appDept, appQ1, appQ3, appQ2, appQ4, appQ5, appUser, appAgree, appStatus, appDateTime, appMonth, appYear, appDeniedReasons, appNotes FROM apps WHERE id = ? ")) {
     $stmt->bind_param("s", $id);
     $stmt->execute();
     $stmt->store_result();
 
     if($stmt->num_rows > 0) {
-        $stmt->bind_result($name, $dob, $age, $email, $appDept, $appQ1, $appQ3, $appQ2, $appQ4, $appQ5, $appUser, $appAgree, $appStatus, $appDateTime, $appMonth, $appYear, $appDeniedReasons);
+        $stmt->bind_result($name, $dob, $age, $email, $appDept, $appQ1, $appQ3, $appQ2, $appQ4, $appQ5, $appUser, $appAgree, $appStatus, $appDateTime, $appMonth, $appYear, $appDeniedReasons, $appNotes);
         $stmt->fetch();
 
     } else {
@@ -91,12 +90,39 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/modals/recruitmentModals.php";
                 </div>
                 <div class="card-body">
 
+                        <?php
+                        // if($appStatus !== 'Application Submitted - Pending Review') {
+                        //     echo '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#acceptedModal">Accepted</button>';
+                        //     echo '<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#pendingModal">Pending</button>';
+                        //     echo '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deniedModal">Denied</button>';
+
+                        // }
+                        
+                        
+                        ?>
+                
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#acceptedModal">Accepted</button>
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#pendingModal">Pending</button>
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deniedModal">Denied</button>
+
+                        <br><br>
+
+                        <h6>Current Status: </h6><?php echo $appStatus; ?>
                         
                 </div>
             </div>
+
+            <br>
+
+            <?php
+                if(isset($appStatus) && $appStatus = 'Application Denied') {
+                    include_once $_SERVER['DOCUMENT_ROOT']."/sys/modules/recruitmentDeniedReasons.php";
+                    echo '<br>';
+                }
+                if(isset($appNotes) && !empty($appNotes) && !is_null($appNotes)) {
+                    include_once $_SERVER['DOCUMENT_ROOT']."/sys/modules/recruitmentAppNotes.php";
+                }
+            ?>
 
             <br>
         
