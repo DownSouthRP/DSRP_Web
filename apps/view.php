@@ -8,15 +8,11 @@ include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php"
 
 // CHECK TO SEE IF USER IS LOGGED IN - IF NOT REDIRECT
 if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== TRUE) {
-    echo '1';
-    exit;
     echo '<script type="text/javascript">location.href = "/apps/nli.php";</script>';
     exit;
 }
 // CHECK IF THERE IS AN APP ID IN URL - IF NOT REDIRECT -IF THERE IS ONE SET $appid
 if(!isset($_GET) || is_null($_GET['id']) || empty($_GET['id'])) {
-    echo '2';
-    exit;
     echo '<script type="text/javascript">location.href = "/apps/";</script>';
     exit;
 }
@@ -34,6 +30,11 @@ function validate($data) {
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
+}
+
+if($i !== $_SESSION['id']) {
+    echo '<script type="text/javascript">location.href = "/apps/";</script>';
+    exit;
 }
 
 if($stmt = $con->prepare(' SELECT id, name, dob, age, email, appDept, appQ1, appQ2, appQ3, appQ4, appQ5, appUser, appAgree, appStatus, appDateTime, appMonth, appYear, appDeniedReasons FROM apps WHERE id = ?')) {
