@@ -115,7 +115,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/modals/recruitmentModals.php";
             <br>
 
             <?php
-                if(isset($appStatus) && $appStatus = 'Application Denied') {
+                if(isset($appStatus) && $appStatus == 'Application Denied') {
                     include_once $_SERVER['DOCUMENT_ROOT']."/sys/modules/recruitmentDeniedReasons.php";
                     echo '<br>';
                 }
