@@ -3,7 +3,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
 include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php");
 
 // CHECK TO SEE IF USER IS LOGGED IN - IF NOT REDIRECT
@@ -32,13 +33,9 @@ function validate($data) {
     return $data;
 }
 
-if($i !== $_SESSION['id']) {
-    echo '<script type="text/javascript">location.href = "/apps/";</script>';
-    exit;
-}
 
 if($stmt = $con->prepare(' SELECT id, name, dob, age, email, appDept, appQ1, appQ2, appQ3, appQ4, appQ5, appUser, appAgree, appStatus, appDateTime, appMonth, appYear, appDeniedReasons FROM apps WHERE id = ?')) {
-    $stmt->bind_param("s", $i);
+    $stmt->bind_param("s", $u);
     $stmt->execute();
     $stmt->store_result();
     
@@ -56,9 +53,7 @@ if($stmt = $con->prepare(' SELECT id, name, dob, age, email, appDept, appQ1, app
     exit;
 }
 
-if($u == $appUser) {
-
-}  else {
+if($u !== $appUser) {
     echo '<script type="text/javascript">location.href = "/home/";</script>';
     exit;
 }
@@ -71,8 +66,7 @@ if($u == $appUser) {
 //     echo '<script type="text/javascript">location.href = "/apps/";</script>';
 // }
 
-include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
+
 ?>
 
 <div class="container-fluid">
