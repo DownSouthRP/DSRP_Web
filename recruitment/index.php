@@ -143,7 +143,7 @@ $acceptedApps = $getAcceptedCountResultRow[0];
                         <tbody>
                             <?php
                                 // GET ALL PENDING REVIEW APPS
-                                $getPendingAppsSQL = " SELECT * FROM apps WHERE appStatus = 'Application Submitted - Pending Review' ";
+                                $getPendingAppsSQL = " SELECT * FROM apps ";
                                 $getPendingAppsResult = mysqli_query($con, $getPendingAppsSQL);
 
                                 while($appRow = mysqli_fetch_array($getPendingAppsResult)) {
