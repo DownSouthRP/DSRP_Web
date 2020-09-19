@@ -139,23 +139,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 	<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
-		<?php
-			$currentMonth = date('m');
-			// GET ALL APPS FROM USER THIS CYCLE
-			$appCurrentCycleSQL = " SELECT COUNT(*) FROM apps WHERE appUser = '".$id."' AND appMonth = '".$currentMonth."' ";
-			$appCurrentCycleResult = mysqli_query($con, $appCurrentCycleSQL);
-			$appCurrentCycleArray = mysqli_fetch_array($appCurrentCycleResult);
-			$currentCycleCount = $appCurrentCycleArray[0];
-
-			// IF THERE ARE NO APPS OPEN
-			if($currentCycleCount >= '1') {
-				echo '<br>';
-				include_once $_SERVER['DOCUMENT_ROOT']."/sys/modules/homeAppStatus.php";
-				echo '<br>';
-			} else {
-				echo '<br><br>';
-			}
-		?>
+		<?php include_once $_SERVER['DOCUMENT_ROOT']."/sys/modules/homeAppStatus.php"; ?>
 		</div>
 		<div class="col-md-2"></div>
 	</div>
