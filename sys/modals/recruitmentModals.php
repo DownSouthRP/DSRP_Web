@@ -110,7 +110,7 @@
                                 </div>
                                 <input type="text" value="<?php echo $appID; ?>" class="form-control" id="deniedAppID" name="deniedAppID" readonly>
                                 <div class="input-group-append">
-                                    <button class="btn btn-danger btn-block border-white" type="submit">Set Pending</button>
+                                    <button class="btn btn-danger btn-block border-white" type="submit">Set Denied</button>
                                 </div>
                             </div>
                         </form>
