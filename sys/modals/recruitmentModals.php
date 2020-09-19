@@ -12,14 +12,14 @@
                 <div class="row">
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
-                        <form action="/sys/scripts/updateTeamSpeakID.php" method="post">
+                        <form action="/sys/scripts/recruitmentAcceptApp.php" method="post">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="spamProtectLabel">Application ID</span>
+                                    <span class="input-group-text">Application ID</span>
                                 </div>
-                                <input type="text" class="form-control" id="spamProtect" name="spamProtect" aria-describedby="spamProtectLabel">
+                                <input type="text" value="<?php echo $appID; ?>" class="form-control" id="acceptAppID" name="acceptAppID" readonly>
                                 <div class="input-group-append">
-                                    <button class="btn btn-success btn-block" type="submit">Accept</button>
+                                    <button class="btn btn-success btn-block border-white" type="submit">Accept</button>
                                 </div>
                             </div>
                         </form>
@@ -45,12 +45,12 @@
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
-                        <form action="/sys/scripts/updateTeamSpeakID.php" method="post">
-                        <div class="input-group mb-3">
+                        <form action="/sys/scripts/recruitmentAppPending.php" method="post">
+                            <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="spamProtectLabel">Who needs to review this application?</span>
+                                    <span class="input-group-text" id="pendingSelect">Who needs to review this application?</span>
                                 </div>
-                                <select class="custom-select" id="inputGroupSelect01" required>
+                                <select class="custom-select" id="pendingSelect" name="pendingSelect" required>
                                     <option selected disabled></option>
                                     <option value="Department Supervisors">Department Supervisors</option>
                                     <option value="DSRP Administration">DSRP Administration</option>
@@ -61,16 +61,16 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Notes</span>
                                 </div>
-                                <textarea class="form-control" aria-label="With textarea"></textarea>
+                                <textarea class="form-control" id="pendingNotes" name="pendingNotes" placeholder="This is where we can put notes such as 'Former Member' and '3x Apps'."><?php echo $appNotes; ?></textarea>
                             </div>
                             <br>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="spamProtectLabel">Application ID</span>
+                                    <span class="input-group-text">Application ID</span>
                                 </div>
-                                <input type="text" class="form-control" id="spamProtect" name="spamProtect" aria-describedby="spamProtectLabel">
+                                <input type="text" value="<?php echo $appID; ?>" class="form-control" id="pendingAppID" name="pendingAppID" readonly>
                                 <div class="input-group-append">
-                                    <button class="btn btn-warning btn-block" type="submit">Set Pending</button>
+                                    <button class="btn btn-warning btn-block border-white" type="submit">Set Pending</button>
                                 </div>
                             </div>
                         </form>
@@ -96,32 +96,21 @@
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
-                        <form action="/sys/scripts/updateTeamSpeakID.php" method="post">
-                        <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="spamProtectLabel">Who needs to review this application?</span>
-                                </div>
-                                <select class="custom-select" id="inputGroupSelect01" required>
-                                    <option selected disabled></option>
-                                    <option value="Department Supervisors">Department Supervisors</option>
-                                    <option value="DSRP Administration">DSRP Administration</option>
-                                    <option value="DSRP Staff">DSRP Staff</option>
-                                </select>
-                            </div>
+                        <form action="/sys/scripts/recruitmentAppDenied.php" method="post">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">Notes</span>
+                                    <span class="input-group-text">Denial Reasons</span>
                                 </div>
-                                <textarea class="form-control" aria-label="With textarea"></textarea>
+                                <textarea class="form-control" id="denialReasons" name="denialReasons" aria-label="With textarea" required></textarea>
                             </div>
                             <br>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="spamProtectLabel">Application ID</span>
+                                    <span class="input-group-text">Application ID</span>
                                 </div>
-                                <input type="text" class="form-control" id="spamProtect" name="spamProtect" aria-describedby="spamProtectLabel">
+                                <input type="text" value="<?php echo $appID; ?>" class="form-control" id="deniedAppID" name="deniedAppID" readonly>
                                 <div class="input-group-append">
-                                    <button class="btn btn-danger btn-block" type="submit">Denied</button>
+                                    <button class="btn btn-danger btn-block border-white" type="submit">Set Pending</button>
                                 </div>
                             </div>
                         </form>

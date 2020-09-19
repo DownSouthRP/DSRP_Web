@@ -81,12 +81,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                 <div class="col-md-2">
                 </div>
                 <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-body">
-                            <center><img style="width:15%;height:auto;" src="/sys/design/imgs/dsrpLogo.png"><br></center>
-                        </div>
-                        
-                    </div>
+                    <center><img style="width:100%;height:auto;" src="/sys/design/imgs/dsrpBanner.png"><br></center>
                 <br>
                 <div class="row">
                     <div class="col-md-12">
@@ -98,9 +93,9 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                                 <br>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="card">
+                                        <div class="card border-secondary">
                                             <div class="card-header">Application Status</div>
-                                            <div class="card-body">
+                                            <div class="card-body bg-secondary">
                                                 <?php echo $appStatus; ?>
                                             </div>
                                         </div>
@@ -109,7 +104,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                                                 echo '<br>';
                                                 echo '<div class="card">';
                                                 echo '<div class="card-header">Application Denial Reasons</div>';
-                                                echo '<div class="card-body">';
+                                                echo '<div class="card-body bg-secondary">';
                                                 echo $appDeniedReasons;
                                                 echo '</div>';
                                                 echo '</div>';
@@ -117,9 +112,9 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                                         ?>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="card">
+                                        <div class="card border-secondary">
                                             <div class="card-header">Application Submittion Date</div>
-                                            <div class="card-body">
+                                            <div class="card-body bg-secondary">
                                                 <?php echo $appDateTime; ?>
                                             </div>
                                         </div>
@@ -130,25 +125,25 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                                 <br>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <div class="card">
+                                        <div class="card border-secondary">
                                             <div class="card-header">Name</div>
-                                            <div class="card-body">
+                                            <div class="card-body bg-secondary">
                                                 <?php echo $name; ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="card">
+                                        <div class="card border-secondary">
                                             <div class="card-header">Date of Birth</div>
-                                            <div class="card-body">
+                                            <div class="card-body bg-secondary">
                                                 <?php echo $dob; ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="card">
+                                        <div class="card border-secondary">
                                             <div class="card-header">Age</div>
-                                            <div class="card-body">
+                                            <div class="card-body bg-secondary">
                                                 <?php echo $age; ?>
                                             </div>
                                         </div>
@@ -157,17 +152,17 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                                 <br>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="card">
+                                        <div class="card border-secondary">
                                             <div class="card-header">Email</div>
-                                            <div class="card-body">
+                                            <div class="card-body bg-secondary">
                                                 <?php echo $email; ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="card">
+                                        <div class="card border-secondary">
                                             <div class="card-header">Department</div>
-                                            <div class="card-body">
+                                            <div class="card-body bg-secondary">
                                                 <?php echo $appDept; ?>
                                             </div>
                                         </div>
@@ -175,44 +170,44 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                                 </div>
                                 <br>
                                 <br>
-                                <div class="card">
+                                <div class="card border-secondary">
                                     <div class="card-header">What interests you about DownSouthRP?</div>
-                                    <div class="card-body">
+                                    <div class="card-body bg-secondary">
                                         <?php echo $appQ1; ?>
                                     </div>
                                 </div>
                                 <br>
-                                <div class="card">
+                                <div class="card border-secondary">
                                     <div class="card-header">Have you had any roleplay experience? If so, what?</div>
-                                    <div class="card-body">
+                                    <div class="card-body bg-secondary">
                                         <?php echo $appQ2; ?>
                                     </div>
                                 </div>
                                 <br>
-                                <div class="card">
+                                <div class="card border-secondary">
                                     <div class="card-header">Have you ever been a part of any FiveM communities before? If so, which ones?</div>
-                                    <div class="card-body">
+                                    <div class="card-body bg-secondary">
                                         <?php echo $appQ3; ?>
                                     </div>
                                 </div>
                                 <br>
-                                <div class="card">
+                                <div class="card border-secondary">
                                     <div class="card-header">In your own words, what is the definition of “true” roleplay?</div>
-                                    <div class="card-body">
+                                    <div class="card-body bg-secondary">
                                         <?php echo $appQ4; ?>
                                     </div>
                                 </div>
                                 <br>
-                                <div class="card">
+                                <div class="card border-secondary">
                                     <div class="card-header">Please give an example of a basic scenario. Either as a Civilian, LEO, or Firefighter.</div>
-                                    <div class="card-body">
+                                    <div class="card-body bg-secondary">
                                         <?php echo $appQ5; ?>
                                     </div>
                                 </div>
                                 <br>
-                                <div class="card">
+                                <div class="card border-secondary">
                                     <div class="card-header">If you are accepted, do you agree to follow all training guidelines and core policies set by DSRP?</div>
-                                    <div class="card-body">
+                                    <div class="card-body bg-secondary">
                                         <?php 
                                             if($appAgree == 'on') {
                                                 echo 'Agreed.';
