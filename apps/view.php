@@ -3,10 +3,6 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
-include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php");
-
 // CHECK TO SEE IF USER IS LOGGED IN - IF NOT REDIRECT
 if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== TRUE) {
     echo '<script type="text/javascript">location.href = "/apps/nli.php";</script>';
@@ -18,12 +14,15 @@ if(!isset($_GET) || is_null($_GET['id']) || empty($_GET['id'])) {
     exit;
 }
 
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
+include($_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php");
+
 // VALIDATE INPUTS
-$i = '';
+$appID = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    $i = validate($_GET['id']);
-    $u = $_SESSION['id'];
+    $appID = validate($_GET['id']);
   }
 // IF VALID RE-SET VARIABLE
 function validate($data) {
@@ -32,10 +31,8 @@ function validate($data) {
     $data = htmlspecialchars($data);
     return $data;
 }
-
-
 if($stmt = $con->prepare(' SELECT id, name, dob, age, email, appDept, appQ1, appQ2, appQ3, appQ4, appQ5, appUser, appAgree, appStatus, appDateTime, appMonth, appYear, appDeniedReasons FROM apps WHERE id = ?')) {
-    $stmt->bind_param("s", $u);
+    $stmt->bind_param("s", $appID);
     $stmt->execute();
     $stmt->store_result();
     
@@ -44,7 +41,7 @@ if($stmt = $con->prepare(' SELECT id, name, dob, age, email, appDept, appQ1, app
         $stmt->fetch();
 
     } else {
-        echo 'err 2';
+        echo '<center>There is no application to display at this time.</center>';
         exit;
     }
     
@@ -53,18 +50,11 @@ if($stmt = $con->prepare(' SELECT id, name, dob, age, email, appDept, appQ1, app
     exit;
 }
 
-if($u !== $appUser) {
-    echo '<script type="text/javascript">location.href = "/home/";</script>';
+// CHECK TO SEE IF $appUser IS CURRENT USER - IF NOT REDIRECT
+if($userID !== $appUser) {
+    echo '<script type="text/javascript">location.href = "/apps/";</script>';
     exit;
 }
-
-// CHECK TO SEE IF $appUser IS CURRENT USER - IF NOT REDIRECT
-// if($u !== $appUser) {
-//     echo 'nope - ';
-//     echo $u . $appUser;
-//     exit;
-//     echo '<script type="text/javascript">location.href = "/apps/";</script>';
-// }
 
 
 ?>
@@ -91,21 +81,25 @@ if($u !== $appUser) {
                                         <div class="card border-secondary">
                                             <div class="card-header">Application Status</div>
                                             <div class="card-body bg-secondary">
-                                                <?php echo $appStatus; 
-                                                if(isset($appStatus) && $appStatus == 'Application Accepted') {
-                                                    echo '<br>Congrats! You are now able to get on and complete an interview. The Recruitment TeamSpeak IP is: recruitment.dsrp.online.';
-                                                }
-                                                
-                                                ?>
+                                                <?php echo $appStatus; ?>
                                             </div>
                                         </div>
                                         <?php 
-                                            if($appDeniedReasons == 'Application Denied') {
+                                            if(isset($appStatus) && $appStatus == 'Application Denied') {
                                                 echo '<br>';
                                                 echo '<div class="card">';
                                                 echo '<div class="card-header">Application Denial Reasons</div>';
                                                 echo '<div class="card-body bg-secondary">';
                                                 echo $appDeniedReasons;
+                                                echo '</div>';
+                                                echo '</div>';
+                                            }
+                                            elseif(isset($appStatus) && $appStatus == 'Application Accepted') {
+                                                echo '<br>';
+                                                echo '<div class="card">';
+                                                echo '<div class="card-header">Application Denial Reasons</div>';
+                                                echo '<div class="card-body bg-secondary">';
+                                                echo 'Congrats! You are now able to get on and complete an interview. The Recruitment TeamSpeak IP is: recruitment.dsrp.online.';
                                                 echo '</div>';
                                                 echo '</div>';
                                             }

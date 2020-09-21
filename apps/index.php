@@ -4,25 +4,33 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 }
 
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/connections/getCurrentUser.php";
-
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
 
 if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== TRUE) {
-	echo '<script type="text/javascript">location.href = "nli.php";</script>';
+    include($_SERVER['DOCUMENT_ROOT']."/sys/modals/login.php");
+    // SHOW MODAL
+    echo '<script> $(window).on(';
+    echo "'load'";
+    echo ',function(){ $("#loginModal").modal(';
+    echo "'show'";
+    echo '); }); </script>';
+    exit;
 }
 
 $currentMonth = date('m');
 // THIS GETS A COUNT OF ALL APPLICATIONS SUBMITTED BY ONE USER
-$allAppsSQL = " SELECT COUNT(*) FROM apps WHERE appUser = '".$id."' ";
+$allAppsSQL = " SELECT COUNT(*) FROM apps WHERE appUser = '".$userID."' ";
 $allAppsResult = mysqli_query($con, $allAppsSQL);
 $allAppsRows = mysqli_fetch_array($allAppsResult);
 
 // GET ALL APPS FROM USER THIS CYCLE
-$appCurrentCycleSQL = " SELECT COUNT(*) FROM apps WHERE appUser = '".$id."' AND appMonth = '".$currentMonth."' ";
+$appCurrentCycleSQL = " SELECT COUNT(*) FROM apps WHERE appUser = '".$userID."' AND appMonth = '".$currentMonth."' ";
 $appCurrentCycleResult = mysqli_query($con, $appCurrentCycleSQL);
 $appCurrentCycleArray = mysqli_fetch_array($appCurrentCycleResult);
 
 // GET ALL APPS FROM USER
-$getAllAppArray = " SELECT * FROM apps WHERE appUser = '".$id."' ";
+$getAllAppArray = " SELECT * FROM apps WHERE appUser = '".$userID."' ";
 $getAllResult = mysqli_query($con, $getAllAppArray);
 
 $appCount = $allAppsRows[0];
@@ -38,8 +46,7 @@ if($permissionRank == 'Applicant') {
 }
 
 
-include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
+
 
 ?>
 <div class="container-fluid">
@@ -49,12 +56,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                 <div class="col-md-2">
                 </div>
                 <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-body">
-                            <center><img style="width:15%;height:auto;" src="/sys/design/imgs/dsrpLogo.png"><br></center>
-                        </div>
-                        
-                    </div>
+                    <center><img style="width:100%;height:auto;" src="/sys/design/imgs/dsrpBanner.png"><br></center>
                 <br>
                 
                 <div class="row">

@@ -6,11 +6,12 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
 // VALIDATE INPUTS
 $email = '';
 $password = '';
+$r = '';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = validate($_POST["authInputUsername"]);
     $password = validate($_POST["authInputPassword"]);
-  }
+}
 // IF VALID RE-SET VARIABLE
 function validate($data) {
     $data = trim($data);

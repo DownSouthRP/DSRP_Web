@@ -3,14 +3,15 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-// PULLS IN THE PAGE REQUIREMENTS FOR HTML
-include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
-
 // CHECK IF USER IS LOGGED IN
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
     echo '<script type="text/javascript">location.href = "/home/";</script>';
     exit;
 }
+
+// PULLS IN THE PAGE REQUIREMENTS FOR HTML
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/modules/auth/header.php";
 
 ?>
 
@@ -20,9 +21,9 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 	<div class="row">
 		<div class="col-md-12">
 			<div class="row">
-				<div class="col-md-3">
-				</div>
-				<div class="col-md-6">
+				<div class="col-md-2"></div>
+
+				<div class="col-md-8">
 					
 					<center><img style="width:100%;height:auto;" src="/sys/design/imgs/dsrpBanner.png"><br></center>
 					
@@ -71,18 +72,10 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
 							</form>
 						</div>
 					</div>
-					<br><br>
-					<div class="card" style="width: 100%;">
-						<div class="card-body">
-							<h3 class="card-title">Already have an account?</h3>
-							<br>
-							<a class="btn btn-primary btn-large btn-block" href="login.php">Login Here</a>
-						</div>
-					</div>
 
 				</div>
-				<div class="col-md-3">
-				</div>
+
+				<div class="col-md-2"></div>
 			</div>
 		</div>
 	</div>

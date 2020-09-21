@@ -7,4 +7,9 @@ $getDSRPInfoResult = mysqli_query($con, $getDSRPInfoSQL);
 $getDSRPInfoRow = mysqli_fetch_assoc($getDSRPInfoResult);
 
 // $getDSRPInfoRow[''];
+
+// if($stmt = $con->prepare(' SELECT appStaus '))
+
+
+
 ?>

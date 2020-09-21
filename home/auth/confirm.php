@@ -20,11 +20,13 @@ if(!isset($_GET) || empty($_GET) || is_null($_GET)) {
     echo $errCode;
     exit;
 }
+
 // CHECKS TO SEE IF GET VALUES ARE THERE
 if(!isset($_GET['e']) || empty($_GET['e']) || is_null($_GET['e'])) {
     echo $errCode;
     exit;
 }
+
 if(!isset($_GET['h']) || empty($_GET['h']) || is_null($_GET['h'])) {
     echo $errCode;
     exit;
@@ -127,6 +129,8 @@ if($stmt = $con->prepare(" SELECT email, password, displayName FROM tempaccounts
                 $deleteTemp->bind_param("ss", $h, $e);
                 $deleteTemp->execute();
                 $deleteTemp->store_result();
+
+                // if($accAct = $con->prepare(' INSERT INTO a '))
 
                 // SEND FINAL REGISTRATION EMAIL
                 $mailTo = $e;

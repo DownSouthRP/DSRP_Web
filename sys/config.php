@@ -19,6 +19,7 @@ $adminRanks = [
 $communityRanks = [
     'Core Administration',
     'Senior Administration',
+    'Retired Administration',
     'Administration',
     'Junior Administration',
     'Senior Staff',
