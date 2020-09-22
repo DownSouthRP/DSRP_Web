@@ -4,6 +4,7 @@
 
             <div class="modal-header">
                 <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                <a type="button" class="btn btn-secondary" href="/home/">Close</a>
             </div>
 
             <div class="modal-body">

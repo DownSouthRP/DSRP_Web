@@ -11,7 +11,7 @@
 					<ul class="navbar-nav ml-md-auto">
 						<a class="nav-link" href="/home/auth/login.php">LOGIN</a>
 						<a class="nav-link" href="/home/auth/register.php">REGISTER</a>
-						<a class="nav-link" href="/sys/scripts/er.php">RESET PASSWORD</a>
+						<a class="nav-link" href="/home/auth/request.php">RESET PASSWORD</a>
 						<a class="nav-link" href="/home/">HOME</a>
 						
 					</ul>

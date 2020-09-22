@@ -3,13 +3,11 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-// CHECK IF USER IS LOGGED IN
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
     echo '<script type="text/javascript">location.href = "/home/";</script>';
     exit;
 }
 
-// PULLS IN THE PAGE REQUIREMENTS FOR HTML
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/modules/auth/header.php";
 

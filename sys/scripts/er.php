@@ -9,7 +9,7 @@ if($_SESSION['loggedin'] == TRUE) {
     // GENERATE HASH
     $str = rand();
     $h = md5($str);
-    $e = $email;
+    $e = $userEmail;
     $r = '/profile/settings/sp.php';
     
 
