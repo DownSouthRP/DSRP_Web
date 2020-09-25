@@ -64,29 +64,36 @@ if($stmt = $con->prepare(' SELECT steamID FROM accounts WHERE id = ? ')) {
 }
 
 if($action == 'add') {
-    if($stmt = $con->prepare(' INSERT INTO whitelist (user, whitelist, server) VALUES (?,?,?) ')) {
-        $stmt->bind_param("sss", $userID, $steamID, $server);
-        if($stmt->execute()) {
-            echo '<script>history.back();</script>';
-            exit;
+    if($stmt = $con->prepare(' INSERT INTO whitelist (userID, steamHEX, serverName) VALUES (?,?,?) ')) {
+        
+        if($stmt->bind_param("sss", $userID, $steamID, $server)) {
+            
+            if($stmt->execute()) {
+                echo '<script>history.back();</script>';
+                exit;
+            } else {
+                echo "<script>alert('ALERT ALERT 2');</script>";
+                exit;
+            }
+
         } else {
-            echo "<script>alert('ALERT ALERT2');</script>";
+            echo "<script>alert('ALERT ALERT 3');</script>";
             exit;
         }
         
     } else {
-        echo "<script>alert('ALERT ALERT');</script>";
+        echo "<script>alert('ALERT ALERT 1');</script>";
         exit;
     }
 }
 elseif($action == 'remove') {
-    if($stmt = $con->prepare(' DELETE FROM whitelist WHERE user = ? AND server = ? ')) {
+    if($stmt = $con->prepare(' DELETE FROM whitelist WHERE userID = ? AND serverName = ? ')) {
         $stmt->bind_param("ss", $userID, $server);
         if($stmt->execute()) {
             echo '<script>history.back();</script>';
             exit;
         } else {
-            echo "<script>alert('ALERT ALERT1');</script>";
+            echo "<script>alert('ALERT ALERT');</script>";
             exit;
         }
         

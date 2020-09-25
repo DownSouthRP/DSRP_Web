@@ -56,7 +56,7 @@ $mainWL = '';
 $betaWL = '';
 $devWL = '';
 // MAIN SERVER
-if($stmt = $con->prepare(" SELECT whitelist FROM whitelist WHERE server = 'main' AND user = ? ")) {
+if($stmt = $con->prepare(" SELECT steamHEX FROM whitelist WHERE serverName = 'main' AND userID = ? ")) {
     $stmt->bind_param("s", $userID);
     $stmt->execute();
     $stmt->store_result();
@@ -67,11 +67,11 @@ if($stmt = $con->prepare(" SELECT whitelist FROM whitelist WHERE server = 'main'
         $mainWL = 'FALSE'; 
     }
 } else {
-    echo 'err 1';
+    echo 'err 111';
     exit;
 }
 // BETA SERVER
-if($stmt = $con->prepare(" SELECT whitelist FROM whitelist WHERE server = 'beta' AND user = ? ")) {
+if($stmt = $con->prepare(" SELECT steamHEX FROM whitelist WHERE serverName = 'beta' AND userID = ? ")) {
     $stmt->bind_param("s", $userID);
     $stmt->execute();
     $stmt->store_result();
@@ -82,11 +82,11 @@ if($stmt = $con->prepare(" SELECT whitelist FROM whitelist WHERE server = 'beta'
         $betaWL = 'FALSE'; 
     }
 } else {
-    echo 'err 11';
+    echo 'err 1';
     exit;
 }
 // DEV SERVER
-if($stmt = $con->prepare(" SELECT whitelist FROM whitelist WHERE server = 'dev' AND user = ? ")) {
+if($stmt = $con->prepare(" SELECT steamHEX FROM whitelist WHERE serverName = 'dev' AND userID = ? ")) {
     $stmt->bind_param("s", $userID);
     $stmt->execute();
     $stmt->store_result();
@@ -97,7 +97,7 @@ if($stmt = $con->prepare(" SELECT whitelist FROM whitelist WHERE server = 'dev' 
         $devWL = 'FALSE'; 
     }
 } else {
-    echo 'err 1';
+    echo 'Get DEV Error';
     exit;
 }
 
