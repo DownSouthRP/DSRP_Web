@@ -277,6 +277,7 @@ $allCommunityDepartmentRanks = [
     'Deputy Director',
     'Community Coordinator',
     'DSRP Media',
+    'Applicant'
 ]
 
 

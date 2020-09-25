@@ -130,3 +130,13 @@ COMMIT;
 
 
 -- ------------------------------------------------------------- -- 
+
+
+
+CREATE TABLE `whitelist` (
+	`id` INT(20) NOT NULL AUTO_INCREMENT,
+	`user` VARCHAR(20),
+	`whitelist` VARCHAR(50),
+	`server` VARCHAR(20),
+	PRIMARY KEY (`id`)
+);

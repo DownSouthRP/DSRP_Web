@@ -6,7 +6,7 @@ if($server == 'localhost') {
     $DATABASE_HOST = 'localhost';
     $DATABASE_USER = 'root';
     $DATABASE_PASS = '';
-    $DATABASE_NAME = 'dsrpMain';
+    $DATABASE_NAME = 'dsrpmain';
 }
 elseif($server == 'dsrp.online') {
     $DATABASE_HOST = '69.13.33.171';
