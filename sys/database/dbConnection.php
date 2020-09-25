@@ -8,7 +8,7 @@ if($server == 'localhost') {
     $DATABASE_PASS = '';
     $DATABASE_NAME = 'dsrpmain';
 }
-elseif($server == 'dsrp.online') {
+elseif($server == 'dsrp.online' || $server == 'webdev.dsrp.online') {
     $DATABASE_HOST = '69.13.33.171';
     $DATABASE_USER = 'DSRPWebConnection';
     $DATABASE_PASS = 'DSRPAdmin2020!';
