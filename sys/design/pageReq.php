@@ -1,9 +1,3 @@
-<!-- Created by: DownSouthRP Development Department -->
-<!-- Down South Roleplay Community was founded in 2020 by Jay & Braden. 
-Along with some friends, they want to enhance the roleplay without having many restrictions. 
-Our main purpose here at Down South Roleplay is to make RP better for everyone. -->
-
-<!-- THIS PAGE PROVIDES THE BASIG HTML INFORMATION NEEDED FOR ALL PAGES ON SITE -->
 <!DOCTYPE html>
     <html lang="en" >
         <head>
@@ -12,7 +6,7 @@ Our main purpose here at Down South Roleplay is to make RP better for everyone. 
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <meta property="og:title" content="DownSouthRP">
             <meta property="og:type" content="website">
-            <meta property="og:url" content="http://dsrp.online">
+            <meta property="og:url" content="https://dsrp.online">
             <meta property="og:description" content="Welcome to DownSouthRP, we are glad you came!">
             
             
@@ -39,12 +33,3 @@ Our main purpose here at Down South Roleplay is to make RP better for everyone. 
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
         </head>
         <body>
-
-
-<!-- TO IMPORT THIS PAGE USE THE CODE BELOW -->
-
-<!-- 
-
-    include_ONCE $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php"; 
-
--->

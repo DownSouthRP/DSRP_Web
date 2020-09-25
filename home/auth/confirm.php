@@ -20,11 +20,13 @@ if(!isset($_GET) || empty($_GET) || is_null($_GET)) {
     echo $errCode;
     exit;
 }
+
 // CHECKS TO SEE IF GET VALUES ARE THERE
 if(!isset($_GET['e']) || empty($_GET['e']) || is_null($_GET['e'])) {
     echo $errCode;
     exit;
 }
+
 if(!isset($_GET['h']) || empty($_GET['h']) || is_null($_GET['h'])) {
     echo $errCode;
     exit;
@@ -128,15 +130,40 @@ if($stmt = $con->prepare(" SELECT email, password, displayName FROM tempaccounts
                 $deleteTemp->execute();
                 $deleteTemp->store_result();
 
-                // SEND FINAL REGISTRATION EMAIL
-                $mailTo = $e;
-                $mailSubject = "Registration Complete";
-                $mailTxt = "Thank you for registering for dsrp.online. Head over to https://www.dsrp.online/home/auth/login.php to signin with the email and password you used to register.";
-                $mailHeaders = "From: <REGISTRATION@DSRP.ONLINE>";
+                if($stmt = $con->prepare(' SELECT MAX(id) FROM accounts ')) {
+                    $stmt->execute();
+                    $stmt->store_result();
+                    $stmt->bind_result($id);
+                    $stmt->fetch();
+                    
+                    if($stmt = $con->prepare(' INSERT INTO accountactivity (account, activityDetails, activityDateTime) VALUES (?,?,?) ')) {
+                        $stmt->bind_param("sss", $id);
+                        if($stmt->execute()) {
+                            
+                            // SEND FINAL REGISTRATION EMAIL
+                            $mailTo = $e;
+                            $mailSubject = "Registration Complete";
+                            $mailTxt = "Thank you for registering for dsrp.online. Head over to https://www.dsrp.online/home/auth/login.php to signin with the email and password you used to register.";
+                            $mailHeaders = "From: <REGISTRATION@DSRP.ONLINE>";
 
-                if(mail($mailTo,$mailSubject,$mailTxt,$mailHeaders)) {
-                    echo '<script type="text/javascript">location.href = "/home/auth/login.php";</script>';
-                    exit;
+                            if(mail($mailTo,$mailSubject,$mailTxt,$mailHeaders)) {
+                                echo '<script type="text/javascript">location.href = "/home/auth/login.php";</script>';
+                                exit;
+
+                            } else {
+                                echo $errCode . '8';
+                                exit;
+                            }
+
+                        } else {
+                            echo $errCode . '7';
+                            exit;
+                        }
+
+                    } else {
+                        echo $errCode . '6';
+                        exit;
+                    }
 
                 } else {
                     echo $errCode . '5';

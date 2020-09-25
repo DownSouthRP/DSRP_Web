@@ -3,14 +3,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-// IMPORTS FILES LATER USED IN CODE
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
-
-
-
-
-
 
 ?>
 <div class="container-fluid">
@@ -20,11 +14,6 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
 				<div class="col-md-2">
 				</div>
 				<div class="col-md-8">
-                    <div class="card">
-                        <div class="card-body">
-                            <center><img style="width:20%;height:auto;" src="/sys/design/imgs/depts/lspd.png"><br></center>
-                        </div>
-                    </div><br>
 					<nav>
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item">
@@ -40,14 +29,10 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                             <div class="card">
                                 <div class="card-body">
                                     <h3 class="card-title">Welcome to the Los Santos Police Department</h3>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="card">
-                                <div class="card-body">
+                                    <br>
                                     <h5 class="card-title">Department Information</h5>
                                     <p>
-                                    <br><b>About Los Santos Police Department</b>
+                                    <b>About Los Santos Police Department</b>
                                     <br>The Los Santos Police Department's mission statement is to protect lives and property of the people we serve, to reduce the fear of crime, and to enforce public safety. Los Santos Police Department's Police Officers will carry out their duties with honor and integrity, while at all times conducting ourselves with the highest ethical standards to maintain public confidence and to keep our city safe.
                                     <br>
                                     <br><b>Join the Police Department Today!</b>
@@ -56,7 +41,7 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                                     <br><b>LSPD's Command Staff</b>
                                     <br>Chief of Police | Tim A. 2B-1
                                     <br>Assistant Chief of Police | Vacant
-                                    <br>Deputy Chief of Police | Vacant
+                                    <br>Deputy Chief of Police | Rahul P. 2B-3
                                     <br>
                                     <br><b>LSPD'S Subdivisions</b>
                                     <br>The Los Santos Police Department has 2 subdivisions that are currently active and serve as specialized divisions and allow the department to respond to any situation that normal officers can not attend to. Any LSPD officer may join a subdivision once they reach Police Officer I. Subdivisions allow expansions in roleplay and brings our officers to a whole new world.
@@ -65,13 +50,19 @@ include_once $_SERVER['DOCUMENT_ROOT']."/home/i/header.php";
                                     <br>LSPD's Detective Bureau specialize in investigations of criminal activities to protect life and property. Detective's have the resources to activate K9 with the right certification, Detective's also work closely with other Investigation Services.
                                     <br>
                                     <br><b>- Port Authority</b>
-                                    <br>LSPD's Port Authority is currently in production. Please wait for more information.
+                                    <br>LSPD's Port Authority mission is to ensure the safety and well being of all who travel as well as ensuring the safe travel through air or vessels. We protect and serve the citizens of San Andreas, whether it be by Air, Land or Sea. We make sure that citizens are safe within their travel destination.
                                     
                                     </p>
                                 </div>
                             </div>
 						</div>
 						<div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <center><img style="width:100%;height:auto;" src="/sys/design/imgs/depts/lspd.png"><br></center>
+                                </div>
+                            </div>
+                            <br>
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Department Rank Structure</h5>

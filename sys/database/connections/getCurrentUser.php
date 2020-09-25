@@ -13,6 +13,17 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE && !is_null($_S
             $stmt->bind_result($id, $displayName, $email, $communityRank, $permissionRank, $recruitmentRank, $profileBanner, $discordID, $steamID, $teamspeakID);
             $stmt->fetch();
 
+            $userID = $id;
+            $userDisplayName = $displayName;
+            $userEmail = $email;
+            $userCommunityRank = $communityRank;
+            $userPermissionRank = $permissionRank;
+            $userRecruitmentRank = $recruitmentRank;
+            $userProfileBanner = $profileBanner;
+            $userDiscordID = $discordID;
+            $userSteamID = $steamID;
+            $userTeamspeakID = $teamspeakID;
+
         } else {
             echo "<script>alert('An error has occured attempting to fetch values.');</script>";
             echo '<script type="text/javascript">location.href = "/home/";</script>';
@@ -26,5 +37,6 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE && !is_null($_S
     }
 
 }
+
 
 ?>

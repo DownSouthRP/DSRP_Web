@@ -3,14 +3,13 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-// CHECK IF USER IS LOGGED IN
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE) {
     echo '<script type="text/javascript">location.href = "/home/";</script>';
     exit;
 }
 
-// PULLS IN THE PAGE REQUIREMENTS FOR HTML
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/sys/modules/auth/header.php";
 
 ?>
 
@@ -21,12 +20,11 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 		<div class="col-md-12">
 			<div class="row">
 			
-				<div class="col-md-3">
-				</div>
+				<div class="col-md-2"></div>
 
-				<div class="col-md-6">
+				<div class="col-md-8">
 					
-					<center><img style="width:100%;height:auto;" src="/sys/design/imgs/dsrpBanner.png"><br></center>
+					<center><img class="rounded" style="width:100%;height:auto;" src="/sys/design/imgs/dsrpBanner.png"><br></center>
 					
 					<br>
 
@@ -62,22 +60,9 @@ include_once $_SERVER['DOCUMENT_ROOT']."/sys/design/pageReq.php";
 
 						</div>
 					</div>
-
-					<br>
-
-					<div class="card" style="width: 100%;">
-						<div class="card-header">
-							<center><h4 class="card-title">Don't have an account yet?</h4></center>
-						</div>
-						<div class="card-body">
-							<a class="btn btn-primary btn-large btn-block" href="/home/auth/register.php">Register Here</a>
-						</div>
-					</div>
-
 				</div>
 
-				<div class="col-md-3">
-				</div>
+				<div class="col-md-2"></div>
 				
 			</div>
 		</div>

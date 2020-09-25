@@ -5,14 +5,14 @@ include $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
 
 // IF $_GET HAS ERROR
 if(!isset($_GET) || empty($_GET) || is_null($_GET)) {
-    echo "<script>alert('Error! Please try again!-');</script>";
+    echo "<script>alert('Error! Please try again!-1');</script>";
     echo('<script>history.back();</script>');
     exit;
 }
 
 // IF $_POST HAS ERROR
 if(!isset($_POST) || empty($_POST) || is_null($_POST)) {
-    echo "<script>alert('Error! Please try again!-');</script>";
+    echo "<script>alert('Error! Please try again!-2');</script>";
     echo('<script>history.back();</script>');
     exit;
 }
