@@ -28,12 +28,12 @@ if(!isset($_GET) || empty($_GET) || is_null($_GET)) {
     exit;
 }
 
-$userID = '';
+$user = '';
 $action = '';
 $server = '';
 
 // VALIDATE VARIABLES
-$userID = validate($_GET['user']);
+$user = validate($_GET['user']);
 $action = validate($_GET['action']);
 $server = validate($_GET['server']);
 
@@ -46,7 +46,7 @@ function validate($data) {
 
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
 if($stmt = $con->prepare(' SELECT steamID FROM accounts WHERE id = ? ')) {
-    $stmt->bind_param("s", $userID);
+    $stmt->bind_param("s", $user);
     $stmt->execute();
     $stmt->store_result();
     if($stmt->num_rows > 0) {
