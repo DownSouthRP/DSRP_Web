@@ -28,12 +28,12 @@ if(!isset($_GET) || empty($_GET) || is_null($_GET)) {
     exit;
 }
 
-$user = '';
+$u = '';
 $action = '';
 $server = '';
 
 // VALIDATE VARIABLES
-$user = validate($_GET['user']);
+$u = validate($_GET['user']);
 $action = validate($_GET['action']);
 $server = validate($_GET['server']);
 
@@ -45,12 +45,62 @@ function validate($data) {
 }
 
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
-if($stmt = $con->prepare(' SELECT steamID FROM accounts WHERE id = ? ')) {
-    $stmt->bind_param("s", $user);
+if($stmt = $con->prepare(' SELECT id, steamID FROM accounts WHERE id = 7 ')) {
+    //$stmt->bind_param("s", "7");
     $stmt->execute();
     $stmt->store_result();
     if($stmt->num_rows > 0) {
-        $stmt->bind_result($steamID);
+        $stmt->bind_result($newid, $newsteamID);
+        $stmt->fetch();
+
+        if($action == 'add') {
+            if($stmt = $con->prepare(' INSERT INTO whitelist (userID, steamId, serverName) VALUES (?,?,?) ')) {
+                
+                if($stmt->bind_param("sss", $u, $newsteamID, $server)) {
+                    
+                    if($stmt->execute()) {
+                        echo '<script>history.back();</script>';
+                        exit;
+
+                    } else {
+                        echo "<script>alert('ALERT ALERT 2');</script>";
+                        exit;
+                    }
+        
+                } else {
+                    echo "<script>alert('ALERT ALERT 3');</script>";
+                    exit;
+                }
+                
+            } else {
+                echo "<script>alert('ALERT ALERT 1');</script>";
+                exit;
+            }
+        }
+
+        elseif($action == 'remove') {
+            if($stmt = $con->prepare(' DELETE FROM whitelist WHERE userID = ? AND serverName = ? ')) {
+                $stmt->bind_param("ss", $u, $server);
+                if($stmt->execute()) {
+                    echo '<script>history.back();</script>';
+                    exit;
+
+                } else {
+                    echo "<script>alert('ALERT ALERT');</script>";
+                    exit;
+                }
+                
+            } else {
+                echo "<script>alert('ALERT');</script>";
+                exit;
+            }
+
+        } else {
+            echo "<script>alert('Ad error has occured at the rear.');</script>";
+            echo '<script>history.back();</script>';
+            exit;
+        }
+
     } else {
         echo "<script>alert('We could not find this user.--');</script>";
         echo '<script>history.back();</script>';
@@ -63,49 +113,7 @@ if($stmt = $con->prepare(' SELECT steamID FROM accounts WHERE id = ? ')) {
     exit;
 }
 
-if($action == 'add') {
-    if($stmt = $con->prepare(' INSERT INTO whitelist (userID, steamId, serverName) VALUES (?,?,?) ')) {
-        
-        if($stmt->bind_param("sss", $user, $steamID, $server)) {
-            
-            if($stmt->execute()) {
-                echo '<script>history.back();</script>';
-                exit;
-            } else {
-                echo "<script>alert('ALERT ALERT 2');</script>";
-                exit;
-            }
 
-        } else {
-            echo "<script>alert('ALERT ALERT 3');</script>";
-            exit;
-        }
-        
-    } else {
-        echo "<script>alert('ALERT ALERT 1');</script>";
-        exit;
-    }
-}
-elseif($action == 'remove') {
-    if($stmt = $con->prepare(' DELETE FROM whitelist WHERE userID = ? AND serverName = ? ')) {
-        $stmt->bind_param("ss", $user, $server);
-        if($stmt->execute()) {
-            echo '<script>history.back();</script>';
-            exit;
-        } else {
-            echo "<script>alert('ALERT ALERT');</script>";
-            exit;
-        }
-        
-    } else {
-        echo "<script>alert('ALERT');</script>";
-        exit;
-    }
-} else {
-    echo "<script>alert('Ad error has occured at the rear.');</script>";
-    echo '<script>history.back();</script>';
-    exit;
-}
 
 
 ?>
