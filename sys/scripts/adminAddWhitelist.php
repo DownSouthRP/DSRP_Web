@@ -64,7 +64,7 @@ if($stmt = $con->prepare(' SELECT steamID FROM accounts WHERE id = ? ')) {
 }
 
 if($action == 'add') {
-    if($stmt = $con->prepare(' INSERT INTO whitelist (userID, steamHEX, serverName) VALUES (?,?,?) ')) {
+    if($stmt = $con->prepare(' INSERT INTO whitelist (userID, steamId, serverName) VALUES (?,?,?) ')) {
         
         if($stmt->bind_param("sss", $userID, $steamID, $server)) {
             
