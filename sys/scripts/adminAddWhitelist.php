@@ -66,7 +66,7 @@ if($stmt = $con->prepare(' SELECT steamID FROM accounts WHERE id = ? ')) {
 if($action == 'add') {
     if($stmt = $con->prepare(' INSERT INTO whitelist (userID, steamId, serverName) VALUES (?,?,?) ')) {
         
-        if($stmt->bind_param("sss", $userID, $steamID, $server)) {
+        if($stmt->bind_param("sss", $user, $steamID, $server)) {
             
             if($stmt->execute()) {
                 echo '<script>history.back();</script>';
@@ -88,7 +88,7 @@ if($action == 'add') {
 }
 elseif($action == 'remove') {
     if($stmt = $con->prepare(' DELETE FROM whitelist WHERE userID = ? AND serverName = ? ')) {
-        $stmt->bind_param("ss", $userID, $server);
+        $stmt->bind_param("ss", $user, $server);
         if($stmt->execute()) {
             echo '<script>history.back();</script>';
             exit;
