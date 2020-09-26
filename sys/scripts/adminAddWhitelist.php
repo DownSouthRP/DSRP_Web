@@ -45,8 +45,8 @@ function validate($data) {
 }
 
 include_once $_SERVER['DOCUMENT_ROOT']."/sys/database/dbConnection.php";
-if($stmt = $con->prepare(' SELECT id, steamID FROM accounts WHERE id = 7 ')) {
-    //$stmt->bind_param("s", "7");
+if($stmt = $con->prepare(' SELECT id, steamID FROM accounts WHERE id = ? ')) {
+    $stmt->bind_param("s", $u);
     $stmt->execute();
     $stmt->store_result();
     if($stmt->num_rows > 0) {
