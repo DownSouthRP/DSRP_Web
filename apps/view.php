@@ -97,9 +97,9 @@ if($userID !== $appUser) {
                                             elseif(isset($appStatus) && $appStatus == 'Application Accepted') {
                                                 echo '<br>';
                                                 echo '<div class="card">';
-                                                echo '<div class="card-header">Application Denial Reasons</div>';
+                                                echo '<div class="card-header">Application Accepted</div>';
                                                 echo '<div class="card-body bg-secondary">';
-                                                echo 'Congrats! You are now able to get on and complete an interview. The Recruitment TeamSpeak IP is: recruitment.dsrp.online.';
+                                                echo 'Congrats! You are now able to get on and complete an interview. The Recruitment TeamSpeak IP is: recruitment.dsrp.online';
                                                 echo '</div>';
                                                 echo '</div>';
                                             }
